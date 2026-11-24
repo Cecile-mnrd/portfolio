@@ -197,6 +197,10 @@ p { margin: 0; }
 .board { top: 21mm !important; }
 .edu .school { padding: 1.3mm 0 !important; }
 .contact { padding: 3.4mm 4mm 3mm !important; }
+.skills__grid { grid-template-columns: repeat(4, 1fr) !important; }
+.pl--tools { margin-top: 1.2mm; }
+.pl--tools i { border: 0; background: var(--slate); color: #fff; border-radius: 1mm; }
+.pl--tools::before { content: "outils"; display: block; width: 100%; font-size: 6.2pt; font-weight: 600; text-transform: uppercase; color: var(--slate); margin-bottom: .2mm; }
 </style>
 </head>
 <body>
@@ -282,13 +286,12 @@ p { margin: 0; }
     <svg class="clip" style="right:30mm;top:-7mm"><use href="#clip"/></svg>
     <h2>Compétences <em>&amp; outils</em></h2>
     <div class="skills__grid">
-      <div class="sk"><b>Éditorial</b><div class="pl"><i>Rédaction web et print</i><i>Réécriture</i><i>Ligne éditoriale</i><i>SEO</i></div></div>
-      <div class="sk"><b>Diffusion</b><div class="pl"><i>Newsletter</i><i>Emailing</i><i>Community management</i><i>LinkedIn B2B</i></div></div>
-      <div class="sk"><b>Création</b><div class="pl"><i>PAO</i><i>Carrousels</i><i>Montage vidéo</i><i>Interview</i></div></div>
-      <div class="sk"><b>Analyse</b><div class="pl"><i>Suivi de KPI</i><i>Tests A/B</i><i>Enquête qualitative</i></div></div>
-      <div class="sk"><b>Territoire</b><div class="pl"><i>Com institutionnelle</i><i>Marketing territorial</i><i>Événementiel pro</i></div></div>
+      <div class="sk"><b>Éditorial</b><div class="pl"><i>Rédaction web et print</i><i>Réécriture</i><i>SEO</i></div><div class="pl pl--tools"><i>WordPress</i></div></div>
+      <div class="sk"><b>Diffusion</b><div class="pl"><i>Newsletter</i><i>LinkedIn B2B</i><i>Community management</i></div><div class="pl pl--tools"><i>Zoho Campaigns</i><i>Brevo</i></div></div>
+      <div class="sk"><b>Création</b><div class="pl"><i>PAO</i><i>Carrousels</i><i>Montage vidéo</i></div><div class="pl pl--tools"><i>Suite Adobe</i><i>Affinity</i></div></div>
+      <div class="sk"><b>Analyse & veille</b><div class="pl"><i>Suivi de KPI</i><i>Tests A/B</i><i>Enquête qualitative</i></div><div class="pl pl--tools"><i>Notion</i><i>Claude</i><i>Mistral</i><i>ChatGPT</i></div></div>
     </div>
-    <div class="tools"><b>Outils</b><span>WordPress · Zoho Campaigns · Brevo · Suite Adobe · Affinity · Notion · Claude · Mistral · ChatGPT</span></div>
+    <div class="tools"><b>Territoire</b><span>Communication institutionnelle · Marketing territorial · Événementiel professionnel</span></div>
     <div class="cards">
       <div class="mini mini--blue"><b>Langues</b><p><span>Anglais</span> TOEIC 930, échange franco-indien 2023</p><p><span>Espagnol</span> B2</p></div>
       <div class="mini"><b>À côté</b><p>Musique · arts visuels · cinéma · lecture · randonnée côtière</p></div>
