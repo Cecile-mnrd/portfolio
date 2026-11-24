@@ -1614,3 +1614,6 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .folder, .folder__tab { background-color: #ddd3bd !important; }
 .pocket { background-color: #d6cbb2 !important; }
 .folder__tab { color: rgba(60,45,20,.38); }
+/* V29 — nom de famille en italique */
+.hero__name em { font-style: italic; font-weight: 400; }
+.hero__hook { margin-top: 1.4rem; }
