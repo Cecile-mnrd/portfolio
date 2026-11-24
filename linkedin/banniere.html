@@ -96,6 +96,11 @@ body { width: 1584px; height: 396px; overflow: hidden; background: var(--desk) v
 .main .tags { align-items: center; }
 .joke { font: italic 400 26px/1 "Instrument Serif", serif; color: var(--coral); margin-top: 16px; }
 .stamp { left: 1150px !important; }
+.main { top: 70px !important; height: 270px !important; padding: 38px 50px !important; }
+.tucked { left: 1150px !important; right: auto !important; top: 196px !important; width: 250px !important; padding: 22px 24px !important; transform: rotate(4deg) !important; z-index: 4; }
+.tucked::before { background-color: var(--pale) !important; }
+.note.tucked p { font: italic 400 27px/1.12 "Instrument Serif", serif !important; color: var(--slate-dark); }
+.stamp { z-index: 6 !important; }
 </style>
 </head>
 <body>
@@ -114,13 +119,16 @@ body { width: 1584px; height: 396px; overflow: hidden; background: var(--desk) v
   <h1>Cécile <em>Moinard</em></h1>
   <p class="job">Communication &amp; tourisme</p>
   <div class="tags"><span>Tourisme Bretagne</span><span>Audencia SciencesCom</span></div>
-  <p class="joke">Bretonne 100&nbsp;% pur beurre (salé&nbsp;!)</p>
 </div>
 
 
 
 
 
+<div class="sheet note perso tucked">
+  <span class="tape" style="left:70px;top:-15px;transform:rotate(-6deg)"></span>
+  <p>Bretonne<br>100&nbsp;% pur&nbsp;beurre<br><span class="sale">(salé&nbsp;!)</span></p>
+</div>
 <div class="stamp"><span>CM</span></div>
 </body>
 </html>
