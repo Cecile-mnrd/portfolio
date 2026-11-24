@@ -1466,3 +1466,32 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
   .projects.is-stack .planche__tab { left: calc(15% + var(--i) * 16.8%); width: 16.2%; }
   .projects.is-stack .carousel .planche { box-shadow: 0 1px 2px rgba(20,30,40,.18), 0 18px 40px -22px rgba(20,30,40,.45) !important; }
 }
+
+/* =========================================================
+   V21 — contenu des fiches toujours contenu, texte ajusté, mode écran bas
+   ========================================================= */
+.planche__body { display: contents; }
+@media (min-width: 900px) {
+  /* l'enveloppe porte la mise en page et coupe ce qui dépasse ; l'intercalaire reste dehors */
+  .projects.is-stack .carousel .planche { display: block !important; padding: 0 !important; overflow: visible !important; }
+  .projects.is-stack .planche__body {
+    display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: clamp(1rem, 3vw, 3rem);
+    height: 100%; overflow: hidden; border-radius: inherit;
+    padding: clamp(.8rem, 2.6svh, 2.2rem) clamp(1.2rem, 2.6vw, 2.6rem);
+  }
+  .projects.is-stack .planche__collage { height: 100% !important; max-height: 540px; min-height: 0; }
+  .projects.is-stack .planche__text { transform-origin: left center; min-height: 0; }
+  /* le téléphone se règle sur la hauteur, pour ne jamais dépasser */
+  .projects.is-stack .cut--c.iphone { height: 66% !important; width: auto !important; aspect-ratio: 9 / 19.5; top: 30% !important; }
+  .projects.is-stack .carousel { top: 128px; height: calc(100svh - 128px - 28px) !important; }
+}
+/* écrans larges mais peu hauts : carrousel au geste, intercalaires sur les fiches, pas de blocage */
+@media (min-width: 900px) and (max-height: 639px) {
+  .projects { height: auto !important; }
+  .carousel { padding-top: 48px !important; }
+  .carousel .planche { height: auto !important; min-height: 0 !important; max-height: none !important; overflow: visible !important; padding: 0 !important; display: block !important; }
+  .planche__body { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 2rem; padding: 1.4rem 2rem 1.8rem; }
+  .planche__collage { height: 320px !important; }
+  .skip--top { position: static; display: inline-block; margin: 1rem var(--gutter) 0 !important; }
+  .planche__tab { left: calc(4% + var(--i) * 17%); }
+}

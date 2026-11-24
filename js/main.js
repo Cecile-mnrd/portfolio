@@ -156,7 +156,7 @@
   document.addEventListener('slidechange', (e) => animateSlide(e.detail));
 
   const projMM = gsap.matchMedia();
-  projMM.add('(min-width: 900px)', () => {
+  projMM.add('(min-width: 900px) and (min-height: 640px)', () => {
     // pile de fiches : tous les intercalaires visibles ; au défilement, la fiche du dessus s'en va et révèle la suivante
     const section = document.querySelector('.projects');
     section.classList.add('is-stack');
@@ -182,8 +182,18 @@
       const y = st.start + (i / (n - 1)) * (st.end - st.start);
       if (lenis) lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
     };
+    // le texte se réduit si besoin pour tenir dans la fiche
+    const fit = () => slides.forEach((sl) => {
+      const body = sl.querySelector('.planche__body'); const text = sl.querySelector('.planche__text');
+      text.style.scale = '1';
+      const cs = getComputedStyle(body);
+      const avail = body.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      const k = Math.min(1, avail / text.scrollHeight);
+      text.style.scale = String(Math.max(0.55, k));
+    });
+    fit(); window.addEventListener('resize', fit); if (document.fonts) document.fonts.ready.then(fit);
     onSlide(0);
-    return () => { goImpl = old; section.classList.remove('is-stack'); slides.forEach((sl) => { sl.style.zIndex = ''; }); };
+    return () => { window.removeEventListener('resize', fit); slides.forEach((sl) => { sl.querySelector('.planche__text').style.scale = ''; }); goImpl = old; section.classList.remove('is-stack'); slides.forEach((sl) => { sl.style.zIndex = ''; }); };
   });
 
   /* ---------- ATOUTS ---------- */
