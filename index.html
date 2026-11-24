@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio de Cécile Moinard, chargée de communication : stratégie de marque, contenus, SEO, expérience utilisateur et création graphique.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200..800;1,9..144,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -116,7 +116,6 @@
       <div class="carousel" tabindex="0" aria-label="Projets, utilisez les flèches du clavier">
         <article class="planche planche--grid " id="p-crt-tourisme-bretagne" style="--a:#4F6D7A;--b:#EF8354" aria-roledescription="projet" aria-label="1 sur 5">
           <a class="planche__collage" href="projets/crt-tourisme-bretagne.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Parler aux pros du tourisme">
-            <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>newsletter</span></div></figure>
             <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>événement</span></div></figure>
             <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span>linkedin</span></div></figure>
@@ -135,7 +134,6 @@
         </article>
         <article class="planche planche--grid planche--color" id="p-office-de-tourisme" style="--a:#EF8354;--b:#C0D6DF;--bg:#4F6D7A;--em:#EF8354" aria-roledescription="projet" aria-label="2 sur 5">
           <a class="planche__collage" href="projets/office-de-tourisme.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Faire rayonner un territoire">
-            <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>brochure</span></div></figure>
             <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>site web</span></div></figure>
             <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span>instagram</span></div></figure>
@@ -154,7 +152,6 @@
         </article>
         <article class="planche planche--grid " id="p-capsule" style="--a:#C49799;--b:#4F6D7A" aria-roledescription="projet" aria-label="3 sur 5">
           <a class="planche__collage" href="projets/capsule.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Capsule, marque éthique">
-            <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>logo</span></div></figure>
             <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-cream"><span>plateforme</span></div></figure>
             <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-b"><span>campagne</span></div></figure>
@@ -173,7 +170,6 @@
         </article>
         <article class="planche planche--grid planche--color" id="p-serious-game" style="--a:#2b3b42;--b:#DBE9EE;--bg:#EF8354;--em:#2b3b42" aria-roledescription="projet" aria-label="4 sur 5">
           <a class="planche__collage" href="projets/serious-game.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Un atelier de cuisine face à 4 rivaux">
-            <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>business plan</span></div></figure>
             <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>campagne 360°</span></div></figure>
             <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-cream"><span>menu</span></div></figure>
@@ -192,7 +188,6 @@
         </article>
         <article class="planche planche--grid planche--dark" id="p-webmagazine" style="--a:#C0D6DF;--b:#C49799;--em:#C0D6DF" aria-roledescription="projet" aria-label="5 sur 5">
           <a class="planche__collage" href="projets/webmagazine.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Un webmagazine dystopique">
-            <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-b"><span>webmag</span></div></figure>
             <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-dark"><span>article</span></div></figure>
             <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-slate"><span>mobile</span></div></figure>
@@ -326,19 +321,22 @@
       <div class="contact__card paper">
         <span class="tape" aria-hidden="true"></span>
         <p class="contact__title">Travaillons <em>ensemble</em></p>
+        <!-- Email et téléphone : encodés (texte inversé puis base64) et affichés seulement au clic.
+             Pour mettre les tiens, dans la console du navigateur : btoa([...'ton@email.fr'].reverse().join('')) -->
         <div class="contact__row">
-          <div>
+          <div class="secret" data-kind="email" data-v="cmYuZWxwbWV4ZUBsaWFtZS5ub3Q=">
             <p class="mono-title">email</p>
-            <a class="contact__big" href="mailto:ton.email@exemple.fr" data-cursor data-cursor-label="écrire">ton.email@exemple.fr</a>
+            <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">prenom.nom@domaine.fr</span></p>
+            <button class="secret__btn" type="button">Afficher l'email</button>
           </div>
-          <div>
+          <div class="secret" data-kind="tel" data-v="MDAgMDAgMDAgMDAgNjA=">
             <p class="mono-title">téléphone</p>
-            <a class="contact__big" href="tel:+33600000000">06 00 00 00 00</a>
+            <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">06 12 34 56 78</span></p>
+            <button class="secret__btn" type="button">Afficher le numéro</button>
           </div>
         </div>
-        <div class="contact__row contact__links mono">
+        <div class="contact__row contact__links">
           <a href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a href="#" target="_blank" rel="noopener">Instagram ↗</a>
           <a href="assets/CV-Cecile-Moinard.pdf" download>Télécharger le CV ↓</a>
         </div>
       </div>

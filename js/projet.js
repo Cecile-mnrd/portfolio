@@ -15,7 +15,6 @@
   gsap.timeline({ defaults: { ease: 'power3.out' } })
     .from('.back', { x: -30, opacity: 0, duration: 0.5 })
     .from('.case-hero__text', { y: 80, rotation: -6, opacity: 0, duration: 0.9 }, '<0.1')
-    .from('.case-hero__cover .shard', { scale: 0, rotation: -40, duration: 0.8, stagger: 0.1 }, '<0.2')
     .from('.case-hero__cover .cut', { y: -120, opacity: 0, rotation: () => gsap.utils.random(-25, 25), duration: 0.9, stagger: 0.12, ease: 'back.out(1.4)' }, '<0.1')
     .from('.nav > *', { y: -30, opacity: 0, duration: 0.5, stagger: 0.1 }, '<');
 

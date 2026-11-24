@@ -34,3 +34,11 @@ GitHub Pages (Settings → Pages → branche), Netlify ou Vercel : glisser le do
 Une page par projet dans `projets/` (contexte, mission, réalisations, chiffres, ce que j'en retiens, projet suivant).
 Les images vont dans `assets/projets/<nom-du-projet>/` ; remplacer chaque `.placeholder` par une `<img>`.
 Les passages entre crochets `[À compléter …]` sont à réécrire.
+
+## Email et téléphone protégés
+Ils ne sont jamais écrits en clair dans le code : chaque valeur est inversée puis encodée en base64 dans `data-v`, et ne s'affiche qu'au clic.
+Pour encoder la tienne, dans la console du navigateur :
+
+    btoa([...'prenom.nom@domaine.fr'].reverse().join(''))
+
+Cela arrête les robots qui aspirent les adresses, pas une personne déterminée.

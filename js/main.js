@@ -18,6 +18,27 @@
     });
   });
 
+  /* ---------- email et téléphone : décodés seulement au clic ---------- */
+  document.querySelectorAll('.secret').forEach((box) => {
+    const btn = box.querySelector('.secret__btn');
+    const out = box.querySelector('.secret__value');
+    btn.addEventListener('click', () => {
+      const v = [...atob(box.dataset.v)].reverse().join('');
+      const a = document.createElement('a');
+      a.href = (box.dataset.kind === 'email' ? 'mailto:' : 'tel:') + v.replace(/\s/g, box.dataset.kind === 'email' ? '' : '');
+      a.textContent = v;
+      out.replaceChildren(a);
+      const copy = document.createElement('button');
+      copy.type = 'button'; copy.className = 'secret__btn'; copy.textContent = 'Copier';
+      copy.addEventListener('click', () => {
+        (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject())
+          .then(() => { copy.textContent = 'Copié'; })
+          .catch(() => { const r = document.createRange(); r.selectNodeContents(a); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); });
+      });
+      btn.replaceWith(copy);
+    });
+  });
+
   /* ---------- CARROUSEL PROJETS (fonctionne aussi sans GSAP) ---------- */
   const car = document.querySelector('.carousel');
   const slides = car ? Array.from(car.children) : [];
@@ -61,11 +82,12 @@
         if (Math.abs(p) > 1.2) return;
         sl.querySelectorAll('.cut').forEach((c) => {
           const d = parseFloat(c.dataset.depth || 1);
-          c.style.translate = `${p * d * 140}px ${Math.abs(p) * d * 30}px`;
+          c.style.translate = `${p * d * 60}px ${Math.abs(p) * d * 20}px`;
         });
         sl.querySelectorAll('.shard').forEach((c, k) => { c.style.scale = String(1 - Math.abs(p) * 0.5); c.style.rotate = `${p * (k ? 30 : -30)}deg`; });
       });
     };
+    car.addEventListener('scrollend', update);
     car.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     window.addEventListener('resize', update);
     update();
