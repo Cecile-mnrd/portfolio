@@ -126,7 +126,7 @@
 
   const heroMM = gsap.matchMedia();
   // moment signature (ordinateur) : au défilement, on sort les documents de la chemise
-  heroMM.add('(min-width: 900px)', () => {
+  heroMM.add('(min-width: 900px) and (min-height: 701px)', () => {
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
       scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: '+=75%', scrub: 0.8 },
@@ -139,7 +139,7 @@
       .to('.folder, .pocket', { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in' }, 0.35)
       .to('.layer', { y: '-=60', stagger: 0.05 }, 0.55);
   });
-  heroMM.add('(max-width: 899px)', () => {
+  heroMM.add('(max-width: 899px), (max-height: 700px)', () => {
     gsap.to('.layer--photo', { y: -40, rotation: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   });
 
@@ -152,6 +152,16 @@
       onUpdate: () => { hook.textContent = full.slice(0, o.n); },
       onComplete: () => hook.classList.remove('is-typing') });
   }
+  /* ---------- flèche « c'est par ici » : se dessine puis pointe ---------- */
+  const mlLine = document.querySelector('.more-link__line');
+  if (mlLine) {
+    const L = mlLine.getTotalLength();
+    gsap.timeline({ delay: 1.4 })
+      .fromTo(mlLine, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.8, ease: 'power2.inOut' })
+      .from('.more-link__head', { opacity: 0, x: -8, duration: 0.25 })
+      .to('.more-link__arrow', { x: 6, duration: 0.6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  }
+
   /* ---------- vague discrète en bas de l'accueil ---------- */
   gsap.to('.sea__a', { x: -90, duration: 6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
   gsap.to('.sea__b', { x: 70, duration: 8, ease: 'sine.inOut', yoyo: true, repeat: -1 });

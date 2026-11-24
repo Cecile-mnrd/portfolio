@@ -1591,3 +1591,9 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .case-done__card { padding: clamp(1.6rem, 4vw, 2.8rem); position: relative; }
 .done-list { margin: .4rem 0 1.4rem; padding-left: 1.2rem; display: grid; gap: .7rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.45; }
 .done-list li::marker { color: var(--coral); }
+
+/* V25 — lien « c'est par ici » avec flèche dessinée */
+.more-link { display: inline-flex; align-items: flex-end; gap: .4rem; margin-top: .9rem; font: italic 400 1.25rem/1.2 var(--serif); color: var(--slate); text-decoration: none; }
+.more-link:hover, .more-link:focus-visible { color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
+.more-link__arrow { width: 64px; height: 32px; flex: none; overflow: visible; translate: 0 6px; }
+.more-link__arrow path { fill: none; stroke: var(--coral); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
