@@ -156,7 +156,7 @@
   document.addEventListener('slidechange', (e) => animateSlide(e.detail));
 
   const projMM = gsap.matchMedia();
-  projMM.add('(min-width: 900px) and (min-height: 640px)', () => {
+  projMM.add('(min-width: 900px)', () => {
     // pile de fiches : tous les intercalaires visibles ; au défilement, la fiche du dessus s'en va et révèle la suivante
     const section = document.querySelector('.projects');
     section.classList.add('is-stack');
