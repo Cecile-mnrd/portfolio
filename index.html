@@ -97,16 +97,22 @@
       <div class="projects__track">
 
         <div class="planche planche--intro">
-          <p class="mono-title">/ sélection 2022 — 2027</p>
-          <h2 class="section-title">Projets <em>choisis</em></h2>
-          <p class="mono planche__hint">05 projets · faites défiler →</p>
+          <div class="stack">
+          <div class="sheets" aria-hidden="true"><span></span><span></span></div>
+          <div class="sheets__top paper">
+            <p class="mono-title">[ sélection 2022 — 2027 ]</p>
+            <h2 class="section-title">Projets <em>choisis</em><sup class="count">(05)</sup></h2>
+            <span class="title-tag mono">communication · stratégie · contenus</span>
+          </div>
+          </div>
+          <p class="mono planche__hint">faites défiler →</p>
           <div class="progress" aria-hidden="true"><span></span></div>
         </div>
 
         <!-- Une <article class="planche"> par projet.
              Remplace chaque .placeholder par <img src="assets/projets/xxx.jpg" alt="...">
              --a / --b = couleurs d'accent du projet -->
-        <article class="planche planche--grid" style="--a:#2d64c8;--b:#e8892b">
+        <article class="planche planche--grid" id="p-alternance" style="--a:#2d64c8;--b:#e8892b">
           <div class="planche__collage" data-cursor>
             <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>affiche</span></div></figure>
@@ -116,16 +122,17 @@
           </div>
           <div class="planche__text">
             <p class="mono planche__num">Projet 01 / Alternance de master · 2025 — 2027</p>
+            <p class="mono planche__cat">[ stratégie &amp; contenus ]</p>
             <h3>Chargée de <em>communication</em></h3>
             <p class="mono planche__desc">Structure à préciser. Les missions phares de l'alternance : stratégie, contenus, campagnes et supports réalisés.</p>
-            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <p class="planche__label"><span class="mono">outils &amp; compétences</span></p>
             <ul class="pills"><li>Stratégie</li><li>Contenus</li><li>À compléter</li></ul>
             <div class="result"><p class="mono-title">Résultat ✳✳✳✳✳</p><p>Un chiffre ou un retour marquant à ajouter ici.</p></div>
             <div class="swatches" aria-hidden="true"><span style="--c:#2d64c8"></span><span style="--c:#e8892b"></span><span style="--c:#efeae0"></span><span style="--c:#1d1c1a"></span></div>
           </div>
         </article>
 
-        <article class="planche planche--grid planche--dark" style="--a:#e8892b;--b:#c8532a">
+        <article class="planche planche--grid planche--dark" id="p-tourisme" style="--a:#e8892b;--b:#c8532a">
           <div class="planche__collage" data-cursor>
             <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>brochure</span></div></figure>
@@ -135,16 +142,17 @@
           </div>
           <div class="planche__text">
             <p class="mono planche__num">Projet 02 / Office de Tourisme Bretagne Côte de Granit Rose · 2022 — 2025</p>
+            <p class="mono planche__cat">[ communication touristique ]</p>
             <h3>Faire rayonner <em>un territoire</em></h3>
             <p class="mono planche__desc">Trois ans d'alternance : création et gestion des supports print, rédaction et optimisation SEO, mise à jour du site WordPress, plannings éditoriaux et animation des réseaux sociaux.</p>
-            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <p class="planche__label"><span class="mono">outils &amp; compétences</span></p>
             <ul class="pills"><li>Suite Adobe</li><li>WordPress</li><li>SEO</li><li>Community management</li><li>RSE</li></ul>
             <div class="result"><p class="mono-title">Résultat ✳✳✳✳✳</p><p>Une communauté de <b>17&nbsp;000 abonnés</b> animée au quotidien.</p></div>
             <div class="swatches" aria-hidden="true"><span style="--c:#e8892b"></span><span style="--c:#c8532a"></span><span style="--c:#2d64c8"></span><span style="--c:#efeae0"></span></div>
           </div>
         </article>
 
-        <article class="planche planche--grid" style="--a:#6b7a3c;--b:#e8892b">
+        <article class="planche planche--grid planche--color" id="p-capsule" style="--bg:#24513a;--a:#e8892b;--b:#c8532a">
           <div class="planche__collage" data-cursor>
             <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>logo</span></div></figure>
@@ -154,16 +162,17 @@
           </div>
           <div class="planche__text">
             <p class="mono planche__num">Projet 03 / BUT MMI · 2024</p>
+            <p class="mono planche__cat">[ plateforme de marque ]</p>
             <h3>Capsule, <em>marque éthique</em></h3>
             <p class="mono planche__desc">Création d'une marque de mode éthique et durable : plateforme de marque, identité, et stratégie de communication de crise pour répondre aux enjeux de transparence.</p>
-            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <p class="planche__label"><span class="mono">outils &amp; compétences</span></p>
             <ul class="pills"><li>Plateforme de marque</li><li>Communication de crise</li><li>Identité</li></ul>
             <div class="result"><p class="mono-title">Le défi ✳</p><p>Rester crédible sur l'éthique, même en pleine crise.</p></div>
             <div class="swatches" aria-hidden="true"><span style="--c:#6b7a3c"></span><span style="--c:#e8892b"></span><span style="--c:#e2d8c6"></span><span style="--c:#1d1c1a"></span></div>
           </div>
         </article>
 
-        <article class="planche planche--grid" style="--a:#c8532a;--b:#2d64c8">
+        <article class="planche planche--grid planche--color" id="p-serious" style="--bg:#2d64c8;--a:#f2c14e;--b:#e8892b">
           <div class="planche__collage" data-cursor>
             <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>business plan</span></div></figure>
@@ -173,16 +182,17 @@
           </div>
           <div class="planche__text">
             <p class="mono planche__num">Projet 04 / Serious game · 2024</p>
+            <p class="mono planche__cat">[ marketing &amp; gestion de crise ]</p>
             <h3>Un atelier de cuisine <em>face à 4 rivaux</em></h3>
             <p class="mono planche__desc">Simulation d'entreprise en équipe : analyse marketing complète, business model, communication 360° et gestion de crise en temps réel.</p>
-            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <p class="planche__label"><span class="mono">outils &amp; compétences</span></p>
             <ul class="pills"><li>Business model</li><li>Business plan</li><li>Marketing</li><li>360°</li></ul>
             <div class="result"><p class="mono-title">Le défi ✳</p><p>Se démarquer de quatre concurrents sur le même marché.</p></div>
             <div class="swatches" aria-hidden="true"><span style="--c:#c8532a"></span><span style="--c:#2d64c8"></span><span style="--c:#efeae0"></span><span style="--c:#e8892b"></span></div>
           </div>
         </article>
 
-        <article class="planche planche--grid planche--dark" style="--a:#2d64c8;--b:#6b7a3c">
+        <article class="planche planche--grid planche--dark" id="p-webmag" style="--a:#2d64c8;--b:#6b7a3c">
           <div class="planche__collage" data-cursor>
             <span class="shard shard--1"></span><span class="shard shard--2"></span>
             <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>webmag</span></div></figure>
@@ -192,9 +202,10 @@
           </div>
           <div class="planche__text">
             <p class="mono planche__num">Projet 05 / BUT MMI · 2024</p>
+            <p class="mono planche__cat">[ storytelling &amp; ux ]</p>
             <h3>Un webmagazine <em>dystopique</em></h3>
             <p class="mono planche__desc">Conception d'un webmagazine qui mêle storytelling immersif, parcours utilisateur fluide et stratégie SEO pour la visibilité et l'engagement.</p>
-            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <p class="planche__label"><span class="mono">outils &amp; compétences</span></p>
             <ul class="pills"><li>Storytelling</li><li>UX/UI design</li><li>SEO</li><li>Collaboration</li></ul>
             <div class="result"><p class="mono-title">Le défi ✳</p><p>Immerger le lecteur sans jamais le perdre.</p></div>
             <div class="swatches" aria-hidden="true"><span style="--c:#2d64c8"></span><span style="--c:#6b7a3c"></span><span style="--c:#1d1c1a"></span><span style="--c:#efeae0"></span></div>
@@ -206,6 +217,14 @@
           <a href="#contact" class="btn mono">→ me contacter</a>
         </div>
       </div>
+
+      <nav class="tabs" aria-label="Aller à un projet">
+        <a href="#p-alternance" style="--t:#2d64c8">Alternance</a>
+        <a href="#p-tourisme" style="--t:#e8892b">Office de Tourisme</a>
+        <a href="#p-capsule" style="--t:#24513a">Capsule</a>
+        <a href="#p-serious" style="--t:#c8532a">Serious game</a>
+        <a href="#p-webmag" style="--t:#6b7a3c">Webmag</a>
+      </nav>
     </section>
 
     <!-- ============ PARCOURS ============ -->
@@ -235,7 +254,7 @@
       </div>
 
       <div class="panel panel--school paper paper--kraft">
-        <span class="binder" aria-hidden="true"></span>
+        <span class="rings" aria-hidden="true"><i></i><i></i><i></i></span>
         <h2 class="mono-title">/ expérience<br>scolaire</h2>
 
         <div class="school">
@@ -327,22 +346,27 @@
         </div>
       </div>
 
-      <div class="contact__card paper">
-        <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-        <div class="contact__row">
-          <div>
+      <div class="typewriter">
+        <div class="tw__paper paper">
+          <p class="tw__title">Travaillons <em>ensemble !</em></p>
+          <div class="tw__lines">
             <p class="mono-title">email :</p>
             <a class="contact__big" href="mailto:ton.email@exemple.fr" data-cursor data-cursor-label="écrire">ton.email@exemple.fr</a>
-          </div>
-          <div>
             <p class="mono-title">téléphone :</p>
             <a class="contact__big" href="tel:+33600000000">06 00 00 00 00</a>
           </div>
+          <div class="contact__links mono">
+            <a href="#" target="_blank" rel="noopener">→ LinkedIn</a>
+            <a href="#" target="_blank" rel="noopener">→ Instagram</a>
+            <a href="assets/CV-Cecile-Moinard.pdf" download>→ Télécharger le CV</a>
+          </div>
         </div>
-        <div class="contact__row contact__links mono">
-          <a href="#" target="_blank" rel="noopener">→ LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener">→ Instagram</a>
-          <a href="assets/CV-Cecile-Moinard.pdf" download>→ Télécharger le CV</a>
+        <div class="tw__machine" aria-hidden="true">
+          <div class="tw__roller"><span></span><span></span></div>
+          <div class="tw__body">
+            <div class="tw__keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="tw__space"></div>
+          </div>
         </div>
       </div>
 

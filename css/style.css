@@ -517,3 +517,123 @@ html, body { overflow-x: clip; }
   .planche--intro { padding-top: 5rem; padding-bottom: 3rem; }
   .planche__collage { height: 360px; }
 }
+
+/* =========================================================
+   V6 — intercalaires, feuilles perforées, classeur, machine à écrire
+   ========================================================= */
+
+/* ---------- intro : pile de feuilles perforées ---------- */
+.planche--intro { position: relative; background: #121212; }
+.planche--intro .sheets { position: absolute; left: var(--gutter); top: 50%; width: min(640px, 82vw); height: 360px; transform: translateY(-58%); }
+.sheets span, .sheets__top {
+  border-radius: 4px;
+  background-color: #ece6da;
+  background-image:
+    radial-gradient(circle at 26px 22%, #121212 7px, transparent 8px),
+    radial-gradient(circle at 26px 50%, #121212 7px, transparent 8px),
+    radial-gradient(circle at 26px 78%, #121212 7px, transparent 8px),
+    var(--noise);
+}
+.sheets span { position: absolute; inset: 0; box-shadow: var(--shadow); }
+.sheets span:nth-child(1) { transform: rotate(-5deg) translate(-10px, 8px); filter: brightness(.88); }
+.sheets span:nth-child(2) { transform: rotate(3deg) translate(8px, -4px); filter: brightness(.94); }
+.sheets__top {
+  position: relative; width: min(640px, 82vw); min-height: 360px; padding: 3rem 2.5rem 2.5rem 4.2rem;
+  color: var(--ink); box-shadow: var(--shadow); transform: rotate(-1deg);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.sheets__top .section-title { font-size: clamp(3rem, 7vw, 6.4rem); }
+.count { font-family: var(--mono); font-style: normal; font-size: .22em; font-weight: 400; vertical-align: super; margin-left: .3em; letter-spacing: 0; }
+.title-tag {
+  align-self: flex-start; margin-top: 1.2rem; padding: .35rem .7rem; font-size: .8rem;
+  background: var(--paper); border: 1px solid var(--ink); transform: rotate(-3deg); box-shadow: 2px 2px 0 var(--ink);
+}
+.planche--intro .planche__hint { color: var(--paper); }
+
+/* ---------- étiquettes [catégorie] ---------- */
+.planche__cat { font-size: .95rem; margin-top: .5rem; }
+.planche__label span { display: inline-block; border: 1px solid currentColor; border-radius: 99px; padding: .15rem .7rem; font-size: .75rem; opacity: .8; }
+
+/* ---------- planches en aplat de couleur ---------- */
+.planche--color { background-color: var(--bg); color: var(--paper); }
+.planche--color.planche--grid { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M28 0H0v28' fill='none' stroke='%23fff' stroke-opacity='.1'/%3E%3C/svg%3E"), var(--noise); }
+.planche--color .pills li { color: var(--ink); }
+.planche--color .cut { border-color: var(--paper); }
+
+/* ---------- onglets d'intercalaire ---------- */
+.tabs { display: none; }
+@media (min-width: 900px) {
+  .tabs {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; display: flex; gap: 4px;
+    padding: 0 var(--gutter); pointer-events: none;
+  }
+  .tabs a {
+    pointer-events: auto; position: relative; flex: 0 1 190px; text-align: center; text-decoration: none;
+    font-family: var(--serif); font-weight: 600; font-size: .95rem; color: var(--ink);
+    padding: .7rem 1rem 1.1rem; margin-bottom: -.5rem;
+    background-color: #e9dfcc; background-image: var(--noise);
+    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%); border-radius: 10px 10px 0 0;
+    transform: translateY(22%); transition: transform .35s cubic-bezier(.2,.8,.2,1), background-color .35s, color .35s;
+  }
+  .tabs a:hover { transform: translateY(8%); }
+  .tabs a.is-active { transform: translateY(0); background-color: var(--t); color: var(--paper); }
+}
+
+/* ---------- classeur à anneaux (fiche scolaire) ---------- */
+.panel--school {
+  background-image:
+    radial-gradient(circle at 34px 18%, rgba(0,0,0,.75) 8px, transparent 9px),
+    radial-gradient(circle at 34px 50%, rgba(0,0,0,.75) 8px, transparent 9px),
+    radial-gradient(circle at 34px 82%, rgba(0,0,0,.75) 8px, transparent 9px),
+    var(--noise);
+  padding-left: calc(1.5rem + clamp(2.6rem, 4vw, 3.4rem));
+}
+.rings { position: absolute; left: -16px; top: 0; bottom: 0; width: 64px; pointer-events: none; z-index: 3; }
+.rings i {
+  position: absolute; left: 0; width: 64px; height: 28px; margin-top: -14px;
+  border: 5px solid #b9bcbf; border-left-color: #8d9093; border-radius: 50%;
+  box-shadow: 0 3px 4px rgba(0,0,0,.35), inset 0 1px 1px rgba(255,255,255,.6);
+  clip-path: inset(0 0 45% 0);
+}
+.rings i:nth-child(1) { top: 18%; } .rings i:nth-child(2) { top: 50%; } .rings i:nth-child(3) { top: 82%; }
+@media (max-width: 899px) { .panel--school { padding-left: 4.2rem; } }
+
+/* ---------- machine à écrire ---------- */
+.typewriter { position: relative; width: min(760px, calc(100% - 2 * var(--gutter))); margin: clamp(3rem, 8vh, 6rem) auto 3rem; }
+.tw__paper {
+  position: relative; z-index: 1; width: 78%; margin: 0 auto; padding: clamp(2rem, 5vw, 3.5rem) clamp(1.4rem, 4vw, 3rem) 5.5rem;
+  color: var(--ink); border-radius: 2px;
+}
+.tw__title { font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: 1; margin: 0 0 2rem; letter-spacing: -.02em; }
+.tw__title em { font-style: italic; font-weight: 700; color: var(--rust); }
+.tw__lines .mono-title { margin: 1.2rem 0 .2rem; }
+.tw__paper .contact__big { font-size: clamp(1.2rem, 3vw, 1.9rem); }
+.tw__paper .contact__links { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--ink); }
+.tw__paper .contact__links a { text-decoration: none; }
+
+.tw__machine { position: relative; z-index: 2; margin-top: -4.2rem; }
+.tw__roller {
+  position: relative; height: 54px; margin: 0 3%; border-radius: 27px;
+  background: linear-gradient(#3a3a3a, #111 60%, #2a2a2a); box-shadow: 0 6px 12px rgba(0,0,0,.5);
+}
+.tw__roller span { position: absolute; top: 8px; width: 38px; height: 38px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #bfc2c5, #6f7275); box-shadow: 0 2px 4px rgba(0,0,0,.5); }
+.tw__roller span:first-child { left: -18px; } .tw__roller span:last-child { right: -18px; }
+.tw__body {
+  margin-top: -6px; padding: 2.2rem 8% 1.6rem; border-radius: 30px 30px 18px 18px;
+  background: linear-gradient(#2b2b2b, #161616); box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), inset 0 2px 0 rgba(255,255,255,.08);
+}
+.tw__keys { display: grid; grid-template-columns: repeat(10, 1fr); gap: clamp(6px, 1.4vw, 12px); }
+.tw__keys i { aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #f1ece2, #cfc8bb); border: 3px solid #0d0d0d; box-shadow: 0 3px 0 #000; }
+.tw__keys i:nth-child(10n+5) { background: radial-gradient(circle at 45% 40%, #e4a58e, #9c4a33); }
+.tw__space { height: 18px; width: 55%; margin: 1rem auto 0; border-radius: 9px; background: #cfc8bb; box-shadow: 0 3px 0 #000; }
+.stack { position: relative; width: min(640px, 82vw); }
+.planche--intro .sheets { position: absolute; inset: 0; left: 0; top: 0; width: auto; height: auto; transform: none; }
+.sheets span { filter: none !important; background-color: #d9d2c4; }
+.sheets span:nth-child(2) { background-color: #e3dccf; }
+@media (min-width: 900px) {
+  .tabs a { padding: .6rem 1rem .9rem; transform: translateY(12%); margin-bottom: 0; }
+  .tabs a:hover { transform: translateY(4%); }
+}
+.planche--intro .progress { flex: 0 0 3px; height: 3px; }
+.planche--intro .planche__hint { margin-top: 1.5rem; }
+.tw__paper { padding-bottom: 6.5rem; }
