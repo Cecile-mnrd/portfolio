@@ -126,10 +126,10 @@
 
   const heroMM = gsap.matchMedia();
   // moment signature (ordinateur) : au défilement, on sort les documents de la chemise
-  heroMM.add('(min-width: 900px) and (min-height: 701px)', () => {
+  heroMM.add('(min-width: 900px)', () => {
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
-      scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: '+=75%', scrub: 0.8 },
+      scrollTrigger: { trigger: '.hero', pin: true, start: 'bottom bottom', end: '+=75%', scrub: 0.8, invalidateOnRefresh: true },
     });
     // départ explicite (fromTo) : on ne lit pas les positions pendant l'animation d'entrée
     const ir = { immediateRender: false };
@@ -140,8 +140,8 @@
       .to('.scroll-hint', { opacity: 0, duration: 0.2 }, 0)
       .fromTo('.folder, .pocket', { y: 0, opacity: 1 }, { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in', duration: 0.65, ...ir }, 0.35);
   });
-  heroMM.add('(max-width: 899px), (max-height: 700px)', () => {
-    gsap.to('.layer--photo', { y: -40, rotation: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  heroMM.add('(max-width: 899px)', () => {
+    gsap.fromTo('.layer--photo', { y: 0, rotation: 0 }, { y: -40, rotation: 8, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   });
 
   /* ---------- accroche qui s'écrit lettre par lettre ---------- */
