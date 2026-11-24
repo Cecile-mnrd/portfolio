@@ -1617,3 +1617,6 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 /* V29 — nom de famille en italique */
 .hero__name em { font-style: italic; font-weight: 400; }
 .hero__hook { margin-top: 1.4rem; }
+
+/* V30 — le poste recherché bien visible */
+.hero__job { font: 400 clamp(1.8rem, 3.6vw, 3rem)/1.05 var(--serif) !important; font-style: normal !important; color: var(--slate); margin-top: 1.2rem !important; }
