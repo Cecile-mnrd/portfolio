@@ -37,7 +37,7 @@
       y: -140, opacity: 0, duration: 1.1, stagger: 0.14,
       rotation: () => gsap.utils.random(-22, 22),
     })
-    .from('.frac', {
+    .from('.hero__role', {
       scale: 0, opacity: 0, duration: 0.6, stagger: 0.05, ease: 'back.out(2.5)',
     }, '-=0.7')
     .from('.hero__name .line', { yPercent: 60, opacity: 0, duration: 0.9, stagger: 0.12 }, '<')

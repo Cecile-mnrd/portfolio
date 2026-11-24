@@ -388,41 +388,21 @@ html, body { overflow-x: clip; }
   .nav__links a { font-size: .72rem; padding: .2rem .25rem; }
 }
 
-/* =========================================================
-   Touches personnelles : bleu canard du CV + rayons
-   ========================================================= */
-:root {
-  --blue: #c4dcdd;
-  --olive: #4f8f96;   /* bleu canard */
-  --teal: #4f9aa3;
-  --teal-deep: #24555c;
-  --sky-top: #b7cccf;
-  --sky-mid: #46717a;
-}
-.hl { background: linear-gradient(transparent 55%, rgba(79,154,163,.4) 55%); }
-.stamp { color: var(--teal-deep); }
-.stamp > span { background: var(--teal); }
-.tag__big em { color: #8fd0d6; }
-.cursor { background: var(--teal); }
-::selection { background: var(--teal); }
-.placeholder--portrait { background-color: #cfe1e1; background-image: radial-gradient(var(--teal) 1.4px, transparent 1.8px); }
-
 /* rayons */
-.frac--ray svg { width: 18px; height: 26px; color: var(--teal); display: block; }
-.section-title .ray { width: .32em; height: .45em; color: var(--teal); margin-left: .15em; vertical-align: .35em; }
-.projects .section-title .ray { color: #8fd0d6; }
+.section-title .ray { width: .32em; height: .45em; color: var(--rust); margin-left: .15em; vertical-align: .35em; }
+.projects .section-title .ray { color: #e4a58e; }
 
 /* sceau "mention TB" (remplace les yeux) */
-.seal { position: relative; display: grid; place-items: center; width: 74px; height: 74px; margin: 1rem 0 0 auto; border-radius: 50%; background: var(--teal); color: var(--paper); transform: rotate(-12deg); box-shadow: var(--shadow); }
+.seal { position: relative; display: grid; place-items: center; width: 74px; height: 74px; margin: 1rem 0 0 auto; border-radius: 50%; background: var(--rust); color: var(--paper); transform: rotate(-12deg); box-shadow: var(--shadow); }
 .seal span { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.6rem; }
-.seal svg { position: absolute; left: -22px; top: 22px; width: 16px; height: 24px; color: var(--teal); transform: scaleX(-1); }
+.seal svg { position: absolute; left: -22px; top: 22px; width: 16px; height: 24px; color: var(--rust); transform: scaleX(-1); }
 
 /* carte mentale */
-.mm-center--it { font-style: italic; font-weight: 700; fill: var(--teal-deep); }
+.mm-center--it { font-style: italic; font-weight: 700; }
 .mm-lines { color: var(--ink); }
 
 /* intérêts */
 .interests { margin: 2.5rem auto 0; max-width: 820px; padding: 1.6rem 1.8rem; transform: rotate(-1.2deg); }
 .interests__list { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.5; margin: 0; }
-.interests__list span { color: var(--teal); font-style: normal; margin: 0 .3em; }
+.interests__list span { color: var(--rust); font-style: normal; margin: 0 .3em; }
 @media (min-width: 900px) { .layer--photo { grid-column: 10 / 13; margin: -1.5rem -1rem 0 2.5rem; } }
