@@ -1597,3 +1597,7 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .more-link:hover, .more-link:focus-visible { color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
 .more-link__arrow { width: 64px; height: 32px; flex: none; overflow: visible; translate: 0 6px; }
 .more-link__arrow path { fill: none; stroke: var(--coral); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* V26 — à propos court sur l'accueil, page complète à part */
+.about__text .more-link { margin-top: .4rem; }
+.about--page { padding-top: 130px; }
+.about--page .back { margin-bottom: 2rem; }

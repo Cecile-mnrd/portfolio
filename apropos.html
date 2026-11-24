@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos · Cécile Moinard</title>
+  <meta name="description" content="Qui est Cécile Moinard, chargée de communication bretonne : parcours, envies et façon de travailler.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-projet page-about">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wipe" aria-hidden="true"><span>C<sup>/</sup>M</span></div>
+  <script>try{if(sessionStorage.getItem('wipe'))document.documentElement.classList.add('wiping')}catch(e){}</script>
+
+  <!-- Matières : trombone métallique et bords de papier irréguliers -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="metal" x1="0" x2="30" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#7d8287"/><stop offset=".35" stop-color="#e9ecee"/><stop offset=".55" stop-color="#a7adb2"/><stop offset="1" stop-color="#5f6469"/>
+      </linearGradient>
+      <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <!-- le fil passe derrière la feuille sous le bord (y = 34) -->
+    <symbol id="clip-shape" viewBox="0 0 30 80">
+      <path d="M9 70V36" fill="none" stroke="rgba(0,0,0,.10)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M9 34V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22" fill="none" stroke="url(#metal)" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M8.4 33V14.5a6.6 6.6 0 0 1 4-6" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".7" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor__label">voir</span></div>
+
+  <header class="nav">
+    <a href="index.html" class="nav__logo" aria-label="Accueil">C<sup>/</sup>M</a>
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="index.html#projets">projets</a>
+      <a href="index.html#parcours">parcours</a>
+      <a href="index.html#apropos">à propos</a>
+      <a href="index.html#contact">contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about about--page">
+      <a class="back mono" href="index.html#apropos">← retour à l'accueil</a>
+      <div class="about__grid">
+        <figure class="about__photo card--photo duotone" style="--r:-3deg">
+          <!-- Remplace par ta photo, idéalement en extérieur près de la mer : <img src="assets/portrait-mer.jpg" alt="Cécile Moinard au bord de la mer"> -->
+          <div class="placeholder placeholder--portrait"><span class="slot">photo près de la mer</span></div>
+        </figure>
+        <div class="about__text">
+          <h1 class="section-title">À <em>propos</em></h1>
+          <p>Je suis Cécile Moinard. Je termine un master en sciences de l'information et de la communication à Audencia SciencesCom.</p>
+          <p>J'ai fait mes quatre années d'alternance dans le tourisme breton. À l'Office de Tourisme Côte de Granit Rose, je communiquais auprès du grand public : supports print, site web, réseaux sociaux. À Tourisme Bretagne, le comité régional du tourisme, je suis passée à la communication B2B et institutionnelle. Deux publics, deux discours : c'est ce qui m'a appris à adapter mes messages à chaque cible. J'y ai géré Point Comm', la newsletter des professionnels du tourisme breton.</p>
+          <p>Ce qui me plaît, c'est de rendre une information claire. Choisir l'angle, adapter le ton au public, puis mesurer ce qui fonctionne pour s'améliorer.</p>
+          <p>Mon mémoire porte sur la médiation culturelle numérique dans les territoires ruraux. Il m'a confortée dans une envie : mettre mes compétences au service de l'intérêt général et des publics, plutôt que d'objectifs commerciaux.</p>
+          <p>Je suis bretonne et j'ai besoin de la mer. Je cherche donc un poste en Bretagne, idéalement sur la côte, à partir de septembre 2027.</p>
+          <p class="about__aside">Quand je ne communique pas, je marche sur les sentiers côtiers.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next" href="index.html#projets" data-cursor data-cursor-label="voir" style="--a:#E07B6A;--b:#4F6D7A">
+      <span class="mono">et maintenant →</span>
+      <span class="next__title">Voir mes <em>projets</em></span>
+    </a>
+
+    <footer class="footer mono">
+      <span>© 2026 Cécile Moinard</span>
+      <a href="index.html">↑ retour à l'accueil</a>
+    </footer>
+  </main>
+
+  <script src="js/transition.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/projet.js"></script>
+</body>
+</html>
