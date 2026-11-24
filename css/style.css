@@ -193,7 +193,7 @@ a { color: inherit; }
   padding: 1.5rem 1.4rem 1.3rem; box-shadow: var(--shadow); max-width: 340px;
 }
 .tag__big { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 300; margin: 0 0 .4rem; line-height: 1; }
-.tag__big em { color: #e4a58e; }
+.tag__big em { color: #efa597; }
 
 .stamp {
   position: absolute; right: 2%; bottom: -40px; width: 120px; height: 120px; z-index: 5;
@@ -390,7 +390,7 @@ html, body { overflow-x: clip; }
 
 /* rayons */
 .section-title .ray { width: .32em; height: .45em; color: var(--rust); margin-left: .15em; vertical-align: .35em; }
-.projects .section-title .ray { color: #e4a58e; }
+.projects .section-title .ray { color: #efa597; }
 
 /* sceau "mention TB" (remplace les yeux) */
 .seal { position: relative; display: grid; place-items: center; width: 74px; height: 74px; margin: 1rem 0 0 auto; border-radius: 50%; background: var(--rust); color: var(--paper); transform: rotate(-12deg); box-shadow: var(--shadow); }
@@ -624,7 +624,7 @@ html, body { overflow-x: clip; }
 }
 .tw__keys { display: grid; grid-template-columns: repeat(10, 1fr); gap: clamp(6px, 1.4vw, 12px); }
 .tw__keys i { aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #f1ece2, #cfc8bb); border: 3px solid #0d0d0d; box-shadow: 0 3px 0 #000; }
-.tw__keys i:nth-child(10n+5) { background: radial-gradient(circle at 45% 40%, #e4a58e, #9c4a33); }
+.tw__keys i:nth-child(10n+5) { background: radial-gradient(circle at 45% 40%, #efa597, #9c4a33); }
 .tw__space { height: 18px; width: 55%; margin: 1rem auto 0; border-radius: 9px; background: #cfc8bb; box-shadow: 0 3px 0 #000; }
 .stack { position: relative; width: min(640px, 82vw); }
 .planche--intro .sheets { position: absolute; inset: 0; left: 0; top: 0; width: auto; height: auto; transform: none; }
@@ -641,10 +641,10 @@ html, body { overflow-x: clip; }
 /* =========================================================
    V7 — palette, carrousel, atouts, pages projets
    Palette : Blue Slate #4F6D7A · Pale Sky #C0D6DF · Alice Blue #DBE9EE
-             Coral Glow #EF8354 · Rosy Taupe #C49799 · + beiges neutres
+             Coral Glow #E07B6A · Rosy Taupe #E07B6A · + beiges neutres
    ========================================================= */
 :root {
-  --slate: #4F6D7A; --pale: #C0D6DF; --alice: #DBE9EE; --coral: #EF8354; --rosy: #C49799;
+  --slate: #4F6D7A; --pale: #C0D6DF; --alice: #DBE9EE; --coral: #E07B6A; --rosy: #E07B6A;
   --slate-dark: #2b3b42; --night: #182227;
   --rust: var(--coral);
   --olive: var(--slate);
@@ -653,10 +653,10 @@ html, body { overflow-x: clip; }
   --sky-mid: var(--slate);
 }
 body { background: linear-gradient(180deg, var(--alice) 0%, var(--pale) 16%, var(--slate) 40%, var(--slate-dark) 64%, var(--night) 100%); background-color: var(--night); }
-.hl { background: linear-gradient(transparent 55%, rgba(239,131,84,.45) 55%); }
+.hl { background: linear-gradient(transparent 55%, rgba(224,123,106,.45) 55%); }
 .tag__big em { color: var(--coral); }
 .tw__title em, .interests__list span { color: var(--coral); }
-.tw__keys i:nth-child(10n+5) { background: radial-gradient(circle at 45% 40%, #f7b497, var(--coral)); }
+.tw__keys i:nth-child(10n+5) { background: radial-gradient(circle at 45% 40%, #efa597, var(--coral)); }
 .placeholder--portrait { background-color: var(--pale); background-image: radial-gradient(var(--slate) 1.4px, transparent 1.8px); }
 .placeholder--rust { background-color: var(--coral); }
 .ph-slate { background-color: var(--slate); }
@@ -814,8 +814,8 @@ body { background: linear-gradient(180deg, var(--alice) 0%, var(--pale) 16%, var
   .card--photo { max-width: 300px; }
 }
 .hero__status { margin-top: 1.4rem; font-size: .85rem; display: inline-flex; align-items: center; gap: .5rem; padding: .35rem .75rem; background: var(--slate-dark); color: var(--paper); }
-.hero__status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 0 rgba(239,131,84,.6); animation: pulse 2s infinite; }
-@keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(239,131,84,0); } 100% { box-shadow: 0 0 0 0 rgba(239,131,84,0); } }
+.hero__status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 0 rgba(224,123,106,.6); animation: pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(224,123,106,0); } 100% { box-shadow: 0 0 0 0 rgba(224,123,106,0); } }
 .stamp { left: auto; right: 0; top: -150px; bottom: auto; width: 104px; height: 104px; }
 .stamp > span { width: 46px; height: 46px; font-size: 1.3rem; }
 @media (max-width: 899px) {
@@ -1079,7 +1079,7 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .shot__img .placeholder { min-height: 0; }
 
 /* ---------- manifeste : surligneur ---------- */
-.manifesto__text em { background: linear-gradient(rgba(239,131,84,.42), rgba(239,131,84,.42)) 0 88% / var(--hl, 0%) 38% no-repeat; padding: 0 .06em; }
+.manifesto__text em { background: linear-gradient(rgba(224,123,106,.42), rgba(224,123,106,.42)) 0 88% / var(--hl, 0%) 38% no-repeat; padding: 0 .06em; }
 
 /* ---------- carte postale ---------- */
 .postcard {
@@ -1197,3 +1197,6 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .contact { background-color: var(--navy) !important; background-image: var(--tex-relief); padding: clamp(4rem, 10vh, 6rem) 0 2rem !important; margin-top: clamp(3rem, 8vh, 5rem); }
 .contact .postcard { margin-top: 0; --sh: 0 2px 3px rgba(0,0,0,.25), 0 24px 40px -14px rgba(0,0,0,.6), 0 50px 70px -35px rgba(0,0,0,.6); }
 .contact .footer, .contact .footer a { color: var(--pale) !important; }
+/* V13 — un seul accent : corail rosé (fusion du corail et du vieux rose) */
+:root { --coral: #E07B6A; --rosy: #E07B6A; }
+.planche--color .mono-title::before { background: var(--paper); }
