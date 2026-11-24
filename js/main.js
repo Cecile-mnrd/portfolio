@@ -105,6 +105,7 @@
   if (!hasGsap || reduce) return; // le site reste entièrement lisible sans animation
 
   gsap.registerPlugin(ScrollTrigger);
+  if ('scrollRestoration' in history && !location.hash) { history.scrollRestoration = 'manual'; window.scrollTo(0, 0); }
 
   /* ---------- défilement doux ---------- */
   if (window.Lenis) {
@@ -117,11 +118,12 @@
   /* ---------- HERO : les documents sortent de la chemise ---------- */
   // entrée courte (< 1 s) : les feuilles remontent de la poche avant
   gsap.timeline({ defaults: { ease: 'power3.out' } })
-    .from('.folder, .pocket', { y: 40, opacity: 0, duration: 0.45 }, 0)
-    .from('.hero .layer', { y: 150, duration: 0.7, stagger: 0.08 }, 0.1)
+    // l'entrée anime d'autres éléments que ceux du défilement (.board, .card) : aucun conflit
+    .from('.hero .board', { y: 40, opacity: 0, duration: 0.45 }, 0)
+    .from('.hero .layer > .card', { y: 150, duration: 0.7, stagger: 0.08 }, 0.1)
     .from('.hero__name .line', { yPercent: 35, opacity: 0, duration: 0.55, stagger: 0.07 }, 0.15)
     .from('.hero .clip', { y: -18, opacity: 0, duration: 0.3, stagger: 0.06 }, 0.55)
-    .from('.stamp', { scale: 0.4, opacity: 0, rotation: -60, duration: 0.45, ease: 'back.out(2)' }, 0.5)
+    .from('.stamp > *', { scale: 0.4, opacity: 0, duration: 0.45, ease: 'back.out(2)' }, 0.5)
     .from('.nav > *', { y: -20, opacity: 0, duration: 0.4, stagger: 0.06 }, 0);
 
   const heroMM = gsap.matchMedia();
