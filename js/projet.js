@@ -32,6 +32,13 @@
   });
   gsap.from('.next__title', { xPercent: -10, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.next', start: 'top 95%', end: 'top 50%', scrub: true } });
 
+  // chiffres clés en compteur
+  document.querySelectorAll('.num__big').forEach((el) => {
+    const m = el.textContent.match(/^(\d+)(.*)$/); if (!m) return;
+    const end = +m[1], suf = m[2], o = { v: 0 };
+    gsap.to(o, { v: end, duration: 1.3, ease: 'power2.out', snap: { v: 1 }, onUpdate: () => { el.textContent = o.v + suf; }, scrollTrigger: { trigger: el, start: 'top 88%' } });
+  });
+
   const cursor = document.querySelector('.cursor');
   if (cursor && window.matchMedia('(pointer: fine)').matches) {
     const label = cursor.querySelector('.cursor__label');

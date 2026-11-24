@@ -36,6 +36,8 @@
           .catch(() => { const r = document.createRange(); r.selectNodeContents(a); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); });
       });
       btn.replaceWith(copy);
+      // l'email est copié directement au premier clic
+      if (box.dataset.kind === 'email' && navigator.clipboard) navigator.clipboard.writeText(v).then(() => { copy.textContent = 'Copié ✓'; }).catch(() => {});
     });
   });
 
@@ -140,6 +142,23 @@
   heroMM.add('(max-width: 899px)', () => {
     gsap.to('.layer--photo', { y: -40, rotation: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   });
+
+  /* ---------- accroche qui s'écrit lettre par lettre ---------- */
+  const hook = document.querySelector('.hero__hook');
+  if (hook) {
+    const full = hook.textContent; hook.textContent = ''; hook.classList.add('is-typing');
+    const o = { n: 0 };
+    gsap.to(o, { n: full.length, duration: full.length * 0.045, delay: 0.9, ease: 'none', snap: { n: 1 },
+      onUpdate: () => { hook.textContent = full.slice(0, o.n); },
+      onComplete: () => hook.classList.remove('is-typing') });
+  }
+  /* ---------- vague discrète en bas de l'accueil ---------- */
+  gsap.to('.sea__a', { x: -90, duration: 6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  gsap.to('.sea__b', { x: 70, duration: 8, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  /* ---------- photo « à propos » : léger parallaxe ---------- */
+  gsap.fromTo('.about__photo', { y: 60 }, { y: -60, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.from('.rope', { y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.ropes', start: 'top 85%' } });
+  gsap.from('.mcard', { y: 60, rotation: (i) => (i ? 3 : -3), opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.master', start: 'top 80%' } });
 
   /* ---------- MANIFESTE : un coup de surligneur sur les mots clés ---------- */
   gsap.utils.toArray('.manifesto__text em').forEach((em) => {

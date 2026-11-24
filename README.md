@@ -42,3 +42,15 @@ Pour encoder la tienne, dans la console du navigateur :
     btoa([...'prenom.nom@domaine.fr'].reverse().join(''))
 
 Cela arrête les robots qui aspirent les adresses, pas une personne déterminée.
+
+## À compléter avant la mise en ligne
+Les mentions « à compléter » apparaissent en corail italique sur le site (rechercher `class="todo"`).
+- Point Comm' : taux d'ouverture, taux de clic, abonnés, effet d'un test A/B
+- Réseaux sociaux : impressions, engagement, évolution des abonnés
+- Office de Tourisme : trafic web
+- RDV PRO : participants, périmètre exact
+- Micro-trottoir : personnes interrogées, vues, autorisation de diffusion
+- Mémoire : conclusions en 3 phrases une fois rendu
+- « Ce que j'en retiens » sur chaque page projet
+- Vérifier les dates : Office de Tourisme (2022–2025) et master (2025–2027)
+- Photo portrait (accueil) et photo près de la mer (à propos), visuels de projets, CV en PDF, email et téléphone encodés
