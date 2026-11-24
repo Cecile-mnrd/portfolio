@@ -29,3 +29,8 @@ Ouvrir `index.html` dans un navigateur, ou lancer un petit serveur :
 
 ## Mise en ligne
 GitHub Pages (Settings → Pages → branche), Netlify ou Vercel : glisser le dossier, aucun build nécessaire.
+
+## Pages projet
+Une page par projet dans `projets/` (contexte, mission, réalisations, chiffres, ce que j'en retiens, projet suivant).
+Les images vont dans `assets/projets/<nom-du-projet>/` ; remplacer chaque `.placeholder` par une `<img>`.
+Les passages entre crochets `[À compléter …]` sont à réécrire.
