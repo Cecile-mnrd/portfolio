@@ -129,7 +129,7 @@
   heroMM.add('(min-width: 900px)', () => {
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
-      scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: () => '+=' + window.innerHeight * 0.7, scrub: 0.8, invalidateOnRefresh: true },
+      scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: () => '+=' + window.innerHeight * 0.7, scrub: true, invalidateOnRefresh: true },
     });
     // départ explicite (fromTo) : on ne lit pas les positions pendant l'animation d'entrée
     const ir = { immediateRender: false };
@@ -144,6 +144,36 @@
   heroMM.add('(max-width: 899px)', () => {
     gsap.fromTo('.layer--photo', { y: 0, rotation: 0 }, { y: -40, rotation: 8, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   });
+
+  /* ---------- mobile : les feuilles s'inclinent quand on penche le téléphone ---------- */
+  if (window.matchMedia('(pointer: coarse)').matches && 'DeviceOrientationEvent' in window) {
+    const cards = [
+      { el: document.querySelector('.hero .card--name'), k: 0.6 },
+      { el: document.querySelector('.hero .card--photo'), k: 1.2 },
+      { el: document.querySelector('.hero .card--note'), k: 0.9 },
+      { el: document.querySelector('.hero .stamp'), k: 1.5 },
+    ].filter((c) => c.el);
+    let tg = 0, tb = 0, g = 0, bta = 0, base = null, running = false;
+    const onTilt = (e) => {
+      if (e.gamma == null) return;
+      if (base === null) base = e.beta;               // position de départ = neutre
+      tg = gsap.utils.clamp(-25, 25, e.gamma);
+      tb = gsap.utils.clamp(-25, 25, e.beta - base);
+      if (!running) { running = true; gsap.ticker.add(loop); }
+    };
+    const loop = () => {
+      g += (tg - g) * 0.08; bta += (tb - bta) * 0.08;
+      cards.forEach(({ el, k }) => {
+        el.style.rotate = (g * 0.12 * k).toFixed(2) + 'deg';
+        el.style.translate = (g * 0.5 * k).toFixed(1) + 'px ' + (bta * 0.35 * k).toFixed(1) + 'px';
+      });
+    };
+    // Android : les évènements arrivent directement. iPhone : il faut une autorisation, demandée au premier toucher.
+    window.addEventListener('deviceorientation', onTilt);
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      window.addEventListener('touchend', () => { DeviceOrientationEvent.requestPermission().catch(() => {}); }, { once: true });
+    }
+  }
 
   /* ---------- accroche qui s'écrit lettre par lettre ---------- */
   const hook = document.querySelector('.hero__hook');
