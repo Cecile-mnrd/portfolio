@@ -3,269 +3,269 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cécile Moinard — Designer graphique</title>
-  <meta name="description" content="Portfolio de Cécile Moinard, designer graphique & directrice artistique. Identités visuelles, édition, packaging, direction artistique.">
+  <title>Cécile Moinard — Chargée de communication</title>
+  <meta name="description" content="Portfolio de Cécile Moinard, chargée de communication : stratégie de marque, contenus, SEO, expérience utilisateur et création graphique.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200..800;1,9..144,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><span class="cursor__label">voir</span></div>
 
+  <!-- Motif "rayons" réutilisé autour des titres -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="rays" viewBox="0 0 20 28"><path d="M4 6 13 2M3 14h12M4 22l9 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  </svg>
+
   <!-- ============ NAV ============ -->
   <header class="nav">
-    <a href="#top" class="nav__logo" aria-label="Retour en haut">C<sup>/</sup>M</a>
+    <a href="#top" class="nav__logo" aria-label="Retour en haut">CM</a>
     <nav class="nav__links" aria-label="Navigation principale">
-      <a href="#projets">/ projets</a>
-      <a href="#parcours">/ parcours</a>
-      <a href="#competences">/ compétences</a>
-      <a href="#contact">/ contact</a>
+      <a href="#projets">Projets</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#competences">Compétences</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main id="top">
 
-    <!-- ============ HERO : le tableau de liège ============ -->
+    <!-- ============ HERO ============ -->
     <section class="hero" aria-label="Présentation">
       <div class="board">
 
-        <div class="layer layer--name" data-speed="0.15">
-          <article class="card card--name paper" style="--r:-1.5deg">
-            <svg class="clip clip--a" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <span class="frac" style="--x:12%;--y:18%;--fr:-18deg">1<i>/</i>3</span>
-            <span class="frac" style="--x:40%;--y:9%;--fr:6deg">2<i>/</i>6</span>
-            <span class="frac" style="--x:72%;--y:14%;--fr:22deg">M<i>/</i>2</span>
-            <span class="frac" style="--x:88%;--y:42%;--fr:-30deg">3<i>/</i>4</span>
-            <span class="frac" style="--x:6%;--y:55%;--fr:-80deg">½</span>
-            <span class="frac" style="--x:20%;--y:84%;--fr:160deg">5<i>/</i>8</span>
-            <span class="frac" style="--x:50%;--y:90%;--fr:180deg">7<i>/</i>8</span>
-            <span class="frac" style="--x:80%;--y:82%;--fr:-150deg">✳</span>
+        <div class="layer layer--sheet" data-speed="0.12">
+          <article class="card sheet" style="--r:-1.2deg">
+            <p class="kicker"><svg class="ray ray--l"><use href="#rays"/></svg>Portfolio 2026<svg class="ray"><use href="#rays"/></svg></p>
             <h1 class="hero__name">
               <span class="line">Cécile</span>
-              <span class="line line--indent">Moinard</span>
+              <span class="line">Moinard</span>
             </h1>
-            <p class="hero__role">Designer graphique <em>&amp;</em> directrice artistique</p>
+            <p class="hero__role">Chargée de communication</p>
+            <p class="hero__sub">Stratégie de marque · Contenus &amp; SEO · Expérience utilisateur</p>
           </article>
         </div>
 
-        <div class="layer layer--note" data-speed="0.35">
-          <article class="card card--note paper paper--kraft" style="--r:2deg">
-            <h2 class="mono-title">/ en quelques mots</h2>
-            <p class="mono">Fraîchement diplômée d'un master en design, après deux ans d'alternance, je cherche un poste où mêler identité visuelle, édition et direction artistique. Basée à <span class="hl">Ville</span>, mobile partout.</p>
-          </article>
-        </div>
-
-        <div class="layer layer--photo" data-speed="0.55">
-          <figure class="card card--photo duotone" style="--r:4deg">
-            <svg class="clip clip--b" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
+        <div class="layer layer--photo" data-speed="0.4">
+          <figure class="portrait">
+            <svg class="portrait__line" viewBox="0 0 300 360" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M150 14c62-6 118 30 128 96 9 60-6 118-20 170-12 44-60 66-110 66S50 330 34 282C16 230 8 170 18 112 28 52 92 18 150 14Z"/>
+            </svg>
             <!-- Remplace par ta photo : <img src="assets/portrait.jpg" alt="Portrait de Cécile Moinard"> -->
-            <div class="placeholder placeholder--portrait"><span>ton portrait</span></div>
+            <div class="portrait__img placeholder placeholder--portrait"><span>ton portrait</span></div>
           </figure>
         </div>
 
-        <div class="layer layer--tag" data-speed="0.25">
-          <article class="card card--tag" style="--r:-3deg">
+        <div class="layer layer--note" data-speed="0.28">
+          <article class="card note bracket" style="--r:2deg">
             <span class="tape" aria-hidden="true"></span>
-            <p class="mono-title">/ statut</p>
-            <p class="tag__big">Disponible <em>2027</em></p>
-            <p class="mono">CDI · CDD · freelance</p>
+            <h2 class="label">En quelques mots</h2>
+            <p>Bientôt diplômée d'un Bac+5 en communication et médias (Audencia SciencesCom), après cinq ans d'alternance. Je cherche un poste de chargée de communication pour imaginer des stratégies claires et des contenus qui donnent envie.</p>
           </article>
         </div>
 
-        <div class="stamp" aria-hidden="true">
-          <svg viewBox="0 0 120 120">
-            <defs><path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
-            <text><textPath href="#circ">portfolio ✳ 2026 ✳ design graphique ✳</textPath></text>
-          </svg>
-          <span>CM</span>
+        <div class="layer layer--status" data-speed="0.22">
+          <article class="card status" style="--r:-3deg">
+            <p class="label label--light">Disponible</p>
+            <p class="status__big">Juillet 2027</p>
+            <p class="status__small">CDI · CDD · Bretagne, Nantes &amp; ailleurs</p>
+          </article>
         </div>
+
+        <!-- étiquettes flottantes -->
+        <span class="sticker" style="--x:-3%;--y:4%;--sr:-8deg">SEO</span>
+        <span class="sticker sticker--outline" style="--x:44%;--y:-6%;--sr:5deg">Brand content</span>
+        <span class="sticker sticker--sand" style="--x:84%;--y:99%;--sr:-4deg">UX design</span>
+        <span class="sticker sticker--outline" style="--x:58%;--y:60%;--sr:6deg">Storytelling</span>
+        <span class="sticker" style="--x:88%;--y:-4%;--sr:10deg">PAO</span>
+        <span class="sticker sticker--sand" style="--x:6%;--y:101%;--sr:-3deg">Community management</span>
       </div>
 
-      <p class="scroll-hint mono">faire défiler <span>↓</span></p>
+      <p class="scroll-hint">Faire défiler <span>↓</span></p>
     </section>
 
     <!-- ============ MANIFESTE ============ -->
-    <section class="manifesto" aria-label="Manifeste">
-      <p class="manifesto__label mono-title">/ ce que je fais</p>
+    <section class="manifesto" aria-label="Ma façon de travailler">
+      <p class="label">Ma façon de travailler</p>
       <p class="manifesto__text reveal-words">
-        Je dessine des <em>identités</em> qui ont du caractère, des objets imprimés qu'on a envie de garder, et des systèmes graphiques qui tiennent la route, de l'<em>affiche</em> au <em>site web</em>. Le papier, la typo et le geste restent au cœur de ma pratique.
+        Je relie la <em>stratégie</em> et le <em>terrain</em> : comprendre un public, construire un message juste, puis le décliner du <em>print</em> au <em>web</em>, des réseaux sociaux au référencement. Une communication utile, lisible et qui ressemble vraiment à la marque.
       </p>
     </section>
 
-    <!-- ============ PROJETS (défilement horizontal) ============ -->
+    <!-- ============ PROJETS ============ -->
     <section class="projects" id="projets" aria-label="Projets">
       <div class="projects__head">
-        <h2 class="section-title">Projets <em>choisis</em></h2>
-        <p class="mono">2022 — 2026 · <span class="projects__count">05</span> projets</p>
+        <h2 class="section-title bracket-title">
+          <span class="bt bt--tl">Expériences</span>
+          <span class="bt bt--br">&amp; projets</span>
+        </h2>
+        <p class="projects__meta">2022 — 2027 · <span>05</span> projets</p>
         <div class="progress" aria-hidden="true"><span></span></div>
       </div>
 
       <div class="projects__track">
-        <!-- Duplique un <article class="project"> par projet. Remplace .placeholder par <img src="assets/projets/xxx.jpg" alt="..."> -->
+        <!-- Un <article class="project"> par projet. Remplace .placeholder par <img src="assets/projets/xxx.jpg" alt="..."> -->
         <article class="project" data-cursor>
-          <div class="project__inner paper" style="--r:-2deg">
-            <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <div class="project__visual"><div class="placeholder placeholder--rust"><span>01</span></div></div>
+          <div class="project__inner" style="--r:-1.5deg">
+            <div class="project__visual"><div class="placeholder"><span>01</span></div></div>
             <div class="project__meta">
-              <h3>Projet de master</h3>
-              <p class="mono">Recherche · Édition · 2026</p>
-              <p class="mono project__desc">Le projet de fin d'études : problématique, recherche graphique et objet final.</p>
+              <p class="project__year">2025 — 2027 · Alternance</p>
+              <h3>Chargée de communication</h3>
+              <p class="project__where">Structure à préciser</p>
+              <p class="project__desc">Les missions et réalisations phares de l'alternance de master.</p>
+              <p class="tags">Stratégie · Contenus · À compléter</p>
             </div>
           </div>
         </article>
 
         <article class="project" data-cursor>
-          <div class="project__inner paper paper--blue" style="--r:1.5deg">
+          <div class="project__inner" style="--r:1.5deg">
             <span class="tape" aria-hidden="true"></span>
-            <div class="project__visual"><div class="placeholder placeholder--olive"><span>02</span></div></div>
+            <div class="project__visual"><div class="placeholder placeholder--deep"><span>02</span></div></div>
             <div class="project__meta">
-              <h3>Alternance — Studio / Agence</h3>
-              <p class="mono">Direction artistique · 2024 — 2026</p>
-              <p class="mono project__desc">Les projets marquants réalisés pendant les deux ans d'alternance.</p>
+              <p class="project__year">2022 — 2025 · Alternance</p>
+              <h3>Assistante de communication</h3>
+              <p class="project__where">Office de Tourisme Bretagne Côte de Granit Rose</p>
+              <p class="project__desc">Création et gestion des supports print, rédaction SEO et mise à jour du site WordPress, animation d'une communauté de 17&nbsp;000 abonnés et plannings éditoriaux.</p>
+              <p class="tags">Stratégie média · PAO · Brand content · SEO · RSE</p>
             </div>
           </div>
         </article>
 
         <article class="project" data-cursor>
-          <div class="project__inner paper paper--kraft" style="--r:-1deg">
-            <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <div class="project__visual"><div class="placeholder placeholder--ink"><span>03</span></div></div>
+          <div class="project__inner" style="--r:-1deg">
+            <div class="project__visual"><div class="placeholder placeholder--sand"><span>03</span></div></div>
             <div class="project__meta">
-              <h3>Identité de festival</h3>
-              <p class="mono">Identité visuelle · Affiches · 2025</p>
-              <p class="mono project__desc">Système graphique décliné sur affiches, réseaux sociaux et signalétique.</p>
+              <p class="project__year">2024 · BUT MMI</p>
+              <h3>Capsule, stratégie de marque</h3>
+              <p class="project__where">Projet universitaire</p>
+              <p class="project__desc">Création d'une marque éthique et durable, avec une stratégie de communication de crise pour répondre aux attentes de transparence des consommateurs.</p>
+              <p class="tags">Plateforme de marque · Communication de crise</p>
             </div>
           </div>
         </article>
 
         <article class="project" data-cursor>
-          <div class="project__inner paper" style="--r:2.5deg">
+          <div class="project__inner" style="--r:2deg">
             <span class="tape tape--right" aria-hidden="true"></span>
-            <div class="project__visual"><div class="placeholder placeholder--blue"><span>04</span></div></div>
+            <div class="project__visual"><div class="placeholder placeholder--coral"><span>04</span></div></div>
             <div class="project__meta">
-              <h3>Packaging</h3>
-              <p class="mono">Branding · Packaging · 2024</p>
-              <p class="mono project__desc">Gamme de produits : naming, étiquettes et mise en volume.</p>
+              <p class="project__year">2024 · BUT MMI</p>
+              <h3>Serious game, atelier de cuisine</h3>
+              <p class="project__where">Simulation d'entreprise</p>
+              <p class="project__desc">Création d'une entreprise en concurrence avec quatre autres groupes : analyse marketing complète, communication 360° et gestion de crise.</p>
+              <p class="tags">Business model · Business plan · Plateforme de marque</p>
             </div>
           </div>
         </article>
 
         <article class="project" data-cursor>
-          <div class="project__inner paper paper--blue" style="--r:-2deg">
-            <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <div class="project__visual"><div class="placeholder placeholder--rust"><span>05</span></div></div>
+          <div class="project__inner" style="--r:-2deg">
+            <div class="project__visual"><div class="placeholder placeholder--ink"><span>05</span></div></div>
             <div class="project__meta">
-              <h3>Sérigraphie &amp; micro-édition</h3>
-              <p class="mono">Expérimentation · 2023</p>
-              <p class="mono project__desc">Fanzines, tirages et expérimentations à l'atelier.</p>
+              <p class="project__year">2024 · BUT MMI</p>
+              <h3>Webmagazine dystopique</h3>
+              <p class="project__where">Conception éditoriale &amp; web</p>
+              <p class="project__desc">Un webmagazine qui combine storytelling immersif, parcours utilisateur fluide et stratégie SEO pour la visibilité et l'engagement.</p>
+              <p class="tags">Storytelling · UX/UI design · Collaboration · SEO</p>
             </div>
           </div>
         </article>
 
         <div class="project project--end">
-          <p class="section-title">La suite <em>en vrai ?</em></p>
-          <a href="#contact" class="btn mono">→ me contacter</a>
+          <p class="section-title">On en parle&nbsp;?</p>
+          <a href="#contact" class="btn">Me contacter →</a>
         </div>
       </div>
     </section>
 
     <!-- ============ PARCOURS ============ -->
     <section class="parcours" id="parcours" aria-label="Parcours">
-      <div class="panel panel--exp paper paper--blue">
-        <h2 class="panel__title"><span>Expériences</span><span>Pro</span></h2>
+      <h2 class="section-title title-rays"><svg class="ray ray--l"><use href="#rays"/></svg>Formations<svg class="ray"><use href="#rays"/></svg></h2>
 
-        <div class="exp">
-          <h3>Designer graphique — Alternance</h3>
-          <p class="exp__sub">Studio / Agence · 2024 — 2026</p>
-          <p class="mono">Création d'identités, supports imprimés et digitaux, suivi de fabrication, présentation aux clients.</p>
-        </div>
-        <div class="stars" aria-hidden="true"><span>✳</span><span>✳</span><span>✳</span><span>✳</span></div>
+      <div class="timeline">
+        <span class="timeline__line" aria-hidden="true"></span>
 
-        <div class="exp">
-          <h3>Alternance / stage précédent</h3>
-          <p class="exp__sub">Structure · 2022 — 2024</p>
-          <p class="mono">Missions principales, outils utilisés, ce que tu as appris et apporté.</p>
-        </div>
-        <div class="stars" aria-hidden="true"><span>✳</span><span>✳</span><span>✳</span><span>✳</span></div>
-
-        <div class="exp">
-          <h3>Freelance &amp; projets associatifs</h3>
-          <p class="exp__sub">Depuis 2022</p>
-          <p class="mono">Affiches, identités et communication pour des associations et des événements culturels.</p>
-        </div>
-      </div>
-
-      <div class="panel panel--school paper paper--kraft">
-        <span class="binder" aria-hidden="true"></span>
-        <h2 class="mono-title">/ expérience<br>scolaire</h2>
-
-        <div class="school">
-          <p class="school__date mono"><b>2024 / 2026</b></p>
-          <p class="mono">Master Design @ École, Ville</p>
-          <p class="mono school__desc">Spécialisation, sujet de mémoire, projet de fin d'études.</p>
-          <p class="mono school__mention">Mention à préciser</p>
+        <div class="step">
+          <p class="step__years"><span>2027</span><span>2025</span></p>
+          <div class="step__body">
+            <h3>Bac+5 Communication et médias, en alternance</h3>
+            <p class="step__where">Audencia SciencesCom, Nantes</p>
+            <p class="tags">Stratégie éditoriale · UX · Médias · SEO · Communication publique et politique · PAO</p>
+          </div>
         </div>
 
-        <div class="school">
-          <p class="school__date mono"><b>2021 / 2024</b></p>
-          <p class="mono">Licence / Bachelor @ École, Ville</p>
-          <p class="mono school__desc">Typographie, identité visuelle, édition, histoire de l'art, design d'espace.</p>
+        <div class="step">
+          <p class="step__years"><span>2025</span><span>2022</span></p>
+          <div class="step__body">
+            <h3>BUT Métiers du Multimédia et de l'Internet</h3>
+            <p class="step__where">IUT de Lannion, Université de Rennes</p>
+            <p class="step__desc">Parcours stratégie de communication &amp; design d'expérience, en alternance en 2<sup>e</sup> et 3<sup>e</sup> année.</p>
+            <p class="tags">Communication · Marketing · Graphisme · UX design</p>
+          </div>
         </div>
 
-        <div class="eyes" aria-hidden="true"><span></span><span></span></div>
+        <div class="step">
+          <p class="step__years"><span>2022</span><span>2019</span></p>
+          <div class="step__body">
+            <h3>Baccalauréat général, mention très bien</h3>
+            <p class="step__where">Lycée Félix Le Dantec, Lannion</p>
+            <p class="step__desc">Section européenne. Mathématiques, physique-chimie, sciences de l'ingénieur.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============ COMPÉTENCES (carte mentale) ============ -->
-    <section class="skills" id="competences" aria-label="Logiciels et compétences">
-      <div class="skills__card paper">
-        <svg class="mindmap" viewBox="0 0 900 520" role="img" aria-labelledby="mm-title">
-          <title id="mm-title">Logiciels et compétences : suite Adobe, Figma, typographie, branding, édition, direction artistique, sérigraphie, motion, Procreate, WordPress, webdesign, stratégie</title>
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0L10 5L0 10z" fill="currentColor"/>
-            </marker>
-          </defs>
-          <g class="mm-lines" stroke="currentColor" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
-            <line x1="450" y1="225" x2="470" y2="95"/>
-            <line x1="420" y1="225" x2="285" y2="110"/>
-            <line x1="500" y1="230" x2="640" y2="135"/>
-            <line x1="560" y1="255" x2="715" y2="215"/>
-            <line x1="560" y1="290" x2="720" y2="330"/>
-            <line x1="520" y1="305" x2="610" y2="405"/>
-            <line x1="460" y1="310" x2="465" y2="420"/>
-            <line x1="410" y1="305" x2="330" y2="420"/>
-            <line x1="340" y1="290" x2="190" y2="350"/>
-            <line x1="340" y1="255" x2="175" y2="240"/>
-            <line x1="380" y1="230" x2="245" y2="165" />
-            <line x1="430" y1="310" x2="190" y2="455"/>
-          </g>
-          <text class="mm-center" x="450" y="262" text-anchor="middle">Logiciels &amp;</text>
-          <text class="mm-center" x="450" y="300" text-anchor="middle">Compétences</text>
-          <g class="mm-nodes" text-anchor="middle">
-            <text x="470" y="82">SUITE ADOBE</text>
-            <text x="270" y="98">WEBDESIGN</text>
-            <text x="665" y="125">FIGMA</text>
-            <text x="770" y="215">BRANDING</text>
-            <text x="770" y="345">STRATÉGIE</text>
-            <text x="630" y="428">TYPOGRAPHIE</text>
-            <text x="465" y="445">SÉRIGRAPHIE</text>
-            <text x="315" y="445">ÉDITION</text>
-            <text x="140" y="362">DIRECTION</text><text x="140" y="380">ARTISTIQUE</text>
-            <text x="125" y="244">PRINT</text>
-            <text x="200" y="155">MOTION</text>
-            <text x="160" y="480">PROCREATE</text>
-          </g>
-        </svg>
+    <!-- ============ COMPÉTENCES ============ -->
+    <section class="skills" id="competences" aria-label="Compétences et intérêts">
+      <h2 class="section-title bracket-title">
+        <span class="bt bt--tl">Compétences</span>
+        <span class="bt bt--br">&amp; intérêts</span>
+      </h2>
 
-        <aside class="langs">
-          <p class="mono-title">/ langues</p>
-          <p class="mono">Français → natif</p>
-          <p class="mono">Anglais → courant</p>
-          <p class="mono">Espagnol → notions</p>
-        </aside>
+      <div class="skills__grid">
+        <div class="skill-card">
+          <h3 class="label">Stratégie</h3>
+          <ul class="chips">
+            <li>Marketing</li><li>Stratégie de marque</li><li>Plateforme de marque</li><li>Communication de crise</li><li>Stratégie éditoriale</li><li>RSE</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3 class="label">Digital</h3>
+          <ul class="chips">
+            <li>Rédaction SEO</li><li>WordPress</li><li>Community management</li><li>UX/UI design</li><li>Brand content</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3 class="label">Création</h3>
+          <ul class="chips">
+            <li>Suite Adobe</li><li>Affinity</li><li>PAO &amp; print</li><li>Montage vidéo</li><li>Storytelling</li>
+          </ul>
+        </div>
+        <div class="skill-card skill-card--soft">
+          <h3 class="label">Savoir-être</h3>
+          <ul class="chips chips--soft">
+            <li>Esprit analytique</li><li>Prise de parole</li><li>Empathie</li><li>Curiosité</li><li>Persévérance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="extras">
+        <div class="extra">
+          <h3 class="label">Langues</h3>
+          <p><b>Anglais</b>, score TOEIC 930</p>
+          <p class="muted">Classe européenne, échange franco-indien 2023</p>
+          <p><b>Espagnol</b>, B2</p>
+        </div>
+        <div class="extra extra--interests">
+          <h3 class="label">Intérêts</h3>
+          <p>Musique</p>
+          <p>Arts visuels, cinéma, design</p>
+          <p>Lecture : romans, sciences, fantastique</p>
+          <p>Voyage, plein air, randonnée</p>
+        </div>
       </div>
     </section>
 
@@ -273,34 +273,33 @@
     <section class="contact" id="contact" aria-label="Contact">
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track">
-          <span>Travaillons ensemble ✳ Let's work together ✳ </span>
-          <span>Travaillons ensemble ✳ Let's work together ✳ </span>
+          <span>Travaillons ensemble ✦ Let's work together ✦ </span>
+          <span>Travaillons ensemble ✦ Let's work together ✦ </span>
         </div>
       </div>
 
-      <div class="contact__card paper">
-        <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
+      <div class="contact__card">
+        <h2 class="section-title title-rays"><svg class="ray ray--l"><use href="#rays"/></svg>Contact<svg class="ray"><use href="#rays"/></svg></h2>
         <div class="contact__row">
           <div>
-            <p class="mono-title">email :</p>
+            <p class="label">Email</p>
             <a class="contact__big" href="mailto:ton.email@exemple.fr" data-cursor data-cursor-label="écrire">ton.email@exemple.fr</a>
           </div>
           <div>
-            <p class="mono-title">téléphone :</p>
+            <p class="label">Téléphone</p>
             <a class="contact__big" href="tel:+33600000000">06 00 00 00 00</a>
           </div>
         </div>
-        <div class="contact__row contact__links mono">
-          <a href="#" target="_blank" rel="noopener">→ LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener">→ Instagram</a>
-          <a href="#" target="_blank" rel="noopener">→ Behance</a>
-          <a href="assets/CV-Cecile-Moinard.pdf" download>→ Télécharger le CV</a>
+        <div class="contact__row contact__links">
+          <a href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="#" target="_blank" rel="noopener">Instagram ↗</a>
+          <a href="assets/CV-Cecile-Moinard.pdf" download>Télécharger le CV ↓</a>
         </div>
       </div>
 
-      <footer class="footer mono">
+      <footer class="footer">
         <span>© 2026 Cécile Moinard</span>
-        <a href="#top">↑ retour en haut</a>
+        <a href="#top">Retour en haut ↑</a>
       </footer>
     </section>
   </main>
