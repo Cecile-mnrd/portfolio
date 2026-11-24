@@ -1348,3 +1348,34 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 }
 .skip:hover, .skip:focus-visible { translate: none !important; color: var(--ink) !important; text-decoration-color: var(--coral); }
 @media (max-width: 899px) { .tabs-row .carousel__ui { padding: .4rem var(--gutter) 1rem !important; } }
+
+/* V18 — barre en haut de la section, fiches qui tiennent toujours entières */
+.tabs-row { order: -1; }
+.tabs { align-items: flex-end !important; padding: 1rem var(--gutter) 0 !important; }
+.tabs button { clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%) !important; border-radius: 10px 10px 0 0 !important; }
+.tabs button.is-active { translate: 0 0 !important; box-shadow: inset 0 4px 0 var(--coral) !important; }
+.tabs button:not(.is-active) { translate: 0 6px; }
+.projects-intro__hint .skip { margin-bottom: .8rem !important; }
+@media (min-width: 900px) {
+  .projects.is-track { padding-top: 4.2rem !important; justify-content: flex-start !important; gap: 0; }
+  .projects.is-track .tabs-row { margin: 0 0 clamp(1rem, 3vh, 2rem) !important; }
+  .projects.is-track .carousel { flex: 1 1 auto; min-height: 0; padding-bottom: 2vh; }
+  .projects.is-track .carousel .planche {
+    height: auto !important; max-height: calc(100vh - 4.2rem - 90px); align-self: center;
+    grid-template-columns: 1fr 1.05fr; padding: clamp(1.2rem, 3.2vh, 2.6rem) clamp(1.5rem, 2.6vw, 2.8rem) !important;
+  }
+  .projects.is-track .planche__collage { height: clamp(220px, 50vh, 520px) !important; }
+  .projects.is-track .planche__text h3 { font-size: clamp(1.8rem, min(3.4vw, 5.6vh), 3.4rem); margin: .3rem 0 .6rem; }
+  .projects.is-track .planche__desc { font-size: clamp(.85rem, 1.9vh, 1rem); }
+  .projects.is-track .planche__label { display: none; }
+  .projects.is-track .pills { margin-top: .5rem; }
+  .projects.is-track .pills li { font-size: clamp(.7rem, 1.6vh, .8rem); padding: .2rem .55rem; }
+  .projects.is-track .result { margin-top: clamp(.6rem, 1.8vh, 1.4rem); padding: .7rem 1rem; }
+  .projects.is-track .result p { font-size: clamp(.95rem, 2.2vh, 1.2rem) !important; }
+  .projects.is-track .btn--project { margin-top: clamp(.6rem, 1.8vh, 1.4rem); }
+  .projects.is-track .planche__num, .projects.is-track .planche__cat { font-size: clamp(.68rem, 1.6vh, .85rem); }
+}
+@media (min-width: 900px) {
+  .projects.is-track .carousel { height: calc(100vh - 4.2rem - 80px); align-items: center !important; padding-bottom: 0; }
+  .projects.is-track .carousel .planche { max-height: calc(100vh - 4.2rem - 110px); }
+}

@@ -131,11 +131,23 @@
           <span class="title-tag mono">communication · stratégie · contenus</span>
         </div>
       </div>
-      <p class="mono projects-intro__hint">Parcourez les projets avec les onglets, les flèches ou en glissant. Chaque planche s'ouvre sur une page détaillée.</p>
+      <p class="mono projects-intro__hint"><button class="skip" type="button" data-target="#parcours">passer les projets ↓</button><br>Parcourez les projets avec les onglets, les flèches ou en glissant. Chaque planche s'ouvre sur une page détaillée.</p>
     </section>
 
     <section class="projects" aria-label="Carrousel des projets">
       <!-- Une <article class="planche"> par projet. Remplace chaque .placeholder par <img src="assets/projets/xxx.jpg" alt="...">. -->
+      <div class="tabs-row">
+      <nav class="tabs" aria-label="Aller à un projet">
+        <button type="button" style="--t:#4F6D7A">CRT Bretagne</button>
+        <button type="button" style="--t:#4F6D7A">Office de Tourisme</button>
+        <button type="button" style="--t:#E07B6A">Capsule</button>
+        <button type="button" style="--t:#E07B6A">Serious game</button>
+        <button type="button" style="--t:#C0D6DF">Webmag</button>
+      </nav>
+      <div class="carousel__ui">
+        <button class="skip" type="button" data-target="#parcours">passer les projets ↓</button>
+      </div>
+
       <div class="carousel" tabindex="0" aria-label="Projets, utilisez les flèches du clavier">
         <article class="planche planche--grid " id="p-crt-tourisme-bretagne" style="--a:#4F6D7A;--b:#E07B6A" aria-roledescription="projet" aria-label="1 sur 5">
           <a class="planche__collage" href="projets/crt-tourisme-bretagne.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Parler aux pros du tourisme">
@@ -229,17 +241,6 @@
         </article>
       </div>
 
-      <div class="tabs-row">
-      <nav class="tabs" aria-label="Aller à un projet">
-        <button type="button" style="--t:#4F6D7A">CRT Bretagne</button>
-        <button type="button" style="--t:#4F6D7A">Office de Tourisme</button>
-        <button type="button" style="--t:#E07B6A">Capsule</button>
-        <button type="button" style="--t:#E07B6A">Serious game</button>
-        <button type="button" style="--t:#C0D6DF">Webmag</button>
-      </nav>
-      <div class="carousel__ui">
-        <button class="skip" type="button" data-target="#parcours">passer les projets ↓</button>
-      </div>
 
       </div>
     </section>
