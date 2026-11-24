@@ -131,13 +131,14 @@
       defaults: { ease: 'none' },
       scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: '+=75%', scrub: 0.8 },
     });
-    tl.to('.layer--name', { y: -70, x: -20, rotation: -3 }, 0)
-      .to('.layer--photo', { y: -150, x: 70, rotation: 7 }, 0)
-      .to('.layer--note', { y: -60, x: 50, rotation: 3 }, 0)
-      .to('.stamp', { rotation: 120, y: -40 }, 0)
+    // départ explicite (fromTo) : on ne lit pas les positions pendant l'animation d'entrée
+    const ir = { immediateRender: false };
+    tl.fromTo('.layer--name', { y: 0, x: 0, rotation: 0 }, { y: -130, x: -20, rotation: -3, ...ir }, 0)
+      .fromTo('.layer--photo', { y: 0, x: 0, rotation: 0 }, { y: -210, x: 70, rotation: 7, ...ir }, 0)
+      .fromTo('.layer--note', { y: 0, x: 0, rotation: 0 }, { y: -120, x: 50, rotation: 3, ...ir }, 0)
+      .fromTo('.stamp', { rotation: 0, y: 0 }, { rotation: 120, y: -40, ...ir }, 0)
       .to('.scroll-hint', { opacity: 0, duration: 0.2 }, 0)
-      .to('.folder, .pocket', { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in' }, 0.35)
-      .to('.layer', { y: '-=60', stagger: 0.05 }, 0.55);
+      .fromTo('.folder, .pocket', { y: 0, opacity: 1 }, { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in', duration: 0.65, ...ir }, 0.35);
   });
   heroMM.add('(max-width: 899px), (max-height: 700px)', () => {
     gsap.to('.layer--photo', { y: -40, rotation: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
