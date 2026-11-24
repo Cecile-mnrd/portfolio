@@ -184,31 +184,17 @@
       scrollTrigger: { trigger: el, start: 'top 85%' },
     });
   });
-  gsap.to('.stars span', {
-    rotation: 360, ease: 'none',
-    scrollTrigger: { trigger: '.parcours', start: 'top bottom', end: 'bottom top', scrub: true },
-  });
   gsap.from('.seal', {
     scale: 0, rotation: -200, duration: 0.9, ease: 'back.out(1.8)',
     scrollTrigger: { trigger: '.seal', start: 'top 90%' },
   });
 
-  /* ---------- COMPÉTENCES : la carte mentale se dessine ---------- */
-  const lines = gsap.utils.toArray('.mm-lines line');
-  lines.forEach((l) => {
-    const len = l.getTotalLength();
-    l.style.strokeDasharray = len;
-    l.style.strokeDashoffset = len;
+  /* ---------- COMPÉTENCES ---------- */
+  gsap.utils.toArray('.skill').forEach((card, i) => {
+    gsap.from(card, { y: 60, opacity: 0, rotation: i % 2 ? 3 : -3, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 88%' } });
+    gsap.from(card.querySelectorAll('.chips li'), { scale: 0.5, opacity: 0, duration: 0.45, stagger: 0.04, ease: 'back.out(2)', scrollTrigger: { trigger: card, start: 'top 80%' } });
   });
-  const mmTl = gsap.timeline({
-    scrollTrigger: { trigger: '.skills', start: 'top 70%', end: 'center 45%', scrub: 1 },
-  });
-  mmTl
-    .from('.mm-center', { opacity: 0, scale: 0.8, transformOrigin: '50% 50%', stagger: 0.1 })
-    .to(lines, { strokeDashoffset: 0, stagger: 0.08, ease: 'none' })
-    .from('.mm-nodes text', { opacity: 0, y: 10, stagger: 0.06 }, '<0.2')
-    .from('.langs', { opacity: 0, x: 30 }, '<');
-  gsap.from('.interests', { y: 60, rotation: 4, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: '.interests', start: 'top 95%', end: 'top 65%', scrub: 1 } });
+  gsap.from('.more', { y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.skills__more', start: 'top 88%' } });
 
   /* ---------- CONTACT : bandeau qui accélère avec le scroll ---------- */
   const marquee = gsap.to('.marquee__track', { xPercent: -50, ease: 'none', duration: 22, repeat: -1 });
@@ -220,14 +206,9 @@
       gsap.to(marquee, { timeScale: 1, duration: 1.2, delay: 0.2, overwrite: false });
     },
   });
-  gsap.from('.tw__paper', {
-    yPercent: 75, ease: 'none',
-    scrollTrigger: { trigger: '.typewriter', start: 'top 90%', end: 'center 55%', scrub: 1 },
-  });
-  gsap.from('.tw__machine', { y: 80, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.typewriter', start: 'top 85%' } });
-  gsap.utils.toArray('.tw__keys i').forEach((k, i) => {
-    gsap.to(k, { y: 3, duration: 0.08, yoyo: true, repeat: 1, delay: (i * 0.37) % 3, repeatDelay: 0,
-      scrollTrigger: { trigger: '.typewriter', start: 'top 70%', toggleActions: 'restart none none none' } });
+  gsap.from('.contact__card', {
+    y: 100, rotation: 5, opacity: 0, ease: 'power2.out',
+    scrollTrigger: { trigger: '.contact__card', start: 'top 95%', end: 'top 60%', scrub: 1 },
   });
   gsap.from('.rings i', { scaleX: 0, transformOrigin: 'right center', duration: 0.5, stagger: 0.1, ease: 'back.out(2)', scrollTrigger: { trigger: '.panel--school', start: 'top 75%' } });
 
