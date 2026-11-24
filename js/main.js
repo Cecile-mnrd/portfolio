@@ -133,9 +133,9 @@
     });
     // départ explicite (fromTo) : on ne lit pas les positions pendant l'animation d'entrée
     const ir = { immediateRender: false };
-    tl.fromTo('.layer--name', { y: 0, x: 0, rotation: 0 }, { y: -130, x: -20, rotation: -3, ...ir }, 0)
-      .fromTo('.layer--photo', { y: 0, x: 0, rotation: 0 }, { y: -210, x: 70, rotation: 7, ...ir }, 0)
-      .fromTo('.layer--note', { y: 0, x: 0, rotation: 0 }, { y: -120, x: 50, rotation: 3, ...ir }, 0)
+    tl.fromTo('.layer--name', { y: 0, x: 0, rotation: 0 }, { y: -80, x: -20, rotation: -3, ...ir }, 0)
+      .fromTo('.layer--photo', { y: 0, x: 0, rotation: 0 }, { y: -110, x: 60, rotation: 7, ...ir }, 0)
+      .fromTo('.layer--note', { y: 0, x: 0, rotation: 0 }, { y: -80, x: 40, rotation: 3, ...ir }, 0)
       .fromTo('.stamp', { rotation: 0, y: 0 }, { rotation: 120, y: -40, ...ir }, 0)
       .to('.scroll-hint', { opacity: 0, duration: 0.2 }, 0)
       .fromTo('.folder, .pocket', { y: 0, opacity: 1 }, { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in', duration: 0.65, ...ir }, 0.35);
