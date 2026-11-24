@@ -138,7 +138,8 @@
       .fromTo('.layer--note', { y: 0, x: 0, rotation: 0 }, { y: 10, x: 40, rotation: 3, ...ir }, 0)
       .fromTo('.stamp', { rotation: 0, y: 0 }, { rotation: 120, y: -10, ...ir }, 0)
       .to('.scroll-hint', { opacity: 0, duration: 0.2 }, 0)
-      .fromTo('.folder, .pocket', { y: 0, opacity: 1 }, { y: () => -window.innerHeight * 1.1, opacity: 0, ease: 'power1.in', duration: 0.8, ...ir }, 0.1);
+      .fromTo('.pocket', { opacity: 1 }, { opacity: 0, duration: 0.08, ...ir }, 0)
+      .fromTo('.folder', { y: 0, opacity: 1 }, { y: () => -window.innerHeight * 1.1, opacity: 0, ease: 'power1.in', duration: 0.8, ...ir }, 0.1);
   });
   heroMM.add('(max-width: 899px)', () => {
     gsap.fromTo('.layer--photo', { y: 0, rotation: 0 }, { y: -40, rotation: 8, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
