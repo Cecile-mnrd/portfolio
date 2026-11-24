@@ -162,9 +162,6 @@
       .to('.more-link__arrow', { x: 6, duration: 0.6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
   }
 
-  /* ---------- vague discrète en bas de l'accueil ---------- */
-  gsap.to('.sea__a', { x: -90, duration: 6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-  gsap.to('.sea__b', { x: 70, duration: 8, ease: 'sine.inOut', yoyo: true, repeat: -1 });
   /* ---------- photo « à propos » : léger parallaxe ---------- */
   gsap.fromTo('.about__photo', { y: 60 }, { y: -60, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.from('.rope', { y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.ropes', start: 'top 85%' } });
