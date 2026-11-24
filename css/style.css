@@ -1337,3 +1337,14 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 @media (min-width: 900px) { .projects.is-track .tabs-row { margin-top: 2.2rem; } }
 @media (max-width: 899px) { .tabs-row { flex-direction: column; align-items: stretch; } .tabs-row .carousel__ui { justify-content: flex-end; padding: 0 var(--gutter) 1.2rem !important; } }
 @media (min-width: 900px) { .projects.is-track { height: 100vh !important; min-height: 100vh; } }
+
+/* V17 — barre des projets épurée : onglets + lien discret */
+.tabs-row { align-items: center; }
+.skip {
+  background: none !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+  padding: .3rem 0 !important; margin: 0 !important; text-transform: none !important; letter-spacing: 0 !important;
+  font: 500 .95rem var(--sans) !important; color: var(--slate-dark) !important;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+.skip:hover, .skip:focus-visible { translate: none !important; color: var(--ink) !important; text-decoration-color: var(--coral); }
+@media (max-width: 899px) { .tabs-row .carousel__ui { padding: .4rem var(--gutter) 1rem !important; } }
