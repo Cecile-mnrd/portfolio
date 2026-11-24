@@ -62,6 +62,17 @@ body { width: 1584px; height: 396px; overflow: hidden; background: var(--desk) v
 .sticker { right: auto !important; left: 1110px !important; top: 300px !important; z-index: 8; }
 .stamp { left: 1105px !important; top: 34px !important; width: 110px !important; height: 110px !important; }
 .holes::before { -webkit-mask: radial-gradient(circle at 30px 20%, transparent 11px, #000 11.6px), radial-gradient(circle at 30px 52%, transparent 11px, #000 11.6px) !important; }
+.card::before { background-color: #fbf9f3 !important;
+  background-image: linear-gradient(transparent 0 33px, rgba(79,109,122,.28) 33px 34px) , linear-gradient(90deg, transparent 0 30px, rgba(224,123,106,.55) 30px 31.5px, transparent 31.5px), var(--noise) !important;
+  background-size: 100% 34px, 100% 100%, auto !important; background-position: 0 12px, 0 0, 0 0 !important; }
+.card { padding: 20px 22px 18px 46px !important; width: 330px !important; right: 50px !important; transform: rotate(2.5deg) !important; }
+.card__head { font: 600 12px/1 "Instrument Sans", sans-serif !important; text-transform: uppercase; letter-spacing: .14em; color: var(--slate); margin-bottom: 8px; }
+.card ol { margin: 0; padding: 0 0 0 18px; font: 400 20px/34px "Instrument Serif", serif; color: var(--ink); }
+.card li::marker { font: italic 400 18px "Instrument Serif", serif; color: var(--coral); }
+.note.card p.card__head { font: 600 12px/22px "Instrument Sans", sans-serif !important; letter-spacing: .16em; margin: 0 0 0 0 !important; height: 22px; }
+.card { padding: 12px 22px 10px 46px !important; }
+.card::before { background-position: 0 -1px, 0 0, 0 0 !important; }
+.card ol { font-size: 21px !important; }
 </style>
 </head>
 <body>
@@ -82,10 +93,14 @@ body { width: 1584px; height: 396px; overflow: hidden; background: var(--desk) v
   <div class="tags"><span>Éditorial</span><span>Newsletter</span><span>Réseaux sociaux</span><span>Vidéo</span></div>
 </div>
 
-<div class="sheet note">
-  <span class="tape" style="left:66px;top:-16px;transform:rotate(-5deg)"></span>
-  <p>Rendre l'information claire et utile pour les publics d'un territoire.</p>
-  <small>Bretagne</small>
+<div class="sheet note card">
+  <span class="tape" style="left:90px;top:-16px;transform:rotate(-4deg)"></span>
+  <p class="card__head">Sommaire</p>
+  <ol>
+    <li><span>OT Côte de Granit Rose</span></li>
+    <li><span>Tourisme Bretagne</span></li>
+    <li><span>Audencia SciencesCom</span></li>
+  </ol>
 </div>
 
 <div class="sticker">B2C &amp; B2B</div>
