@@ -7,7 +7,7 @@
 
   /* ---------- ancres (fonctionne avec ou sans Lenis) ---------- */
   let lenis = null;
-  document.querySelectorAll('a[href^="#"]:not(.tabs a)').forEach((a) => {
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
       const target = id === '#top' ? document.body : document.querySelector(id);
@@ -17,6 +17,59 @@
       else target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
     });
   });
+
+  /* ---------- CARROUSEL PROJETS (fonctionne aussi sans GSAP) ---------- */
+  const car = document.querySelector('.carousel');
+  const slides = car ? Array.from(car.children) : [];
+  const tabBtns = Array.from(document.querySelectorAll('.tabs button'));
+  const prev = document.querySelector('.arrow--prev');
+  const next = document.querySelector('.arrow--next');
+  const counter = document.querySelector('.counter__i');
+  let current = -1;
+  const go = (i) => {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    car.scrollTo({ left: slides[i].offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
+  };
+  const onSlide = (i) => {
+    if (i === current) return;
+    current = i;
+    tabBtns.forEach((t, k) => { t.classList.toggle('is-active', k === i); t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    if (counter) counter.textContent = String(i + 1).padStart(2, '0');
+    if (prev) prev.disabled = i === 0;
+    if (next) next.disabled = i === slides.length - 1;
+    document.dispatchEvent(new CustomEvent('slidechange', { detail: i }));
+  };
+  if (car) {
+    tabBtns.forEach((t, i) => t.addEventListener('click', () => go(i)));
+    prev && prev.addEventListener('click', () => go(current - 1));
+    next && next.addEventListener('click', () => go(current + 1));
+    car.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+    });
+    // glissement horizontal (trackpad) : on laisse le navigateur gérer, sans le défilement doux
+    car.addEventListener('wheel', (e) => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.stopPropagation(); }, { passive: true });
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const w = car.clientWidth;
+      onSlide(Math.round(car.scrollLeft / w));
+      if (reduce) return;
+      // parallaxe des visuels découpés pendant le glissement
+      slides.forEach((sl) => {
+        const p = (sl.offsetLeft - car.scrollLeft) / w; // -1 … 0 … 1
+        if (Math.abs(p) > 1.2) return;
+        sl.querySelectorAll('.cut').forEach((c) => {
+          const d = parseFloat(c.dataset.depth || 1);
+          c.style.translate = `${p * d * 140}px ${Math.abs(p) * d * 30}px`;
+        });
+        sl.querySelectorAll('.shard').forEach((c, k) => { c.style.scale = String(1 - Math.abs(p) * 0.5); c.style.rotate = `${p * (k ? 30 : -30)}deg`; });
+      });
+    };
+    car.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
 
   if (!hasGsap || reduce) return; // le site reste entièrement lisible sans animation
 
@@ -98,64 +151,23 @@
         scrollTrigger: { trigger: block, start: 'top 80%', end: 'bottom 50%', scrub: true } });
   });
 
-  /* ---------- PROJETS : planches collage ---------- */
-  const mm = gsap.matchMedia();
-  const track = document.querySelector('.projects__track');
-  const planches = gsap.utils.toArray('.planche--grid');
-  const tabs = gsap.utils.toArray('.tabs a');
+  /* ---------- PROJETS ---------- */
+  gsap.to('.sheets__top', { y: -30, rotation: -4, ease: 'none', scrollTrigger: { trigger: '.projects-intro', start: 'top 80%', end: 'bottom 30%', scrub: true } });
+  gsap.to('.sheets span', { rotation: (i) => (i ? 9 : -11), x: (i) => (i ? 30 : -30), ease: 'none', scrollTrigger: { trigger: '.projects-intro', start: 'top 80%', end: 'bottom 30%', scrub: true } });
+  gsap.from('.projects-intro__hint', { y: 30, opacity: 0, duration: 0.8, scrollTrigger: { trigger: '.projects-intro', start: 'top 60%' } });
+  // le texte de la planche active se reconstruit
+  const animateSlide = (i) => {
+    const sl = slides[i]; if (!sl) return;
+    gsap.fromTo(sl.querySelectorAll('.planche__text > *'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'power3.out', overwrite: true });
+    gsap.fromTo(sl.querySelectorAll('.cut'), { scale: 0.85 }, { scale: 1, duration: 0.8, stagger: 0.08, ease: 'back.out(1.6)', overwrite: true });
+  };
+  document.addEventListener('slidechange', (e) => animateSlide(e.detail));
+  ScrollTrigger.create({ trigger: '.projects', start: 'top 70%', once: true, onEnter: () => animateSlide(Math.max(current, 0)) });
+  gsap.from('.tabs button', { y: 40, opacity: 0, stagger: 0.06, duration: 0.6, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.projects', start: 'top 60%' } });
 
-  mm.add('(min-width: 900px)', () => {
-    const distance = () => track.scrollWidth - window.innerWidth;
-    const scroller = gsap.to(track, {
-      x: () => -distance(), ease: 'none',
-      scrollTrigger: {
-        trigger: '.projects', pin: true, start: 'top top', end: () => '+=' + distance(), scrub: 1, invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          gsap.set('.progress span', { scaleX: self.progress });
-          const x = self.progress * distance() + window.innerWidth * 0.5;
-          tabs.forEach((t, i) => {
-            const pl = planches[i];
-            t.classList.toggle('is-active', x >= pl.offsetLeft && x < pl.offsetLeft + pl.offsetWidth);
-          });
-        },
-      },
-    });
-    const st0 = scroller.scrollTrigger;
-    tabs.forEach((t, i) => {
-      t.onclick = (e) => {
-        e.preventDefault();
-        const y = st0.start + (planches[i].offsetLeft / distance()) * (st0.end - st0.start);
-        if (lenis) lenis.scrollTo(y, { duration: 1.4 }); else window.scrollTo({ top: y, behavior: 'smooth' });
-      };
-    });
-    gsap.to('.sheets__top', { y: -40, rotation: -4, ease: 'none', scrollTrigger: { trigger: '.projects', start: 'top top', end: () => '+=' + window.innerWidth * 0.6, scrub: true } });
-    gsap.to('.sheets span', { rotation: (i) => (i ? 9 : -11), x: (i) => (i ? 30 : -30), ease: 'none', scrollTrigger: { trigger: '.projects', start: 'top top', end: () => '+=' + window.innerWidth * 0.6, scrub: true } });
-    planches.forEach((pl) => {
-      const st = { trigger: pl, containerAnimation: scroller, start: 'left right', end: 'right left', scrub: true };
-      pl.querySelectorAll('.cut').forEach((cut) => {
-        const d = parseFloat(cut.dataset.depth || 1);
-        gsap.fromTo(cut, { xPercent: 40 * d, rotation: '+=' + (8 * d) }, { xPercent: -25 * d, rotation: '-=' + (10 * d), ease: 'none', scrollTrigger: st });
-      });
-      gsap.fromTo(pl.querySelectorAll('.shard'), { scale: 0.4, rotation: -20 }, { scale: 1.15, rotation: 15, ease: 'none', scrollTrigger: st });
-      gsap.from(pl.querySelectorAll('.planche__text > *'), {
-        y: 40, opacity: 0, stagger: 0.06, ease: 'power2.out',
-        scrollTrigger: { trigger: pl, containerAnimation: scroller, start: 'left 70%', end: 'left 20%', scrub: true },
-      });
-    });
-  });
-
-  mm.add('(max-width: 899px)', () => {
-    planches.forEach((pl) => {
-      gsap.from(pl.querySelectorAll('.cut'), {
-        y: 80, opacity: 0, rotation: () => gsap.utils.random(-15, 15), duration: 0.9, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: pl, start: 'top 80%' },
-      });
-      gsap.from(pl.querySelectorAll('.planche__text > *'), {
-        y: 30, opacity: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out',
-        scrollTrigger: { trigger: pl.querySelector('.planche__text'), start: 'top 85%' },
-      });
-    });
-  });
+  /* ---------- ATOUTS ---------- */
+  gsap.from('.ticket', { y: -80, opacity: 0, rotation: () => gsap.utils.random(-20, 20), duration: 0.9, stagger: 0.12, ease: 'back.out(1.4)', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
+  gsap.fromTo('.arrow-draw', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, repeat: -1, repeatDelay: 1.4, ease: 'power2.out', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
 
   /* ---------- PARCOURS ---------- */
   gsap.from('.panel--exp', {
