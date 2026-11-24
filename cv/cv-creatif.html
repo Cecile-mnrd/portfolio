@@ -158,6 +158,45 @@ p { margin: 0; }
 .name .bio { padding-right: 31mm; }
 .job-title { font: 400 21pt/1 var(--serif) !important; font-style: normal !important; color: var(--slate) !important; margin: 3.5mm 0 3mm !important; }
 .dispo { font-size: 7.4pt; }
+
+/* compétences : pastilles, bande outils, mini-fiches */
+.skills__grid { grid-template-columns: repeat(5, 1fr) !important; gap: 0 3.5mm !important; }
+.sk { border-left: .3mm solid rgba(29,28,26,.2); padding-left: 2.6mm; }
+.sk:first-child { border-left: 0; padding-left: 0; }
+.sk b { font: 400 11pt/1 var(--serif) !important; margin-bottom: 1.6mm !important; color: var(--ink); }
+.pl { display: flex; flex-wrap: wrap; gap: 1mm; }
+.pl i { font-style: normal; font-size: 7pt; line-height: 1.1; padding: .8mm 1.6mm; border: .25mm solid rgba(29,28,26,.55); border-radius: 9mm; background: rgba(255,255,255,.45); }
+.tools { display: flex; align-items: center; gap: 3mm; margin-top: 3mm; padding: 1.8mm 3mm; background: var(--kraft) var(--fleck); transform: rotate(-.4deg); font-size: 7.6pt; }
+.tools b { font: 400 11pt/1 var(--serif); }
+.cards { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4mm; margin-top: 3mm; }
+.mini { padding: 2.2mm 3mm; background: #fbf8f2; box-shadow: 0 .4mm .8mm rgba(40,30,20,.18); font-size: 7.6pt; transform: rotate(.6deg); }
+.mini--blue { background: var(--pale); transform: rotate(-.8deg); }
+.mini b { display: block; font: 400 11pt/1 var(--serif); margin-bottom: 1.2mm; }
+.mini p span { font-weight: 600; }
+.mini p + p { margin-top: .5mm; }
+.extra { display: none; }
+/* gain de place */
+.skills { padding: 3.4mm 6mm 3.4mm !important; }
+.skills h2 { margin-bottom: 1.6mm !important; }
+.pl { gap: .7mm; }
+.pl i { padding: .55mm 1.4mm; font-size: 6.8pt; }
+.sk b { margin-bottom: 1.1mm !important; }
+.tools { margin-top: 2.2mm; padding: 1.3mm 3mm; }
+.cards { margin-top: 2.2mm; }
+.mini { padding: 1.8mm 3mm; }
+.board { top: 22mm !important; }
+.col { gap: 3.4mm !important; }
+.exp .job ul { line-height: 1.26; }
+.exp { padding-bottom: 3.4mm !important; }
+.edu { padding-bottom: 3mm !important; }
+.name .bio { margin-top: 2.4mm !important; }
+.name { padding-bottom: 5mm !important; }
+.exp h2, .edu h2 { margin-bottom: 1.4mm !important; }
+.job { padding: 1.6mm 0 1.4mm !important; }
+.skills { bottom: 25mm !important; }
+.board { top: 21mm !important; }
+.edu .school { padding: 1.3mm 0 !important; }
+.contact { padding: 3.4mm 4mm 3mm !important; }
 </style>
 </head>
 <body>
@@ -243,16 +282,16 @@ p { margin: 0; }
     <svg class="clip" style="right:30mm;top:-7mm"><use href="#clip"/></svg>
     <h2>Compétences <em>&amp; outils</em></h2>
     <div class="skills__grid">
-      <div class="sk"><b>Éditorial</b><span>Rédaction web et print, réécriture, ligne éditoriale, SEO</span></div>
-      <div class="sk"><b>Diffusion</b><span>Newsletter et emailing, community management, LinkedIn B2B</span></div>
-      <div class="sk"><b>Création</b><span>PAO, carrousels, montage vidéo, interview</span></div>
-      <div class="sk"><b>Analyse</b><span>Suivi de KPI, tests A/B, enquête qualitative</span></div>
-      <div class="sk"><b>Territoire</b><span>Com institutionnelle et B2B, marketing territorial, événementiel pro</span></div>
-      <div class="sk"><b>Outils</b><span>WordPress, Zoho Campaigns, Brevo, Suite Adobe, Affinity, Notion, IA</span></div>
+      <div class="sk"><b>Éditorial</b><div class="pl"><i>Rédaction web et print</i><i>Réécriture</i><i>Ligne éditoriale</i><i>SEO</i></div></div>
+      <div class="sk"><b>Diffusion</b><div class="pl"><i>Newsletter</i><i>Emailing</i><i>Community management</i><i>LinkedIn B2B</i></div></div>
+      <div class="sk"><b>Création</b><div class="pl"><i>PAO</i><i>Carrousels</i><i>Montage vidéo</i><i>Interview</i></div></div>
+      <div class="sk"><b>Analyse</b><div class="pl"><i>Suivi de KPI</i><i>Tests A/B</i><i>Enquête qualitative</i></div></div>
+      <div class="sk"><b>Territoire</b><div class="pl"><i>Com institutionnelle</i><i>Marketing territorial</i><i>Événementiel pro</i></div></div>
     </div>
-    <div class="extra">
-      <p><b>Langues</b> · Anglais, TOEIC 930 (échange franco-indien 2023) · Espagnol B2</p>
-      <p><b>À côté</b> · Musique, arts visuels, cinéma, lecture, randonnée côtière</p>
+    <div class="tools"><b>Outils</b><span>WordPress · Zoho Campaigns · Brevo · Suite Adobe · Affinity · Notion · Claude · Mistral · ChatGPT</span></div>
+    <div class="cards">
+      <div class="mini mini--blue"><b>Langues</b><p><span>Anglais</span> TOEIC 930, échange franco-indien 2023</p><p><span>Espagnol</span> B2</p></div>
+      <div class="mini"><b>À côté</b><p>Musique · arts visuels · cinéma · lecture · randonnée côtière</p></div>
     </div>
   </section>
 
