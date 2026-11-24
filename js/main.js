@@ -127,18 +127,20 @@
   const heroMM = gsap.matchMedia();
   // moment signature (ordinateur) : au défilement, on sort les documents de la chemise
   heroMM.add('(min-width: 900px)', () => {
+    // écran bas : ce qui dépasse sous la ligne de flottaison remonte pendant la scène
+    const ov = () => Math.max(0, document.querySelector('.hero').offsetHeight - window.innerHeight);
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
-      scrollTrigger: { trigger: '.hero', pin: true, start: 'bottom bottom', end: '+=75%', scrub: 0.8, invalidateOnRefresh: true },
+      scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: () => '+=' + (window.innerHeight * 0.75 + ov()), scrub: 0.8, invalidateOnRefresh: true },
     });
     // départ explicite (fromTo) : on ne lit pas les positions pendant l'animation d'entrée
     const ir = { immediateRender: false };
-    tl.fromTo('.layer--name', { y: 0, x: 0, rotation: 0 }, { y: -80, x: -20, rotation: -3, ...ir }, 0)
-      .fromTo('.layer--photo', { y: 0, x: 0, rotation: 0 }, { y: -110, x: 60, rotation: 7, ...ir }, 0)
-      .fromTo('.layer--note', { y: 0, x: 0, rotation: 0 }, { y: -80, x: 40, rotation: 3, ...ir }, 0)
-      .fromTo('.stamp', { rotation: 0, y: 0 }, { rotation: 120, y: -40, ...ir }, 0)
+    tl.fromTo('.layer--name', { y: 0, x: 0, rotation: 0 }, { y: () => -80 - ov(), x: -20, rotation: -3, ...ir }, 0)
+      .fromTo('.layer--photo', { y: 0, x: 0, rotation: 0 }, { y: () => -110 - ov(), x: 60, rotation: 7, ...ir }, 0)
+      .fromTo('.layer--note', { y: 0, x: 0, rotation: 0 }, { y: () => -80 - ov(), x: 40, rotation: 3, ...ir }, 0)
+      .fromTo('.stamp', { rotation: 0, y: 0 }, { rotation: 120, y: () => -40 - ov(), ...ir }, 0)
       .to('.scroll-hint', { opacity: 0, duration: 0.2 }, 0)
-      .fromTo('.folder, .pocket', { y: 0, opacity: 1 }, { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in', duration: 0.65, ...ir }, 0.35);
+      .fromTo('.folder, .pocket', { y: 0, opacity: 1 }, { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in', duration: 0.6, ...ir }, 0.15);
   });
   heroMM.add('(max-width: 899px)', () => {
     gsap.fromTo('.layer--photo', { y: 0, rotation: 0 }, { y: -40, rotation: 8, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
