@@ -284,18 +284,6 @@
     });
   });
 
-  /* ---------- accueil : la chemise suit légèrement la souris ---------- */
-  if (window.matchMedia('(pointer: fine)').matches) {
-    gsap.set('.hero', { perspective: 1400 });
-    const rx = gsap.quickTo('.board', 'rotationX', { duration: 0.9, ease: 'power3' });
-    const ry = gsap.quickTo('.board', 'rotationY', { duration: 0.9, ease: 'power3' });
-    document.querySelector('.hero').addEventListener('mousemove', (e) => {
-      ry((e.clientX / window.innerWidth - 0.5) * 5);
-      rx(-(e.clientY / window.innerHeight - 0.5) * 4);
-    });
-    document.querySelector('.hero').addEventListener('mouseleave', () => { rx(0); ry(0); });
-  }
-
   /* ---------- barre de progression en ruban adhésif ---------- */
 
   /* ---------- curseur ---------- */

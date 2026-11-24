@@ -1625,3 +1625,6 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 /* V33 — trois tickets */
 .assets__row { grid-template-columns: 1fr 1.2fr 1.6fr; }
 @media (max-width: 899px) { .assets__row { grid-template-columns: 1fr 1fr; } }
+
+/* V39 — photo d'accueil stable : pas de soulèvement au survol */
+.hero .card--photo:hover, .hero .card--photo { translate: none !important; transition: none !important; }
