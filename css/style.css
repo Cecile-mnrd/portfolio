@@ -1190,3 +1190,10 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
   filter: drop-shadow(0 2px 2px rgba(0,0,0,.3));
 }
 @media (min-width: 900px) { .tabs, .carousel__ui { grid-row: 2; } .carousel { grid-row: 1; } }
+
+/* V12 — le bleu marine passe au contact, les projets redeviennent clairs */
+.projects-intro, .projects, .tabs, .carousel__ui { background: var(--pale) !important; }
+.projects-intro__hint { color: var(--slate-dark) !important; }
+.contact { background-color: var(--navy) !important; background-image: var(--tex-relief); padding: clamp(4rem, 10vh, 6rem) 0 2rem !important; margin-top: clamp(3rem, 8vh, 5rem); }
+.contact .postcard { margin-top: 0; --sh: 0 2px 3px rgba(0,0,0,.25), 0 24px 40px -14px rgba(0,0,0,.6), 0 50px 70px -35px rgba(0,0,0,.6); }
+.contact .footer, .contact .footer a { color: var(--pale) !important; }
