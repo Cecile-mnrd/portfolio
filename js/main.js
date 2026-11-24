@@ -157,39 +157,33 @@
 
   const projMM = gsap.matchMedia();
   projMM.add('(min-width: 900px)', () => {
-    // la piste de fiches glisse à l'horizontale au rythme de la molette (comme la première version)
-    document.querySelector('.projects').classList.add('is-track');
-    const distance = () => car.scrollWidth - window.innerWidth;
-    const syncTab = () => {
-      const mid = -gsap.getProperty(car, 'x') + window.innerWidth / 2;
-      let best = 0, bd = Infinity;
-      slides.forEach((sl, k) => { const d = Math.abs(sl.offsetLeft + sl.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = k; } });
-      onSlide(best);
-    };
-    const tw = gsap.to(car, {
-      x: () => -distance(), ease: 'none', onUpdate: syncTab,
+    // pile de fiches : tous les intercalaires visibles ; au défilement, la fiche du dessus s'en va et révèle la suivante
+    const section = document.querySelector('.projects');
+    section.classList.add('is-stack');
+    const n = slides.length;
+    const off = (k) => ({ x: k * 9, y: 0, rotation: 0 });
+    slides.forEach((sl, k) => { sl.style.zIndex = n - k; gsap.set(sl, off(k)); });
+    const tl = gsap.timeline({
+      defaults: { duration: 1 },
       scrollTrigger: {
-        trigger: '.projects', pin: true, start: 'top top', end: () => '+=' + distance(), scrub: 1, invalidateOnRefresh: true,
+        trigger: section, pin: true, start: 'top top', end: () => '+=' + (n - 1) * window.innerHeight * 0.75,
+        scrub: 0.6, invalidateOnRefresh: true,
       },
+      onUpdate: () => onSlide(Math.min(n - 1, Math.round(tl.progress() * (n - 1)))),
+      id: 'stack',
     });
-    const st = tw.scrollTrigger;
-    // chaque fiche arrive penchée et se redresse en passant au centre ; les visuels bougent à des vitesses différentes
-    slides.forEach((sl) => {
-      const cfg = { trigger: sl, containerAnimation: tw, start: 'left right', end: 'right left', scrub: true };
-      gsap.fromTo(sl, { rotation: 3 }, { rotation: -2, ease: 'none', scrollTrigger: cfg });
-      sl.querySelectorAll('.cut').forEach((c) => {
-        const d = parseFloat(c.dataset.depth || 1);
-        gsap.fromTo(c, { xPercent: 30 * d }, { xPercent: -20 * d, ease: 'none', scrollTrigger: cfg });
-      });
-    });
+    for (let i = 0; i < n - 1; i++) {
+      tl.to(slides[i], { xPercent: -118, y: 60, rotation: -9, ease: 'power2.in' }, i);
+      for (let j = i + 1; j < n; j++) tl.to(slides[j], { ...off(j - i - 1), ease: 'power2.out' }, i + 0.15);
+    }
+    const st = tl.scrollTrigger;
     const old = goImpl;
     goImpl = (i) => {
-      const target = slides[i].offsetLeft + slides[i].offsetWidth / 2 - window.innerWidth / 2;
-      const p = gsap.utils.clamp(0, 1, target / distance());
-      const y = st.start + p * (st.end - st.start);
-      if (lenis) lenis.scrollTo(y, { duration: 1.2 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+      const y = st.start + (i / (n - 1)) * (st.end - st.start);
+      if (lenis) lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
     };
-    return () => { goImpl = old; document.querySelector('.projects').classList.remove('is-track'); };
+    onSlide(0);
+    return () => { goImpl = old; section.classList.remove('is-stack'); slides.forEach((sl) => { sl.style.zIndex = ''; }); };
   });
 
   /* ---------- ATOUTS ---------- */
