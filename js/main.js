@@ -230,7 +230,7 @@
     gsap.to(o, { v: end, duration: 1.4, ease: 'power2.out', snap: { v: 1 }, onUpdate: () => { el.textContent = o.v + suffix; },
       scrollTrigger: { trigger: el, start: 'top 85%' } });
   });
-  gsap.fromTo('.arrow-draw', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, repeat: -1, repeatDelay: 1.4, ease: 'power2.out', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
+  gsap.from('.amp', { scale: 0.3, rotation: -30, opacity: 0, duration: 0.7, ease: 'back.out(2.2)', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
 
   /* ---------- PARCOURS ---------- */
   gsap.from('.panel--exp', {
