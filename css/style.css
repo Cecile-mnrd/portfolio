@@ -1200,3 +1200,48 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 /* V13 — un seul accent : corail rosé (fusion du corail et du vieux rose) */
 :root { --coral: #E07B6A; --rosy: #E07B6A; }
 .planche--color .mono-title::before { background: var(--paper); }
+
+/* =========================================================
+   V14 — iPhone réaliste (cadre titane, écran, Dynamic Island, boutons)
+   L'image se met à la place du .placeholder dans .iphone__screen
+   ========================================================= */
+.cut--c.iphone {
+  padding: 3px !important; border-radius: 17% / 8% !important; overflow: visible !important;
+  background: linear-gradient(140deg, #e4e6e8 0%, #9a9fa4 18%, #5e6368 42%, #8e9398 62%, #d2d5d8 82%, #7c8186 100%) !important;
+  box-shadow:
+    inset 0 0 0 .5px rgba(255,255,255,.6), inset 0 0 0 1.5px rgba(0,0,0,.35),
+    0 1px 1px rgba(20,15,10,.25), 0 6px 10px -4px rgba(20,15,10,.35), 0 26px 40px -14px rgba(20,15,10,.45) !important;
+}
+.cut--c.iphone::before, .cut--c.iphone::after { content: none !important; }
+.iphone__screen {
+  position: relative; height: 100%; padding: 4.5%; border-radius: 16% / 7.4%; overflow: hidden;
+  background: #070708; box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+}
+.iphone__screen .placeholder { height: 100%; border-radius: 13% / 6% !important; position: relative; }
+.iphone__screen .placeholder::after { content: none !important; }
+/* vitre : reflet diagonal sur tout l'écran */
+.iphone__screen::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(118deg, rgba(255,255,255,.2) 0%, rgba(255,255,255,.06) 28%, rgba(255,255,255,0) 29%, rgba(255,255,255,0) 100%);
+}
+.iphone__island {
+  position: absolute; top: 5.6%; left: 50%; translate: -50% 0; width: 31%; height: 4.4%; border-radius: 99px; background: #000;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.iphone__island::after { content: ""; position: absolute; right: 14%; top: 50%; width: 15%; aspect-ratio: 1; translate: 0 -50%; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #2b3a55, #0a0d14 70%); }
+.iphone__status {
+  position: absolute; top: 6.4%; left: 12%; right: 10%; display: flex; justify-content: space-between; align-items: center;
+  color: #111; pointer-events: none; font: 600 clamp(7px, .75vw, 11px)/1 var(--sans); letter-spacing: -.01em;
+}
+.iphone__time { padding-left: 4%; }
+.iphone__icons { width: 30%; height: auto; }
+.iphone__home { position: absolute; bottom: 3.6%; left: 50%; translate: -50% 0; width: 34%; height: 1.1%; min-height: 3px; border-radius: 99px; background: rgba(0,0,0,.75); }
+.cut--c.iphone .slot { bottom: 9% !important; }
+/* boutons latéraux, en relief sur le cadre */
+.iphone__btn { position: absolute; width: 3px; border-radius: 2px; background: linear-gradient(90deg, #6e7378, #c9ccd0 50%, #7d8287); box-shadow: 0 0 1px rgba(0,0,0,.4); }
+.iphone__btn--action { left: -2px; top: 17%; height: 4.5%; }
+.iphone__btn--up { left: -2px; top: 25%; height: 8%; }
+.iphone__btn--down { left: -2px; top: 35%; height: 8%; }
+.iphone__btn--power { right: -2px; top: 28%; height: 12%; }
+.iphone__screen { padding: 3.2%; }
+.iphone__screen::after { background: linear-gradient(118deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.08) 30%, rgba(255,255,255,0) 31%); }
