@@ -42,7 +42,7 @@
   /* ---------- CARROUSEL PROJETS (fonctionne aussi sans GSAP) ---------- */
   const car = document.querySelector('.carousel');
   const slides = car ? Array.from(car.children) : [];
-  const tabBtns = Array.from(document.querySelectorAll('.tabs button'));
+  const tabBtns = Array.from(document.querySelectorAll('.planche__tab'));
   const prev = document.querySelector('.arrow--prev');
   const next = document.querySelector('.arrow--next');
   const counter = document.querySelector('.counter__i');
@@ -61,6 +61,7 @@
     if (i === current) return;
     current = i;
     tabBtns.forEach((t, k) => { t.classList.toggle('is-active', k === i); t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    slides.forEach((sl, k) => sl.classList.toggle('is-current', k === i));
     if (counter) counter.textContent = String(i + 1).padStart(2, '0');
     if (prev) prev.disabled = i === 0;
     if (next) next.disabled = i === slides.length - 1;
@@ -175,7 +176,7 @@
     // chaque fiche arrive penchée et se redresse en passant au centre ; les visuels bougent à des vitesses différentes
     slides.forEach((sl) => {
       const cfg = { trigger: sl, containerAnimation: tw, start: 'left right', end: 'right left', scrub: true };
-      gsap.fromTo(sl, { rotation: gsap.utils.random(4, 7), y: 60 }, { rotation: gsap.utils.random(-3, -1), y: -30, ease: 'none', scrollTrigger: cfg });
+      gsap.fromTo(sl, { rotation: 3 }, { rotation: -2, ease: 'none', scrollTrigger: cfg });
       sl.querySelectorAll('.cut').forEach((c) => {
         const d = parseFloat(c.dataset.depth || 1);
         gsap.fromTo(c, { xPercent: 30 * d }, { xPercent: -20 * d, ease: 'none', scrollTrigger: cfg });

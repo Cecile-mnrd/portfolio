@@ -1379,3 +1379,49 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
   .projects.is-track .carousel { height: calc(100vh - 4.2rem - 80px); align-items: center !important; padding-bottom: 0; }
   .projects.is-track .carousel .planche { max-height: calc(100vh - 4.2rem - 110px); }
 }
+
+/* =========================================================
+   V19 — intercalaires attachés aux fiches, lien « passer » fixe, hauteur calée sur l'écran
+   ========================================================= */
+.projects .tabs-row, .projects .tabs { display: none !important; }
+.planche { overflow: visible !important; position: relative; }
+.carousel { padding-top: 46px !important; }
+.planche__tab {
+  position: absolute; top: -40px; left: calc(4% + var(--i) * 15%); z-index: 3;
+  height: 42px; padding: 0 1.4rem; border: 0; cursor: pointer;
+  font: 400 1.1rem/42px var(--serif); color: inherit; white-space: nowrap;
+  background: inherit; background-color: inherit;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0 100%); border-radius: 10px 10px 0 0;
+  transform: translateY(8px); transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s;
+}
+.planche:not(.planche--color):not(.planche--dark) .planche__tab { color: var(--ink); }
+.planche__tab:hover { transform: translateY(2px); }
+.planche__tab.is-active { transform: translateY(0); }
+.planche__tab.is-active::after { content: ""; position: absolute; left: 14px; right: 14px; top: 0; height: 3px; background: var(--coral); }
+.planche--color .planche__tab.is-active::after { background: var(--paper); }
+/* la fiche en cours ressort, les autres s'effacent un peu */
+.planche { transition: filter .5s, box-shadow .5s; }
+.projects.is-track .planche:not(.is-current) { filter: saturate(.75) brightness(.97); }
+.projects.is-track .planche.is-current { box-shadow: 0 2px 3px rgba(20,30,40,.15), 0 40px 70px -25px rgba(20,30,40,.55) !important; }
+
+/* lien « passer » : toujours au même endroit, centré en bas */
+.skip--bottom { position: absolute; z-index: 8; left: 50%; bottom: 18px; translate: -50% 0 !important; white-space: nowrap; }
+.skip--bottom:hover { translate: -50% 0 !important; }
+
+@media (min-width: 900px) {
+  .projects.is-track { padding: 70px 0 56px !important; justify-content: center !important; }
+  .projects.is-track .carousel { height: calc(100svh - 126px) !important; padding-top: 46px !important; align-items: center !important; }
+  .projects.is-track .carousel .planche {
+    max-height: calc(100svh - 126px - 56px) !important; height: auto !important;
+    padding: clamp(1rem, 3svh, 2.4rem) clamp(1.4rem, 2.6vw, 2.6rem) !important;
+  }
+  .projects.is-track .planche__collage { height: clamp(180px, calc(100svh - 300px), 500px) !important; }
+  .projects.is-track .planche__text h3 { font-size: clamp(1.6rem, min(3.2vw, 5.2svh), 3.2rem) !important; }
+  .projects.is-track .result { padding: .6rem .9rem; }
+}
+@media (max-width: 899px) {
+  .projects { padding-bottom: 64px !important; }
+  .carousel { padding-top: 50px !important; }
+  .planche__tab { left: calc(4% + var(--i) * 4%); font-size: .95rem; padding: 0 1rem; }
+  .planche__tab:not(.is-active) { display: none; }
+}
