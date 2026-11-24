@@ -1622,3 +1622,6 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .hero__job { font: 400 clamp(1.8rem, 3.6vw, 3rem)/1.05 var(--serif) !important; font-style: normal !important; color: var(--slate); margin-top: 1.2rem !important; }
 
 .amp { display: inline-block; color: var(--coral); font-style: italic; }
+/* V33 — trois tickets */
+.assets__row { grid-template-columns: 1fr 1.2fr 1.6fr; }
+@media (max-width: 899px) { .assets__row { grid-template-columns: 1fr 1fr; } }
