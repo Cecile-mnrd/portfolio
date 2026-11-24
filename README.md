@@ -15,7 +15,7 @@ Ouvrir `index.html` dans un navigateur, ou lancer un petit serveur :
 
 ## Remplacer le contenu
 - **Portrait** : dans `.card--photo`, remplacer le `<div class="placeholder">` par `<img src="assets/portrait.jpg" alt="…">` (effet duotone olive automatique).
-- **Projets** : un `<article class="project">` par projet ; remplacer `.placeholder` par `<img src="assets/projets/xxx.jpg" alt="…">`.
+- **Projets** : une `<article class="planche">` par projet (3 visuels découpés `.cut`, couleurs `--a`/`--b`) ; remplacer chaque `.placeholder` par `<img src="assets/projets/xxx.jpg" alt="…">`.
 - **Contact** : email, téléphone, liens réseaux et `assets/CV-Cecile-Moinard.pdf`.
 
 ## Animations

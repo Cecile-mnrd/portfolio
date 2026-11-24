@@ -33,8 +33,9 @@
   /* ---------- HERO : les papiers se posent sur la table ---------- */
   const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
   intro
+    .from('.folder', { y: 120, opacity: 0, duration: 0.9 })
     .from('.hero .card', {
-      y: -140, opacity: 0, duration: 1.1, stagger: 0.14,
+      y: 160, opacity: 0, duration: 1.1, stagger: 0.14,
       rotation: () => gsap.utils.random(-22, 22),
     })
     .from('.hero__role', {
@@ -97,34 +98,43 @@
         scrollTrigger: { trigger: block, start: 'top 80%', end: 'bottom 50%', scrub: true } });
   });
 
-  /* ---------- PROJETS ---------- */
+  /* ---------- PROJETS : planches collage ---------- */
   const mm = gsap.matchMedia();
   const track = document.querySelector('.projects__track');
+  const planches = gsap.utils.toArray('.planche--grid');
 
   mm.add('(min-width: 900px)', () => {
     const distance = () => track.scrollWidth - window.innerWidth;
     const scroller = gsap.to(track, {
       x: () => -distance(), ease: 'none',
       scrollTrigger: {
-        trigger: '.projects', pin: true, start: 'top top',
-        end: () => '+=' + distance(), scrub: 1, invalidateOnRefresh: true,
+        trigger: '.projects', pin: true, start: 'top top', end: () => '+=' + distance(), scrub: 1, invalidateOnRefresh: true,
         onUpdate: (self) => gsap.set('.progress span', { scaleX: self.progress }),
       },
     });
-    // chaque fiche se redresse en passant au centre
-    track.querySelectorAll('.project__inner').forEach((card) => {
-      gsap.fromTo(card,
-        { rotation: gsap.utils.random(4, 9), y: 50 },
-        { rotation: gsap.utils.random(-3, 3), y: -20, ease: 'none',
-          scrollTrigger: { trigger: card, containerAnimation: scroller, start: 'left right', end: 'right left', scrub: true } });
+    planches.forEach((pl) => {
+      const st = { trigger: pl, containerAnimation: scroller, start: 'left right', end: 'right left', scrub: true };
+      pl.querySelectorAll('.cut').forEach((cut) => {
+        const d = parseFloat(cut.dataset.depth || 1);
+        gsap.fromTo(cut, { xPercent: 40 * d, rotation: '+=' + (8 * d) }, { xPercent: -25 * d, rotation: '-=' + (10 * d), ease: 'none', scrollTrigger: st });
+      });
+      gsap.fromTo(pl.querySelectorAll('.shard'), { scale: 0.4, rotation: -20 }, { scale: 1.15, rotation: 15, ease: 'none', scrollTrigger: st });
+      gsap.from(pl.querySelectorAll('.planche__text > *'), {
+        y: 40, opacity: 0, stagger: 0.06, ease: 'power2.out',
+        scrollTrigger: { trigger: pl, containerAnimation: scroller, start: 'left 70%', end: 'left 20%', scrub: true },
+      });
     });
   });
 
   mm.add('(max-width: 899px)', () => {
-    track.querySelectorAll('.project').forEach((card) => {
-      gsap.from(card, {
-        y: 80, opacity: 0, rotation: gsap.utils.random(-8, 8), duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: card, start: 'top 85%' },
+    planches.forEach((pl) => {
+      gsap.from(pl.querySelectorAll('.cut'), {
+        y: 80, opacity: 0, rotation: () => gsap.utils.random(-15, 15), duration: 0.9, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: pl, start: 'top 80%' },
+      });
+      gsap.from(pl.querySelectorAll('.planche__text > *'), {
+        y: 30, opacity: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out',
+        scrollTrigger: { trigger: pl.querySelector('.planche__text'), start: 'top 85%' },
       });
     });
   });

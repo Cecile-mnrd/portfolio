@@ -35,6 +35,7 @@
     <!-- ============ HERO ============ -->
     <section class="hero" aria-label="Présentation">
       <div class="board">
+        <div class="folder" aria-hidden="true"><span class="folder__tab">Chargée de communication</span></div>
 
         <div class="layer layer--name" data-speed="0.15">
           <article class="card card--name paper" style="--r:-1.5deg">
@@ -91,77 +92,116 @@
       </p>
     </section>
 
-    <!-- ============ PROJETS ============ -->
+    <!-- ============ PROJETS : planches collage ============ -->
     <section class="projects" id="projets" aria-label="Projets">
-      <div class="projects__head">
-        <h2 class="section-title">Projets <em>choisis</em><svg class="ray"><use href="#rays"/></svg></h2>
-        <p class="mono">2022 — 2027 · <span class="projects__count">05</span> projets</p>
-        <div class="progress" aria-hidden="true"><span></span></div>
-      </div>
-
       <div class="projects__track">
-        <!-- Un <article class="project"> par projet. Remplace .placeholder par <img src="assets/projets/xxx.jpg" alt="..."> -->
-        <article class="project" data-cursor>
-          <div class="project__inner paper" style="--r:-2deg">
-            <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <div class="project__visual"><div class="placeholder placeholder--rust"><span>01</span></div></div>
-            <div class="project__meta">
-              <h3>Alternance de master</h3>
-              <p class="mono">Structure à préciser · 2025 — 2027</p>
-              <p class="mono project__desc">Les missions et réalisations phares de l'alternance en Bac+5.</p>
-            </div>
-          </div>
-        </article>
 
-        <article class="project" data-cursor>
-          <div class="project__inner paper paper--blue" style="--r:1.5deg">
+        <div class="planche planche--intro">
+          <p class="mono-title">/ sélection 2022 — 2027</p>
+          <h2 class="section-title">Projets <em>choisis</em></h2>
+          <p class="mono planche__hint">05 projets · faites défiler →</p>
+          <div class="progress" aria-hidden="true"><span></span></div>
+        </div>
+
+        <!-- Une <article class="planche"> par projet.
+             Remplace chaque .placeholder par <img src="assets/projets/xxx.jpg" alt="...">
+             --a / --b = couleurs d'accent du projet -->
+        <article class="planche planche--grid" style="--a:#2d64c8;--b:#e8892b">
+          <div class="planche__collage" data-cursor>
+            <span class="shard shard--1"></span><span class="shard shard--2"></span>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>affiche</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>réseaux</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span>print</span></div></figure>
             <span class="tape" aria-hidden="true"></span>
-            <div class="project__visual"><div class="placeholder placeholder--olive"><span>02</span></div></div>
-            <div class="project__meta">
-              <h3>Office de Tourisme Côte de Granit Rose</h3>
-              <p class="mono">Assistante de communication · 2022 — 2025</p>
-              <p class="mono project__desc">Supports print, rédaction SEO et site WordPress, animation d'une communauté de 17&nbsp;000 abonnés, plannings éditoriaux.</p>
-            </div>
+          </div>
+          <div class="planche__text">
+            <p class="mono planche__num">Projet 01 / Alternance de master · 2025 — 2027</p>
+            <h3>Chargée de <em>communication</em></h3>
+            <p class="mono planche__desc">Structure à préciser. Les missions phares de l'alternance : stratégie, contenus, campagnes et supports réalisés.</p>
+            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <ul class="pills"><li>Stratégie</li><li>Contenus</li><li>À compléter</li></ul>
+            <div class="result"><p class="mono-title">Résultat ✳✳✳✳✳</p><p>Un chiffre ou un retour marquant à ajouter ici.</p></div>
+            <div class="swatches" aria-hidden="true"><span style="--c:#2d64c8"></span><span style="--c:#e8892b"></span><span style="--c:#efeae0"></span><span style="--c:#1d1c1a"></span></div>
           </div>
         </article>
 
-        <article class="project" data-cursor>
-          <div class="project__inner paper paper--kraft" style="--r:-1deg">
-            <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <div class="project__visual"><div class="placeholder placeholder--ink"><span>03</span></div></div>
-            <div class="project__meta">
-              <h3>Capsule</h3>
-              <p class="mono">Stratégie de marque · 2024</p>
-              <p class="mono project__desc">Une marque éthique et durable, avec sa plateforme de marque et une stratégie de communication de crise.</p>
-            </div>
+        <article class="planche planche--grid planche--dark" style="--a:#e8892b;--b:#c8532a">
+          <div class="planche__collage" data-cursor>
+            <span class="shard shard--1"></span><span class="shard shard--2"></span>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>brochure</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-blue"><span>site web</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-b"><span>instagram</span></div></figure>
+            <span class="tape" aria-hidden="true"></span>
+          </div>
+          <div class="planche__text">
+            <p class="mono planche__num">Projet 02 / Office de Tourisme Bretagne Côte de Granit Rose · 2022 — 2025</p>
+            <h3>Faire rayonner <em>un territoire</em></h3>
+            <p class="mono planche__desc">Trois ans d'alternance : création et gestion des supports print, rédaction et optimisation SEO, mise à jour du site WordPress, plannings éditoriaux et animation des réseaux sociaux.</p>
+            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <ul class="pills"><li>Suite Adobe</li><li>WordPress</li><li>SEO</li><li>Community management</li><li>RSE</li></ul>
+            <div class="result"><p class="mono-title">Résultat ✳✳✳✳✳</p><p>Une communauté de <b>17&nbsp;000 abonnés</b> animée au quotidien.</p></div>
+            <div class="swatches" aria-hidden="true"><span style="--c:#e8892b"></span><span style="--c:#c8532a"></span><span style="--c:#2d64c8"></span><span style="--c:#efeae0"></span></div>
           </div>
         </article>
 
-        <article class="project" data-cursor>
-          <div class="project__inner paper" style="--r:2.5deg">
-            <span class="tape tape--right" aria-hidden="true"></span>
-            <div class="project__visual"><div class="placeholder placeholder--blue"><span>04</span></div></div>
-            <div class="project__meta">
-              <h3>Serious game</h3>
-              <p class="mono">Simulation d'entreprise · 2024</p>
-              <p class="mono project__desc">Un atelier de cuisine face à quatre concurrents : analyse marketing, communication 360° et gestion de crise.</p>
-            </div>
+        <article class="planche planche--grid" style="--a:#6b7a3c;--b:#e8892b">
+          <div class="planche__collage" data-cursor>
+            <span class="shard shard--1"></span><span class="shard shard--2"></span>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>logo</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-cream"><span>plateforme</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-b"><span>campagne</span></div></figure>
+            <span class="tape" aria-hidden="true"></span>
+          </div>
+          <div class="planche__text">
+            <p class="mono planche__num">Projet 03 / BUT MMI · 2024</p>
+            <h3>Capsule, <em>marque éthique</em></h3>
+            <p class="mono planche__desc">Création d'une marque de mode éthique et durable : plateforme de marque, identité, et stratégie de communication de crise pour répondre aux enjeux de transparence.</p>
+            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <ul class="pills"><li>Plateforme de marque</li><li>Communication de crise</li><li>Identité</li></ul>
+            <div class="result"><p class="mono-title">Le défi ✳</p><p>Rester crédible sur l'éthique, même en pleine crise.</p></div>
+            <div class="swatches" aria-hidden="true"><span style="--c:#6b7a3c"></span><span style="--c:#e8892b"></span><span style="--c:#e2d8c6"></span><span style="--c:#1d1c1a"></span></div>
           </div>
         </article>
 
-        <article class="project" data-cursor>
-          <div class="project__inner paper paper--blue" style="--r:-2deg">
-            <svg class="clip" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
-            <div class="project__visual"><div class="placeholder placeholder--rust"><span>05</span></div></div>
-            <div class="project__meta">
-              <h3>Webmagazine dystopique</h3>
-              <p class="mono">Storytelling &amp; UX · 2024</p>
-              <p class="mono project__desc">Storytelling immersif, parcours utilisateur fluide et stratégie SEO pour la visibilité et l'engagement.</p>
-            </div>
+        <article class="planche planche--grid" style="--a:#c8532a;--b:#2d64c8">
+          <div class="planche__collage" data-cursor>
+            <span class="shard shard--1"></span><span class="shard shard--2"></span>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>business plan</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>campagne 360°</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-cream"><span>menu</span></div></figure>
+            <span class="tape" aria-hidden="true"></span>
+          </div>
+          <div class="planche__text">
+            <p class="mono planche__num">Projet 04 / Serious game · 2024</p>
+            <h3>Un atelier de cuisine <em>face à 4 rivaux</em></h3>
+            <p class="mono planche__desc">Simulation d'entreprise en équipe : analyse marketing complète, business model, communication 360° et gestion de crise en temps réel.</p>
+            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <ul class="pills"><li>Business model</li><li>Business plan</li><li>Marketing</li><li>360°</li></ul>
+            <div class="result"><p class="mono-title">Le défi ✳</p><p>Se démarquer de quatre concurrents sur le même marché.</p></div>
+            <div class="swatches" aria-hidden="true"><span style="--c:#c8532a"></span><span style="--c:#2d64c8"></span><span style="--c:#efeae0"></span><span style="--c:#e8892b"></span></div>
           </div>
         </article>
 
-        <div class="project project--end">
+        <article class="planche planche--grid planche--dark" style="--a:#2d64c8;--b:#6b7a3c">
+          <div class="planche__collage" data-cursor>
+            <span class="shard shard--1"></span><span class="shard shard--2"></span>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>webmag</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-dark"><span>article</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-b"><span>mobile</span></div></figure>
+            <span class="tape" aria-hidden="true"></span>
+          </div>
+          <div class="planche__text">
+            <p class="mono planche__num">Projet 05 / BUT MMI · 2024</p>
+            <h3>Un webmagazine <em>dystopique</em></h3>
+            <p class="mono planche__desc">Conception d'un webmagazine qui mêle storytelling immersif, parcours utilisateur fluide et stratégie SEO pour la visibilité et l'engagement.</p>
+            <p class="mono planche__label">Outils &amp; compétences :)</p>
+            <ul class="pills"><li>Storytelling</li><li>UX/UI design</li><li>SEO</li><li>Collaboration</li></ul>
+            <div class="result"><p class="mono-title">Le défi ✳</p><p>Immerger le lecteur sans jamais le perdre.</p></div>
+            <div class="swatches" aria-hidden="true"><span style="--c:#2d64c8"></span><span style="--c:#6b7a3c"></span><span style="--c:#1d1c1a"></span><span style="--c:#efeae0"></span></div>
+          </div>
+        </article>
+
+        <div class="planche planche--end">
           <p class="section-title">On en <em>parle ?</em></p>
           <a href="#contact" class="btn mono">→ me contacter</a>
         </div>

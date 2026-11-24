@@ -406,3 +406,114 @@ html, body { overflow-x: clip; }
 .interests__list { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.5; margin: 0; }
 .interests__list span { color: var(--rust); font-style: normal; margin: 0 .3em; }
 @media (min-width: 900px) { .layer--photo { grid-column: 10 / 13; margin: -1.5rem -1rem 0 2.5rem; } }
+
+/* =========================================================
+   V5 — chemise cartonnée (accueil) + planches collage (projets)
+   ========================================================= */
+:root {
+  --manila: #d9cba9;
+  --cobalt: #2d64c8;
+  --orange: #e8892b;
+  --terra: #c8532a;
+  --khaki: #6b7a3c;
+  --navy: #13253f;
+  --grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M28 0H0v28' fill='none' stroke='%23000' stroke-opacity='.09'/%3E%3C/svg%3E");
+}
+
+/* ---------- chemise cartonnée ---------- */
+.folder {
+  position: absolute; inset: -46px -34px -40px -34px; z-index: 0; border-radius: 12px;
+  background-color: var(--manila); background-image: var(--noise);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.05), 0 30px 60px -30px rgba(0,0,0,.5);
+}
+.folder::after { /* pli du carton */
+  content: ""; position: absolute; left: 0; right: 0; top: 46%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,.08) 10%, rgba(0,0,0,.08) 90%, transparent);
+}
+.folder__tab {
+  position: absolute; right: 7%; top: -44px; height: 48px; padding: 0 2.2rem; border-radius: 14px 14px 0 0;
+  background-color: var(--manila); background-image: var(--noise);
+  display: flex; align-items: center; font-family: var(--serif); font-weight: 600; font-size: 1.15rem;
+  color: rgba(0,0,0,.28); text-shadow: 0 1px 0 rgba(255,255,255,.55);
+}
+.layer { position: relative; }
+@media (max-width: 899px) {
+  .folder { inset: -30px -10px -24px -10px; }
+  .folder__tab { right: 6%; top: -34px; height: 38px; padding: 0 1rem; font-size: .9rem; }
+  .hero { padding-top: 130px; }
+}
+
+/* ---------- planches projets ---------- */
+.projects { background: var(--navy); color: var(--paper); padding: 0; }
+.projects__track { padding: 0; gap: 0; }
+.planche {
+  position: relative; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(5rem, 9vh, 7rem) clamp(1.2rem, 5vw, 5rem) clamp(2rem, 6vh, 4rem);
+  color: var(--ink); background-color: var(--kraft); overflow: hidden;
+}
+.planche--grid { background-image: var(--grid), var(--noise); }
+.planche--dark { background-color: #22221f; color: var(--paper); }
+.planche--dark.planche--grid { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M28 0H0v28' fill='none' stroke='%23fff' stroke-opacity='.07'/%3E%3C/svg%3E"), var(--noise); }
+
+.planche--intro, .planche--end { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.4rem; background: transparent; color: var(--paper); }
+.planche--intro .section-title { font-size: clamp(3.5rem, 11vw, 10rem); }
+.planche--intro .progress { width: min(420px, 70%); }
+.planche--end { background: var(--orange); color: var(--ink); }
+.planche--end .section-title { font-size: clamp(3rem, 8vw, 7rem); }
+
+/* collage découpé */
+.planche__collage { position: relative; height: clamp(340px, 62vh, 620px); }
+.cut {
+  position: absolute; margin: 0; padding: 0; background: var(--paper);
+  border: 7px solid #f6f1e6; border-radius: 14px; box-shadow: 0 18px 30px -12px rgba(0,0,0,.45);
+  overflow: hidden;
+}
+.cut .placeholder { min-height: 0; border-radius: 6px; }
+.cut .placeholder span { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: clamp(1.2rem, 2.4vw, 2rem); mix-blend-mode: normal; color: rgba(255,255,255,.92); }
+.cut img { width: 100%; height: 100%; object-fit: cover; }
+.cut--a { left: 4%; top: 6%; width: 46%; height: 70%; transform: rotate(-6deg); z-index: 2; }
+.cut--b { left: 38%; top: 0; width: 52%; height: 44%; transform: rotate(4deg); z-index: 1; }
+.cut--c { left: 44%; top: 44%; width: 44%; height: 50%; transform: rotate(-2deg); z-index: 3; border-radius: 50% 50% 14px 14px; }
+.ph-a { background-color: var(--a); }
+.ph-b { background-color: var(--b); }
+.ph-blue { background-color: var(--cobalt); }
+.ph-dark { background-color: #1d1c1a; }
+.ph-cream { background-color: #efe6d2; }
+.ph-cream span { color: var(--ink) !important; }
+
+.shard { position: absolute; z-index: 0; background: var(--a); }
+.shard--1 { left: -6%; bottom: 0; width: 44%; height: 46%; clip-path: polygon(0 30%, 70% 0, 100% 60%, 40% 100%, 10% 80%); }
+.shard--2 { right: 0; top: 10%; width: 30%; height: 36%; background: var(--b); clip-path: polygon(20% 0, 100% 20%, 80% 100%, 0 70%); }
+.planche__collage .tape { top: 2%; left: 22%; z-index: 4; }
+
+/* texte de la planche */
+.planche__num { font-size: .85rem; opacity: .8; }
+.planche__text h3 {
+  font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 4.2vw, 4rem); line-height: 1; letter-spacing: -.02em; margin: .6rem 0 1rem;
+}
+.planche__text h3 em { font-style: italic; font-weight: 700; color: var(--a); }
+.planche__desc { max-width: 46ch; }
+.planche__label { margin-top: 1.3rem; font-size: .85rem; opacity: .8; }
+.pills { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; margin: .6rem 0 0; }
+.pills li { font-family: var(--mono); font-size: .8rem; padding: .3rem .65rem; border-radius: 6px; background: var(--a); color: #fff; }
+.pills li:nth-child(even) { background: var(--b); }
+.result {
+  margin-top: 1.4rem; padding: 1rem 1.2rem; border: 1px solid currentColor; border-radius: 14px; max-width: 380px;
+  font-family: var(--serif); font-size: 1.05rem;
+}
+.result .mono-title { margin-bottom: .4rem; font-size: .75rem; }
+.swatches { display: flex; gap: 6px; margin-top: 1.2rem; }
+.swatches span { width: 14px; height: 14px; border-radius: 3px; background: var(--c); box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+
+@media (min-width: 900px) {
+  .projects { height: 100vh; display: block; }
+  .projects__track { flex-direction: row; align-items: stretch; height: 100%; width: max-content; padding: 0; }
+  .planche { width: 100vw; height: 100vh; flex-shrink: 0; }
+  .planche--intro { width: 62vw; padding-left: var(--gutter); }
+  .planche--end { width: 60vw; }
+}
+@media (max-width: 899px) {
+  .planche { grid-template-columns: 1fr; }
+  .planche--intro { padding-top: 5rem; padding-bottom: 3rem; }
+  .planche__collage { height: 360px; }
+}
