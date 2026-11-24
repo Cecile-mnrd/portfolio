@@ -1601,3 +1601,8 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .about__text .more-link { margin-top: .4rem; }
 .about--page { padding-top: 130px; }
 .about--page .back { margin-bottom: 2rem; }
+/* V27 — vraie photo, en couleur */
+.photo-real { background: #fbf8f2; overflow: hidden; }
+.photo-real img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: none; mix-blend-mode: normal; }
+.card--photo.photo-real > img { height: 100%; }
+.card--photo .clip { right: auto !important; left: 14%; }
