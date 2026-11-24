@@ -1245,3 +1245,65 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .iphone__btn--power { right: -2px; top: 28%; height: 12%; }
 .iphone__screen { padding: 3.2%; }
 .iphone__screen::after { background: linear-gradient(118deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.08) 30%, rgba(255,255,255,0) 31%); }
+
+/* =========================================================
+   V15 — expérience : projets épinglés, transitions, carte qui se retourne
+   ========================================================= */
+/* rideau de kraft entre les pages */
+.wipe {
+  position: fixed; inset: 0; z-index: 300; pointer-events: none; display: grid; place-items: center;
+  background-color: #cdbb94; background-image: var(--tex-fleck), var(--tex-relief); background-blend-mode: normal, multiply;
+  transform: translateY(101%); transition: transform .5s cubic-bezier(.7,0,.3,1);
+}
+.wipe span { font: 400 clamp(3rem, 8vw, 6rem)/1 var(--serif); color: rgba(60,45,20,.35); }
+.wiping .wipe, .wipe-in .wipe { transform: none; }
+.wiping .wipe { transition: none; }
+.wipe-out .wipe { transform: translateY(-101%); }
+
+/* ruban adhésif qui indique où on en est */
+.tape-progress { position: fixed; top: 0; left: 0; right: 0; height: 7px; z-index: 60; pointer-events: none; }
+.tape-progress span {
+  display: block; height: 100%; transform-origin: left; transform: scaleX(0);
+  background: linear-gradient(rgba(224,123,106,.75), rgba(224,123,106,.6));
+  clip-path: polygon(0 0, 100% 0, 99.6% 50%, 100% 100%, 0 100%);
+}
+
+/* projets : bouton pour passer à la suite */
+.skip {
+  font: 600 .8rem var(--sans); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; margin-left: .6rem;
+  padding: .7rem 1rem; border: 1px solid var(--ink); border-radius: 99px; background: var(--paper); color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink); transition: translate .2s, box-shadow .2s;
+}
+.skip:hover, .skip:focus-visible { translate: -1px -1px; box-shadow: 3px 3px 0 var(--ink); }
+.carousel__ui { flex-wrap: wrap; }
+@media (min-width: 900px) { .carousel .planche { height: min(calc(100vh - 92px), 820px); } }
+
+/* trait de feutre sous les italiques des titres */
+.scribble { position: relative; display: inline-block; }
+.scribble svg { position: absolute; left: -2%; bottom: -.08em; width: 104%; height: .28em; overflow: visible; pointer-events: none; }
+.scribble path { fill: none; stroke: var(--coral); stroke-width: 3.2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+/* carte postale recto / verso */
+.flip { max-width: 980px; width: calc(100% - 2 * var(--gutter)); margin: 0 auto 4rem; perspective: 2000px; }
+.flip__inner { position: relative; transform-style: preserve-3d; transform: rotate(-1.5deg) rotateY(180deg); }
+.flip .postcard { margin: 0 !important; width: 100% !important; max-width: none !important; transform: none; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip .postcard--back { transform: rotateY(180deg) !important; }
+.postcard--front {
+  position: absolute !important; inset: 0; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  --pc: var(--slate); color: var(--alice); padding: clamp(1.6rem, 5vw, 4rem);
+}
+.front__kicker { font: 600 .75rem var(--sans); letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.front__title { font: 400 clamp(3rem, 8vw, 6.4rem)/.92 var(--serif); margin: .6rem 0 0; letter-spacing: -.01em; position: relative; z-index: 1; }
+.front__title em { color: #f4b8ab; }
+.front__waves { position: absolute; left: 0; right: 0; bottom: 12%; width: 100%; height: 22%; }
+.front__waves path { fill: none; stroke: rgba(219,233,238,.45); stroke-width: 2; }
+.front__sun { position: absolute; right: 9%; top: 14%; width: clamp(70px, 12vw, 130px); aspect-ratio: 1; border-radius: 50%; background: var(--coral); opacity: .9; }
+.front__hint { position: absolute; right: 1.6rem; bottom: 1.2rem; font: 600 .72rem var(--sans); letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+/* recto / verso : on affiche la face visible selon l'angle (plus fiable que backface-visibility) */
+.flip__inner { transform: rotate(-1.5deg); }
+.flip .postcard--back { transform: none !important; }
+.flip .postcard--front { display: none; }
+.flip.is-js .postcard--front { display: flex; }
+.flip.is-js .postcard--back { transform: rotateY(180deg) !important; visibility: hidden; }
+.flip.is-js.is-back .postcard--back { visibility: visible; }
+.flip.is-js.is-back .postcard--front { visibility: hidden; }

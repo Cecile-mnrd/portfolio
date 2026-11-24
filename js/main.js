@@ -47,10 +47,16 @@
   const next = document.querySelector('.arrow--next');
   const counter = document.querySelector('.counter__i');
   let current = -1;
-  const go = (i) => {
-    i = Math.max(0, Math.min(slides.length - 1, i));
-    car.scrollTo({ left: slides[i].offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
+  // par défaut : carrousel libre ; sur ordinateur, remplacé par le défilement épinglé (plus bas)
+  let goImpl = (i) => car.scrollTo({ left: slides[i].offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
+  const go = (i) => goImpl(Math.max(0, Math.min(slides.length - 1, i)));
+  const scrollToEl = (el) => {
+    if (!el) return;
+    if (lenis) lenis.scrollTo(el, { duration: 1.2 });
+    else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   };
+  // « Passer les projets »
+  document.querySelectorAll('.skip').forEach((b) => b.addEventListener('click', () => scrollToEl(document.querySelector(b.dataset.target))));
   const onSlide = (i) => {
     if (i === current) return;
     current = i;
@@ -139,21 +145,40 @@
     gsap.fromTo(em, { '--hl': '0%' }, { '--hl': '100%', ease: 'none', scrollTrigger: { trigger: em, start: 'top 80%', end: 'top 55%', scrub: true } });
   });
 
-  /* ---------- PROJETS ---------- */
+  /* ---------- PROJETS : défilement horizontal épinglé (ordinateur) ---------- */
   gsap.to('.sheets__top', { y: -30, rotation: -4, ease: 'none', scrollTrigger: { trigger: '.projects-intro', start: 'top 80%', end: 'bottom 30%', scrub: true } });
   gsap.to('.sheets span', { rotation: (i) => (i ? 9 : -11), x: (i) => (i ? 30 : -30), ease: 'none', scrollTrigger: { trigger: '.projects-intro', start: 'top 80%', end: 'bottom 30%', scrub: true } });
-  gsap.from('.projects-intro__hint', { y: 30, opacity: 0, duration: 0.8, scrollTrigger: { trigger: '.projects-intro', start: 'top 60%' } });
-  // le texte de la planche active se reconstruit
   const animateSlide = (i) => {
     const sl = slides[i]; if (!sl) return;
     gsap.fromTo(sl.querySelectorAll('.planche__text > *'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'power3.out', overwrite: true });
-    gsap.fromTo(sl.querySelectorAll('.cut'), { scale: 0.85 }, { scale: 1, duration: 0.8, stagger: 0.08, ease: 'back.out(1.6)', overwrite: true });
   };
   document.addEventListener('slidechange', (e) => animateSlide(e.detail));
-  ScrollTrigger.create({ trigger: '.projects', start: 'top 70%', once: true, onEnter: () => animateSlide(Math.max(current, 0)) });
+
+  const projMM = gsap.matchMedia();
+  projMM.add('(min-width: 900px)', () => {
+    const max = () => car.scrollWidth - car.clientWidth;
+    car.style.scrollSnapType = 'none'; car.style.scrollBehavior = 'auto'; car.style.overflowX = 'hidden';
+    const tw = gsap.to(car, {
+      scrollLeft: () => max(), ease: 'none',
+      scrollTrigger: { trigger: '.projects', pin: true, start: 'top top', end: () => '+=' + max() * 1.1, scrub: 0.6, invalidateOnRefresh: true },
+    });
+    const st = tw.scrollTrigger;
+    const old = goImpl;
+    goImpl = (i) => {
+      const y = st.start + (slides[i].offsetLeft / max()) * (st.end - st.start);
+      if (lenis) lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+    };
+    return () => { goImpl = old; car.style.scrollSnapType = ''; car.style.scrollBehavior = ''; car.style.overflowX = ''; };
+  });
 
   /* ---------- ATOUTS ---------- */
   gsap.from('.ticket', { y: -50, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.assets', start: 'top 80%' } });
+  document.querySelectorAll('.ticket__big').forEach((el) => {
+    const m = el.textContent.match(/^(\d+)(.*)$/); if (!m) return;
+    const end = +m[1], suffix = m[2], o = { v: 0 };
+    gsap.to(o, { v: end, duration: 1.4, ease: 'power2.out', snap: { v: 1 }, onUpdate: () => { el.textContent = o.v + suffix; },
+      scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
   gsap.fromTo('.arrow-draw', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, repeat: -1, repeatDelay: 1.4, ease: 'power2.out', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
 
   /* ---------- PARCOURS ---------- */
@@ -171,9 +196,57 @@
   });
 
   /* ---------- CONTACT : la carte postale arrive, puis on la tamponne ---------- */
-  gsap.from('.postcard', { y: 90, rotation: 4, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: '.postcard', start: 'top 95%', end: 'top 60%', scrub: 1 } });
-  gsap.from('.postmark', { scale: 1.6, opacity: 0, duration: 0.35, ease: 'power4.in', scrollTrigger: { trigger: '.postcard', start: 'top 45%' } });
+  const flipInner = document.querySelector('.flip__inner');
+  const faces = () => {
+    const back = Math.abs(gsap.getProperty(flipInner, 'rotationY')) > 90;
+    document.querySelector('.flip').classList.toggle('is-back', back);
+  };
+  gsap.timeline({ scrollTrigger: { trigger: '.flip', start: 'top 90%', end: 'center 45%', scrub: 0.8 }, onUpdate: faces })
+    .fromTo(flipInner, { y: 120, rotationY: 0, rotation: 4 }, { y: 0, rotationY: 180, rotation: -1.5, ease: 'power2.inOut', onUpdate: faces });
+  document.querySelector('.flip').classList.add('is-js');
+  gsap.from('.postmark', { scale: 1.6, opacity: 0, duration: 0.35, ease: 'power4.in', scrollTrigger: { trigger: '.flip', start: 'center 42%' } });
   gsap.from('.rings i', { scaleX: 0, transformOrigin: 'right center', duration: 0.5, stagger: 0.1, ease: 'back.out(2)', scrollTrigger: { trigger: '.panel--school', start: 'top 75%' } });
+
+  /* ---------- un trait de feutre sous les mots en italique des titres ---------- */
+  document.querySelectorAll('.section-title em, .panel__title em, .contact__title em').forEach((em) => {
+    if (em.closest('.flip')) return;
+    em.classList.add('scribble');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 200 20'); svg.setAttribute('preserveAspectRatio', 'none'); svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML = '<path d="M3 13 C 40 6, 80 16, 120 9 S 180 7, 197 11"/>';
+    em.appendChild(svg);
+    const path = svg.querySelector('path'); const len = path.getTotalLength();
+    gsap.fromTo(path, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.9, ease: 'power2.inOut', scrollTrigger: { trigger: em, start: 'top 80%' } });
+  });
+
+  /* ---------- compétences : les fiches sont distribuées comme des cartes ---------- */
+  const skillMM = gsap.matchMedia();
+  skillMM.add('(min-width: 900px)', () => {
+    const cards = gsap.utils.toArray('.skill');
+    const grid = document.querySelector('.skills__grid');
+    gsap.fromTo(cards, {
+      x: (i, el) => (grid.offsetWidth / 2) - (el.offsetLeft + el.offsetWidth / 2),
+      rotation: (i) => [-8, 3, 10][i % 3], y: 40,
+    }, {
+      x: 0, rotation: 0, y: 0, ease: 'power2.out', stagger: 0.05,
+      scrollTrigger: { trigger: '.skills', start: 'top 75%', end: 'top 25%', scrub: 0.8, invalidateOnRefresh: true },
+    });
+  });
+
+  /* ---------- accueil : la chemise suit légèrement la souris ---------- */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    gsap.set('.hero', { perspective: 1400 });
+    const rx = gsap.quickTo('.board', 'rotationX', { duration: 0.9, ease: 'power3' });
+    const ry = gsap.quickTo('.board', 'rotationY', { duration: 0.9, ease: 'power3' });
+    document.querySelector('.hero').addEventListener('mousemove', (e) => {
+      ry((e.clientX / window.innerWidth - 0.5) * 5);
+      rx(-(e.clientY / window.innerHeight - 0.5) * 4);
+    });
+    document.querySelector('.hero').addEventListener('mouseleave', () => { rx(0); ry(0); });
+  }
+
+  /* ---------- barre de progression en ruban adhésif ---------- */
+  gsap.to('.tape-progress span', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
 
   /* ---------- curseur ---------- */
   const cursor = document.querySelector('.cursor');

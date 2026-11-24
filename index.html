@@ -12,6 +12,10 @@
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
+  <div class="wipe" aria-hidden="true"><span>C<sup>/</sup>M</span></div>
+  <div class="tape-progress" aria-hidden="true"><span></span></div>
+  <script>try{if(sessionStorage.getItem('wipe'))document.documentElement.classList.add('wiping')}catch(e){}</script>
+
   <!-- Matières : trombone métallique et bords de papier irréguliers -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
@@ -230,6 +234,7 @@
         <button class="arrow arrow--prev" type="button" aria-label="Projet précédent">←</button>
         <p class="counter mono"><span class="counter__i">01</span> / 05</p>
         <button class="arrow arrow--next" type="button" aria-label="Projet suivant">→</button>
+        <button class="skip" type="button" data-target="#parcours">Passer les projets ↓</button>
       </div>
 
       <nav class="tabs" aria-label="Aller à un projet">
@@ -331,37 +336,48 @@
 
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact" aria-label="Contact">
-      <article class="postcard paper">
-        <span class="tape" aria-hidden="true"></span>
-        <div class="postcard__msg">
-          <p class="contact__title">Travaillons <em>ensemble</em></p>
-          <p class="postcard__text">Un poste en communication à pourvoir à partir de juillet 2027&nbsp;? Écrivez-moi, je réponds vite.</p>
-          <p class="postcard__sign">Cécile</p>
-          <div class="contact__links">
-            <a href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a href="assets/CV-Cecile-Moinard.pdf" download>Télécharger le CV ↓</a>
+      <div class="flip">
+        <div class="flip__inner">
+          <div class="postcard postcard--front paper" aria-hidden="true">
+            <p class="front__kicker">Carte postale · Côte de Granit Rose</p>
+            <p class="front__title">Bons baisers <em>de Bretagne</em></p>
+            <svg class="front__waves" viewBox="0 0 600 120" preserveAspectRatio="none"><path d="M0 30 Q 50 10 100 30 T 200 30 T 300 30 T 400 30 T 500 30 T 600 30"/><path d="M0 65 Q 50 45 100 65 T 200 65 T 300 65 T 400 65 T 500 65 T 600 65"/><path d="M0 100 Q 50 80 100 100 T 200 100 T 300 100 T 400 100 T 500 100 T 600 100"/></svg>
+            <span class="front__sun"></span>
+            <p class="front__hint">retournez la carte ↓</p>
           </div>
+          <article class="postcard postcard--back paper">
+            <span class="tape" aria-hidden="true"></span>
+            <div class="postcard__msg">
+              <p class="contact__title">Travaillons <em>ensemble</em></p>
+              <p class="postcard__text">Un poste en communication à pourvoir à partir de juillet 2027&nbsp;? Écrivez-moi, je réponds vite.</p>
+              <p class="postcard__sign">Cécile</p>
+              <div class="contact__links">
+                <a href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <a href="assets/CV-Cecile-Moinard.pdf" download>Télécharger le CV ↓</a>
+              </div>
+            </div>
+            <div class="postcard__addr">
+              <div class="timbre" aria-hidden="true"><span class="timbre__in"><b>CM</b><small>2027</small></span></div>
+              <div class="postmark" aria-hidden="true">
+                <svg viewBox="0 0 120 120"><defs><path id="pm" d="M60 60m-40 0a40 40 0 1 1 80 0a40 40 0 1 1-80 0"/></defs>
+                  <circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="30"/>
+                  <text><textPath href="#pm">Lannion · Nantes · Rennes · </textPath></text>
+                  <text class="pm-date" x="60" y="65" text-anchor="middle">2026</text></svg>
+              </div>
+              <div class="secret" data-kind="email" data-v="cmYuZWxwbWV4ZUBsaWFtZS5ub3Q=">
+                <p class="mono-title postcard__lbl">email</p>
+                <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">prenom.nom@domaine.fr</span></p>
+                <button class="secret__btn" type="button">Afficher l'email</button>
+              </div>
+              <div class="secret" data-kind="tel" data-v="MDAgMDAgMDAgMDAgNjA=">
+                <p class="mono-title postcard__lbl">téléphone</p>
+                <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">06 12 34 56 78</span></p>
+                <button class="secret__btn" type="button">Afficher le numéro</button>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="postcard__addr">
-          <div class="timbre" aria-hidden="true"><span class="timbre__in"><b>CM</b><small>2027</small></span></div>
-          <div class="postmark" aria-hidden="true">
-            <svg viewBox="0 0 120 120"><defs><path id="pm" d="M60 60m-40 0a40 40 0 1 1 80 0a40 40 0 1 1-80 0"/></defs>
-              <circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="30"/>
-              <text><textPath href="#pm">Lannion · Nantes · Rennes · </textPath></text>
-              <text class="pm-date" x="60" y="65" text-anchor="middle">2026</text></svg>
-          </div>
-          <div class="secret" data-kind="email" data-v="cmYuZWxwbWV4ZUBsaWFtZS5ub3Q=">
-            <p class="mono-title postcard__lbl">email</p>
-            <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">prenom.nom@domaine.fr</span></p>
-            <button class="secret__btn" type="button">Afficher l'email</button>
-          </div>
-          <div class="secret" data-kind="tel" data-v="MDAgMDAgMDAgMDAgNjA=">
-            <p class="mono-title postcard__lbl">téléphone</p>
-            <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">06 12 34 56 78</span></p>
-            <button class="secret__btn" type="button">Afficher le numéro</button>
-          </div>
-        </div>
-      </article>
+      </div>
 
       <footer class="footer mono">
         <span>© 2026 Cécile Moinard</span>
@@ -370,6 +386,7 @@
     </section>
   </main>
 
+  <script src="js/transition.js"></script>
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
   <script src="js/vendor/lenis.min.js"></script>

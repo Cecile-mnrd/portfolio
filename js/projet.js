@@ -43,5 +43,6 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
     });
   }
+  gsap.to('.tape-progress span', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
   if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
 })();
