@@ -155,7 +155,7 @@
       onComplete: () => hook.classList.remove('is-typing') });
   }
   /* ---------- flèche « c'est par ici » : se dessine puis pointe ---------- */
-  const mlLine = document.querySelector('.more-link__line');
+  const mlLine = document.querySelector('.hero .more-link__line') || document.querySelector('.more-link__line');
   if (mlLine) {
     const L = mlLine.getTotalLength();
     gsap.timeline({ delay: 1.4 })

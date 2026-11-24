@@ -1628,3 +1628,9 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 
 /* V39 — photo d'accueil stable : pas de soulèvement au survol */
 .hero .card--photo:hover, .hero .card--photo { translate: none !important; transition: none !important; }
+
+/* V45 — la flèche précède le texte et le pointe */
+.more-link { align-items: center !important; gap: .5rem !important; }
+.more-link__arrow { translate: 0 -6px !important; }
+.more-link:hover, .more-link:focus-visible { text-decoration: none; }
+.more-link:hover span, .more-link:focus-visible span { text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
