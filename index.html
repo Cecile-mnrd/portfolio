@@ -12,6 +12,25 @@
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
+  <!-- Matières : trombone métallique et bords de papier irréguliers -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="metal" x1="0" x2="30" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#7d8287"/><stop offset=".35" stop-color="#e9ecee"/><stop offset=".55" stop-color="#a7adb2"/><stop offset="1" stop-color="#5f6469"/>
+      </linearGradient>
+      <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <!-- le fil passe derrière la feuille sous le bord (y = 34) -->
+    <symbol id="clip-shape" viewBox="0 0 30 80">
+      <path d="M9 70V36" fill="none" stroke="rgba(0,0,0,.10)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M9 34V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22" fill="none" stroke="url(#metal)" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M8.4 33V14.5a6.6 6.6 0 0 1 4-6" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".7" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
   <div class="cursor" aria-hidden="true"><span class="cursor__label">voir</span></div>
 
   <!-- Signature : les "rayons" de mon CV -->
@@ -36,10 +55,11 @@
     <section class="hero" aria-label="Présentation">
       <div class="board">
         <div class="folder" aria-hidden="true"><span class="folder__tab">Chargée de communication</span></div>
+        <div class="pocket" aria-hidden="true"></div>
 
         <div class="layer layer--name" data-speed="0.15">
           <article class="card card--name paper" style="--r:-1.5deg">
-            <svg class="clip clip--a" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
+            <svg class="clip clip--a" viewBox="0 0 30 80" aria-hidden="true"><use href="#clip-shape"/></svg>
             <h1 class="hero__name">
               <span class="line">Cécile</span>
               <span class="line line--indent">Moinard</span>
@@ -58,9 +78,9 @@
 
         <div class="layer layer--photo" data-speed="0.55">
           <figure class="card card--photo duotone" style="--r:4deg">
-            <svg class="clip clip--b" viewBox="0 0 30 80" aria-hidden="true"><path d="M9 70V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22"/></svg>
+            <svg class="clip clip--b" viewBox="0 0 30 80" aria-hidden="true"><use href="#clip-shape"/></svg>
             <!-- Remplace par ta photo : <img src="assets/portrait.jpg" alt="Portrait de Cécile Moinard"> -->
-            <div class="placeholder placeholder--portrait"><span>ton portrait</span></div>
+            <div class="placeholder placeholder--portrait"><span class="slot">ton portrait</span></div>
           </figure>
         </div>
 
@@ -78,8 +98,8 @@
 
     <!-- ============ MANIFESTE ============ -->
     <section class="manifesto" aria-label="Ma façon de travailler">
-      <p class="manifesto__label mono-title">/ ce que je fais</p>
-      <p class="manifesto__text reveal-words">
+      <p class="manifesto__label mono-title">ce que je fais</p>
+      <p class="manifesto__text">
         Je relie la <em>stratégie</em> et le <em>terrain</em> : comprendre un public, trouver le bon message, puis le faire vivre du <em>print</em> au <em>web</em>, des réseaux sociaux au référencement. Une communication utile, lisible, et qui ressemble vraiment à la marque.
       </p>
     </section>
@@ -88,13 +108,13 @@
     <section class="assets" aria-label="Mes atouts">
       <p class="mono-title">mon atout</p>
       <div class="assets__row">
-        <div class="ticket paper" style="--r:-3deg"><p class="ticket__big">4 ans</p><p class="mono">d'alternance en communication</p></div>
-        <div class="ticket paper paper--blue" style="--r:2deg"><p class="ticket__big">2</p><p class="mono">acteurs du tourisme breton</p></div>
-        <div class="ticket ticket--route paper paper--kraft" style="--r:-1.5deg">
+        <div class="ticket paper" style="--r:0deg"><p class="ticket__big">4 ans</p><p class="mono">d'alternance en communication</p></div>
+        <div class="ticket paper paper--blue" style="--r:0deg"><p class="ticket__big">2</p><p class="mono">acteurs du tourisme breton</p></div>
+        <div class="ticket ticket--route paper paper--kraft" style="--r:0deg">
           <p class="ticket__big">B2C <span class="arrow-draw">→</span> B2B</p>
           <p class="mono">de l'Office de Tourisme Côte de Granit Rose au CRT Tourisme Bretagne</p>
         </div>
-        <div class="ticket ticket--coral" style="--r:3deg"><p class="ticket__big">17K</p><p class="mono">abonnés animés au quotidien</p></div>
+        <div class="ticket ticket--coral paper" style="--r:2.5deg"><p class="ticket__big">17K</p><p class="mono">abonnés animés au quotidien</p></div>
       </div>
     </section>
 
@@ -116,9 +136,9 @@
       <div class="carousel" tabindex="0" aria-label="Projets, utilisez les flèches du clavier">
         <article class="planche planche--grid " id="p-crt-tourisme-bretagne" style="--a:#4F6D7A;--b:#EF8354" aria-roledescription="projet" aria-label="1 sur 5">
           <a class="planche__collage" href="projets/crt-tourisme-bretagne.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Parler aux pros du tourisme">
-            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>newsletter</span></div></figure>
-            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>événement</span></div></figure>
-            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span>linkedin</span></div></figure>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span class="slot">newsletter</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span class="slot">événement</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span class="slot">linkedin</span></div></figure>
             <span class="tape" aria-hidden="true"></span>
           </a>
           <div class="planche__text">
@@ -134,9 +154,9 @@
         </article>
         <article class="planche planche--grid planche--color" id="p-office-de-tourisme" style="--a:#EF8354;--b:#C0D6DF;--bg:#4F6D7A;--em:#EF8354" aria-roledescription="projet" aria-label="2 sur 5">
           <a class="planche__collage" href="projets/office-de-tourisme.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Faire rayonner un territoire">
-            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>brochure</span></div></figure>
-            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>site web</span></div></figure>
-            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span>instagram</span></div></figure>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span class="slot">brochure</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span class="slot">site web</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-dark"><span class="slot">instagram</span></div></figure>
             <span class="tape" aria-hidden="true"></span>
           </a>
           <div class="planche__text">
@@ -152,9 +172,9 @@
         </article>
         <article class="planche planche--grid " id="p-capsule" style="--a:#C49799;--b:#4F6D7A" aria-roledescription="projet" aria-label="3 sur 5">
           <a class="planche__collage" href="projets/capsule.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Capsule, marque éthique">
-            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>logo</span></div></figure>
-            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-cream"><span>plateforme</span></div></figure>
-            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-b"><span>campagne</span></div></figure>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span class="slot">logo</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-cream"><span class="slot">plateforme</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-b"><span class="slot">campagne</span></div></figure>
             <span class="tape" aria-hidden="true"></span>
           </a>
           <div class="planche__text">
@@ -170,9 +190,9 @@
         </article>
         <article class="planche planche--grid planche--color" id="p-serious-game" style="--a:#2b3b42;--b:#DBE9EE;--bg:#EF8354;--em:#2b3b42" aria-roledescription="projet" aria-label="4 sur 5">
           <a class="planche__collage" href="projets/serious-game.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Un atelier de cuisine face à 4 rivaux">
-            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span>business plan</span></div></figure>
-            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span>campagne 360°</span></div></figure>
-            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-cream"><span>menu</span></div></figure>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-a"><span class="slot">business plan</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-b"><span class="slot">campagne 360°</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-cream"><span class="slot">menu</span></div></figure>
             <span class="tape" aria-hidden="true"></span>
           </a>
           <div class="planche__text">
@@ -188,9 +208,9 @@
         </article>
         <article class="planche planche--grid planche--dark" id="p-webmagazine" style="--a:#C0D6DF;--b:#C49799;--em:#C0D6DF" aria-roledescription="projet" aria-label="5 sur 5">
           <a class="planche__collage" href="projets/webmagazine.html" data-cursor data-cursor-label="ouvrir" aria-label="Voir le projet Un webmagazine dystopique">
-            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-b"><span>webmag</span></div></figure>
-            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-dark"><span>article</span></div></figure>
-            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-slate"><span>mobile</span></div></figure>
+            <figure class="cut cut--a" data-depth="1.2"><div class="placeholder ph-b"><span class="slot">webmag</span></div></figure>
+            <figure class="cut cut--b" data-depth="0.6"><div class="placeholder ph-dark"><span class="slot">article</span></div></figure>
+            <figure class="cut cut--c" data-depth="1.8"><div class="placeholder ph-slate"><span class="slot">mobile</span></div></figure>
             <span class="tape" aria-hidden="true"></span>
           </a>
           <div class="planche__text">
@@ -311,35 +331,37 @@
 
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact" aria-label="Contact">
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <span>Travaillons ensemble · Let's work together · </span>
-          <span>Travaillons ensemble · Let's work together · </span>
-        </div>
-      </div>
-
-      <div class="contact__card paper">
+      <article class="postcard paper">
         <span class="tape" aria-hidden="true"></span>
-        <p class="contact__title">Travaillons <em>ensemble</em></p>
-        <!-- Email et téléphone : encodés (texte inversé puis base64) et affichés seulement au clic.
-             Pour mettre les tiens, dans la console du navigateur : btoa([...'ton@email.fr'].reverse().join('')) -->
-        <div class="contact__row">
+        <div class="postcard__msg">
+          <p class="contact__title">Travaillons <em>ensemble</em></p>
+          <p class="postcard__text">Un poste en communication à pourvoir à partir de juillet 2027&nbsp;? Écrivez-moi, je réponds vite.</p>
+          <p class="postcard__sign">Cécile</p>
+          <div class="contact__links">
+            <a href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="assets/CV-Cecile-Moinard.pdf" download>Télécharger le CV ↓</a>
+          </div>
+        </div>
+        <div class="postcard__addr">
+          <div class="timbre" aria-hidden="true"><span class="timbre__in"><b>CM</b><small>2027</small></span></div>
+          <div class="postmark" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><defs><path id="pm" d="M60 60m-40 0a40 40 0 1 1 80 0a40 40 0 1 1-80 0"/></defs>
+              <circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="30"/>
+              <text><textPath href="#pm">Lannion · Nantes · Rennes · </textPath></text>
+              <text class="pm-date" x="60" y="65" text-anchor="middle">2026</text></svg>
+          </div>
           <div class="secret" data-kind="email" data-v="cmYuZWxwbWV4ZUBsaWFtZS5ub3Q=">
-            <p class="mono-title">email</p>
+            <p class="mono-title postcard__lbl">email</p>
             <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">prenom.nom@domaine.fr</span></p>
             <button class="secret__btn" type="button">Afficher l'email</button>
           </div>
           <div class="secret" data-kind="tel" data-v="MDAgMDAgMDAgMDAgNjA=">
-            <p class="mono-title">téléphone</p>
+            <p class="mono-title postcard__lbl">téléphone</p>
             <p class="secret__value contact__big" aria-live="polite"><span class="secret__blur" aria-hidden="true">06 12 34 56 78</span></p>
             <button class="secret__btn" type="button">Afficher le numéro</button>
           </div>
         </div>
-        <div class="contact__row contact__links">
-          <a href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a href="assets/CV-Cecile-Moinard.pdf" download>Télécharger le CV ↓</a>
-        </div>
-      </div>
+      </article>
 
       <footer class="footer mono">
         <span>© 2026 Cécile Moinard</span>

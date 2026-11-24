@@ -105,72 +105,38 @@
     gsap.ticker.lagSmoothing(0);
   }
 
-  /* ---------- HERO : les papiers se posent sur la table ---------- */
-  const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  intro
-    .from('.folder', { y: 120, opacity: 0, duration: 0.9 })
-    .from('.hero .card', {
-      y: 160, opacity: 0, duration: 1.1, stagger: 0.14,
-      rotation: () => gsap.utils.random(-22, 22),
-    })
-    .from('.hero__role', {
-      scale: 0, opacity: 0, duration: 0.6, stagger: 0.05, ease: 'back.out(2.5)',
-    }, '-=0.7')
-    .from('.hero__name .line', { yPercent: 60, opacity: 0, duration: 0.9, stagger: 0.12 }, '<')
-    .from('.hero .clip', { y: -50, opacity: 0, duration: 0.5, stagger: 0.1 }, '-=0.5')
-    .from('.stamp', { scale: 0, rotation: -120, duration: 0.8, ease: 'back.out(1.8)' }, '-=0.4')
-    .from('.nav > *', { y: -30, opacity: 0, duration: 0.6, stagger: 0.1 }, '<');
+  /* ---------- HERO : les documents sortent de la chemise ---------- */
+  // entrée courte (< 1 s) : les feuilles remontent de la poche avant
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .from('.folder, .pocket', { y: 40, opacity: 0, duration: 0.45 }, 0)
+    .from('.hero .layer', { y: 150, duration: 0.7, stagger: 0.08 }, 0.1)
+    .from('.hero__name .line', { yPercent: 35, opacity: 0, duration: 0.55, stagger: 0.07 }, 0.15)
+    .from('.hero .clip', { y: -18, opacity: 0, duration: 0.3, stagger: 0.06 }, 0.55)
+    .from('.stamp', { scale: 0.4, opacity: 0, rotation: -60, duration: 0.45, ease: 'back.out(2)' }, 0.5)
+    .from('.nav > *', { y: -20, opacity: 0, duration: 0.4, stagger: 0.06 }, 0);
 
-  // parallaxe : chaque couche s'envole à sa vitesse
-  gsap.utils.toArray('.hero .layer').forEach((layer) => {
-    const speed = parseFloat(layer.dataset.speed || 0.2);
-    gsap.to(layer, {
-      y: () => -window.innerHeight * speed,
-      rotation: gsap.utils.random(-6, 6),
-      ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
+  const heroMM = gsap.matchMedia();
+  // moment signature (ordinateur) : au défilement, on sort les documents de la chemise
+  heroMM.add('(min-width: 900px)', () => {
+    const tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { trigger: '.hero', pin: true, start: 'top top', end: '+=75%', scrub: 0.8 },
     });
+    tl.to('.layer--name', { y: -70, x: -20, rotation: -3 }, 0)
+      .to('.layer--photo', { y: -150, x: 70, rotation: 7 }, 0)
+      .to('.layer--note', { y: -60, x: 50, rotation: 3 }, 0)
+      .to('.stamp', { rotation: 120, y: -40 }, 0)
+      .to('.scroll-hint', { opacity: 0, duration: 0.2 }, 0)
+      .to('.folder, .pocket', { y: () => window.innerHeight * 0.75, opacity: 0, ease: 'power1.in' }, 0.35)
+      .to('.layer', { y: '-=60', stagger: 0.05 }, 0.55);
   });
-  gsap.to('.scroll-hint', {
-    opacity: 0, scrollTrigger: { trigger: '.hero', start: 'top top', end: '20% top', scrub: true },
+  heroMM.add('(max-width: 899px)', () => {
+    gsap.to('.layer--photo', { y: -40, rotation: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   });
 
-  // les fractions suivent la souris
-  const fracs = gsap.utils.toArray('.frac');
-  if (window.matchMedia('(pointer: fine)').matches) {
-    const movers = fracs.map((el, i) => ({
-      x: gsap.quickTo(el, 'x', { duration: 0.8, ease: 'power3' }),
-      y: gsap.quickTo(el, 'y', { duration: 0.8, ease: 'power3' }),
-      depth: 10 + (i % 4) * 9,
-    }));
-    window.addEventListener('mousemove', (e) => {
-      const dx = e.clientX / window.innerWidth - 0.5;
-      const dy = e.clientY / window.innerHeight - 0.5;
-      movers.forEach((m) => { m.x(dx * m.depth); m.y(dy * m.depth); });
-    });
-  }
-
-  /* ---------- MANIFESTE : les mots s'allument au défilement ---------- */
-  document.querySelectorAll('.reveal-words').forEach((block) => {
-    const frag = document.createDocumentFragment();
-    block.childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.textContent.split(/(\s+)/).forEach((part) => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
-          const s = document.createElement('span');
-          s.className = 'w'; s.textContent = part; frag.appendChild(s);
-        });
-      } else {
-        const s = document.createElement('span');
-        s.className = 'w'; s.appendChild(node.cloneNode(true)); frag.appendChild(s);
-      }
-    });
-    block.replaceChildren(frag);
-    gsap.fromTo(block.querySelectorAll('.w'),
-      { opacity: 0.12, y: 8 },
-      { opacity: 1, y: 0, stagger: 0.08, ease: 'none',
-        scrollTrigger: { trigger: block, start: 'top 80%', end: 'bottom 50%', scrub: true } });
+  /* ---------- MANIFESTE : un coup de surligneur sur les mots clés ---------- */
+  gsap.utils.toArray('.manifesto__text em').forEach((em) => {
+    gsap.fromTo(em, { '--hl': '0%' }, { '--hl': '100%', ease: 'none', scrollTrigger: { trigger: em, start: 'top 80%', end: 'top 55%', scrub: true } });
   });
 
   /* ---------- PROJETS ---------- */
@@ -185,10 +151,9 @@
   };
   document.addEventListener('slidechange', (e) => animateSlide(e.detail));
   ScrollTrigger.create({ trigger: '.projects', start: 'top 70%', once: true, onEnter: () => animateSlide(Math.max(current, 0)) });
-  gsap.from('.tabs button', { y: 40, opacity: 0, stagger: 0.06, duration: 0.6, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.projects', start: 'top 60%' } });
 
   /* ---------- ATOUTS ---------- */
-  gsap.from('.ticket', { y: -80, opacity: 0, rotation: () => gsap.utils.random(-20, 20), duration: 0.9, stagger: 0.12, ease: 'back.out(1.4)', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
+  gsap.from('.ticket', { y: -50, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.assets', start: 'top 80%' } });
   gsap.fromTo('.arrow-draw', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, repeat: -1, repeatDelay: 1.4, ease: 'power2.out', scrollTrigger: { trigger: '.assets', start: 'top 75%' } });
 
   /* ---------- PARCOURS ---------- */
@@ -200,38 +165,14 @@
     xPercent: 20, y: 80, rotation: 8, opacity: 0, ease: 'power2.out',
     scrollTrigger: { trigger: '.parcours', start: 'top 75%', end: 'top 25%', scrub: 1 },
   });
-  gsap.utils.toArray('.exp, .school').forEach((el) => {
-    gsap.from(el, {
-      x: -30, opacity: 0, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 85%' },
-    });
-  });
   gsap.from('.seal', {
     scale: 0, rotation: -200, duration: 0.9, ease: 'back.out(1.8)',
     scrollTrigger: { trigger: '.seal', start: 'top 90%' },
   });
 
-  /* ---------- COMPÉTENCES ---------- */
-  gsap.utils.toArray('.skill').forEach((card, i) => {
-    gsap.from(card, { y: 60, opacity: 0, rotation: i % 2 ? 3 : -3, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 88%' } });
-    gsap.from(card.querySelectorAll('.chips li'), { scale: 0.5, opacity: 0, duration: 0.45, stagger: 0.04, ease: 'back.out(2)', scrollTrigger: { trigger: card, start: 'top 80%' } });
-  });
-  gsap.from('.more', { y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.skills__more', start: 'top 88%' } });
-
-  /* ---------- CONTACT : bandeau qui accélère avec le scroll ---------- */
-  const marquee = gsap.to('.marquee__track', { xPercent: -50, ease: 'none', duration: 22, repeat: -1 });
-  ScrollTrigger.create({
-    trigger: '.contact', start: 'top bottom', end: 'bottom top',
-    onUpdate: (self) => {
-      const v = gsap.utils.clamp(-6, 6, self.getVelocity() / 250);
-      gsap.to(marquee, { timeScale: 1 + Math.abs(v), duration: 0.2, overwrite: true });
-      gsap.to(marquee, { timeScale: 1, duration: 1.2, delay: 0.2, overwrite: false });
-    },
-  });
-  gsap.from('.contact__card', {
-    y: 100, rotation: 5, opacity: 0, ease: 'power2.out',
-    scrollTrigger: { trigger: '.contact__card', start: 'top 95%', end: 'top 60%', scrub: 1 },
-  });
+  /* ---------- CONTACT : la carte postale arrive, puis on la tamponne ---------- */
+  gsap.from('.postcard', { y: 90, rotation: 4, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: '.postcard', start: 'top 95%', end: 'top 60%', scrub: 1 } });
+  gsap.from('.postmark', { scale: 1.6, opacity: 0, duration: 0.35, ease: 'power4.in', scrollTrigger: { trigger: '.postcard', start: 'top 45%' } });
   gsap.from('.rings i', { scaleX: 0, transformOrigin: 'right center', duration: 0.5, stagger: 0.1, ease: 'back.out(2)', scrollTrigger: { trigger: '.panel--school', start: 'top 75%' } });
 
   /* ---------- curseur ---------- */

@@ -12,6 +12,25 @@
 </head>
 <body class="page-projet" style="--a:#4F6D7A;--b:#EF8354">
   <div class="grain" aria-hidden="true"></div>
+  <!-- Matières : trombone métallique et bords de papier irréguliers -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="metal" x1="0" x2="30" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#7d8287"/><stop offset=".35" stop-color="#e9ecee"/><stop offset=".55" stop-color="#a7adb2"/><stop offset="1" stop-color="#5f6469"/>
+      </linearGradient>
+      <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <!-- le fil passe derrière la feuille sous le bord (y = 34) -->
+    <symbol id="clip-shape" viewBox="0 0 30 80">
+      <path d="M9 70V36" fill="none" stroke="rgba(0,0,0,.10)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M9 34V14a6 6 0 0 1 12 0v52a9 9 0 0 1-18 0V22" fill="none" stroke="url(#metal)" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M8.4 33V14.5a6.6 6.6 0 0 1 4-6" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".7" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
   <div class="cursor" aria-hidden="true"><span class="cursor__label">voir</span></div>
 
   <header class="nav">
@@ -43,9 +62,9 @@
         </div>
         <!-- Visuel principal : remplace le .placeholder par <img src="../assets/projets/crt-tourisme-bretagne/cover.jpg" alt="..."> -->
         <div class="case-hero__cover planche--grid">
-          <figure class="cut cut--a"><div class="placeholder ph-a"><span>newsletter</span></div></figure>
-          <figure class="cut cut--b"><div class="placeholder ph-b"><span>événement</span></div></figure>
-          <figure class="cut cut--c"><div class="placeholder ph-dark"><span>linkedin</span></div></figure>
+          <figure class="cut cut--a"><div class="placeholder ph-a"><span class="slot">newsletter</span></div></figure>
+          <figure class="cut cut--b"><div class="placeholder ph-b"><span class="slot">événement</span></div></figure>
+          <figure class="cut cut--c"><div class="placeholder ph-dark"><span class="slot">linkedin</span></div></figure>
           <span class="tape" aria-hidden="true"></span>
         </div>
       </div>
@@ -69,15 +88,15 @@
       <h2 class="section-title" data-reveal>Ce que j'ai <em>réalisé</em></h2>
       <div class="shots">
         <figure class="shot" data-reveal style="--r:-2deg">
-          <div class="shot__img"><div class="placeholder ph-a"><span>visuel 1</span></div></div>
+          <div class="shot__img"><div class="placeholder ph-a"><span class="slot">visuel 1</span></div></div>
           <figcaption class="mono">Réalisation 1 à compléter</figcaption>
         </figure>
         <figure class="shot" data-reveal style="--r:1.5deg">
-          <div class="shot__img"><div class="placeholder ph-b"><span>visuel 2</span></div></div>
+          <div class="shot__img"><div class="placeholder ph-b"><span class="slot">visuel 2</span></div></div>
           <figcaption class="mono">Réalisation 2 à compléter</figcaption>
         </figure>
         <figure class="shot" data-reveal style="--r:-1deg">
-          <div class="shot__img"><div class="placeholder ph-dark"><span>visuel 3</span></div></div>
+          <div class="shot__img"><div class="placeholder ph-dark"><span class="slot">visuel 3</span></div></div>
           <figcaption class="mono">Réalisation 3 à compléter</figcaption>
         </figure>
       </div>
