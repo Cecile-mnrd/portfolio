@@ -1307,3 +1307,33 @@ body { background: linear-gradient(180deg, var(--alice) 0%, #e6eef0 30%, var(--b
 .flip.is-js .postcard--back { transform: rotateY(180deg) !important; visibility: hidden; }
 .flip.is-js.is-back .postcard--back { visibility: visible; }
 .flip.is-js.is-back .postcard--front { visibility: hidden; }
+
+/* V16 — projets : piste de fiches qui glisse au défilement (ordinateur) */
+.tape-progress { display: none !important; }
+@media (min-width: 900px) {
+  .projects.is-track { height: 100vh; display: flex !important; flex-direction: column; justify-content: center; overflow: hidden; }
+  .projects.is-track .carousel {
+    overflow: visible !important; scroll-snap-type: none; width: max-content; gap: 5vw;
+    padding: 0 9vw; flex: 0 0 auto; align-items: center;
+  }
+  .projects.is-track .carousel .planche {
+    flex: 0 0 min(78vw, 1180px); width: min(78vw, 1180px); height: min(72vh, 680px); min-height: 0;
+    padding: clamp(2rem, 4vh, 3rem) clamp(2rem, 3vw, 3rem) !important; border-radius: 6px;
+    box-shadow: 0 2px 3px rgba(20,30,40,.15), 0 30px 60px -25px rgba(20,30,40,.45);
+  }
+  .projects.is-track .planche__collage { height: 100%; }
+  .projects.is-track .planche__text h3 { font-size: clamp(2.2rem, 3.6vw, 3.6rem); }
+  .projects.is-track .tabs, .projects.is-track .carousel__ui { flex: 0 0 auto; }
+  .projects.is-track .tabs { padding-bottom: 0 !important; margin-top: 2.2rem; }
+  .projects.is-track > .tabs { display: flex; }
+  .projects.is-track { padding-top: 3.5rem; }
+}
+@media (min-width: 900px) {
+  .projects.is-track .tabs-row { display: flex; }
+}
+.tabs-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: .5rem 1rem; background: var(--pale); }
+.tabs-row .tabs { flex: 1 1 auto; margin-top: 0 !important; }
+.tabs-row .carousel__ui { padding: .8rem var(--gutter) 1.2rem 0 !important; }
+@media (min-width: 900px) { .projects.is-track .tabs-row { margin-top: 2.2rem; } }
+@media (max-width: 899px) { .tabs-row { flex-direction: column; align-items: stretch; } .tabs-row .carousel__ui { justify-content: flex-end; padding: 0 var(--gutter) 1.2rem !important; } }
+@media (min-width: 900px) { .projects.is-track { height: 100vh !important; min-height: 100vh; } }

@@ -156,19 +156,39 @@
 
   const projMM = gsap.matchMedia();
   projMM.add('(min-width: 900px)', () => {
-    const max = () => car.scrollWidth - car.clientWidth;
-    car.style.scrollSnapType = 'none'; car.style.scrollBehavior = 'auto'; car.style.overflowX = 'hidden';
+    // la piste de fiches glisse à l'horizontale au rythme de la molette (comme la première version)
+    document.querySelector('.projects').classList.add('is-track');
+    const distance = () => car.scrollWidth - window.innerWidth;
+    const syncTab = () => {
+      const mid = -gsap.getProperty(car, 'x') + window.innerWidth / 2;
+      let best = 0, bd = Infinity;
+      slides.forEach((sl, k) => { const d = Math.abs(sl.offsetLeft + sl.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = k; } });
+      onSlide(best);
+    };
     const tw = gsap.to(car, {
-      scrollLeft: () => max(), ease: 'none',
-      scrollTrigger: { trigger: '.projects', pin: true, start: 'top top', end: () => '+=' + max() * 1.1, scrub: 0.6, invalidateOnRefresh: true },
+      x: () => -distance(), ease: 'none', onUpdate: syncTab,
+      scrollTrigger: {
+        trigger: '.projects', pin: true, start: 'top top', end: () => '+=' + distance(), scrub: 1, invalidateOnRefresh: true,
+      },
     });
     const st = tw.scrollTrigger;
+    // chaque fiche arrive penchée et se redresse en passant au centre ; les visuels bougent à des vitesses différentes
+    slides.forEach((sl) => {
+      const cfg = { trigger: sl, containerAnimation: tw, start: 'left right', end: 'right left', scrub: true };
+      gsap.fromTo(sl, { rotation: gsap.utils.random(4, 7), y: 60 }, { rotation: gsap.utils.random(-3, -1), y: -30, ease: 'none', scrollTrigger: cfg });
+      sl.querySelectorAll('.cut').forEach((c) => {
+        const d = parseFloat(c.dataset.depth || 1);
+        gsap.fromTo(c, { xPercent: 30 * d }, { xPercent: -20 * d, ease: 'none', scrollTrigger: cfg });
+      });
+    });
     const old = goImpl;
     goImpl = (i) => {
-      const y = st.start + (slides[i].offsetLeft / max()) * (st.end - st.start);
-      if (lenis) lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+      const target = slides[i].offsetLeft + slides[i].offsetWidth / 2 - window.innerWidth / 2;
+      const p = gsap.utils.clamp(0, 1, target / distance());
+      const y = st.start + p * (st.end - st.start);
+      if (lenis) lenis.scrollTo(y, { duration: 1.2 }); else window.scrollTo({ top: y, behavior: 'smooth' });
     };
-    return () => { goImpl = old; car.style.scrollSnapType = ''; car.style.scrollBehavior = ''; car.style.overflowX = ''; };
+    return () => { goImpl = old; document.querySelector('.projects').classList.remove('is-track'); };
   });
 
   /* ---------- ATOUTS ---------- */
@@ -246,7 +266,6 @@
   }
 
   /* ---------- barre de progression en ruban adhésif ---------- */
-  gsap.to('.tape-progress span', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
 
   /* ---------- curseur ---------- */
   const cursor = document.querySelector('.cursor');
